@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POOKUBEH - קובות בעבודת יד</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF6B6B',
+            secondary: '#4ECDC4',
+            accent1: '#FFE4B5',
+            accent2: '#FFDAB9',
+            darkBrown: '#8B4513',
+            lightBrown: '#CD853F',
+            brightYellow: '#FFFF99',
+            darkBlue: '#2C3E50',
+            lightGray: '#BDC3C7',
+            customGreen: '#28A745',
+          },
+        },
+      },
+    }
+    </script>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            min-height: 100vh;
+        }
+
+        .watermark-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 90px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.05);
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+        }
+
+        .instagram-watermark {
+            position: absolute;
+            top: 85%;
+            left: 20%;
+            transform: translate(-50%, -50%) rotate(15deg);
+            font-size: 70px;
+            color: rgba(0, 0, 0, 0.04);
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+        }
+
+        .tiktok-watermark {
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 70px;
+            color: rgba(0, 0, 0, 0.04);
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+        }
+
+        .beat-icon {
+            display: inline-block;
+            background: #FF6B6B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center py-4">
+    <div class="flyer max-w-sm mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
+
+        <!-- סימני מים -->
+        <div class="watermark-text">POOKUBEH</div>
+        <div class="instagram-watermark"><i class="fab fa-instagram"></i></div>
+        <div class="tiktok-watermark"><i class="fab fa-tiktok"></i></div>
+
+        <!-- לוגו וכותרת -->
+        <div class="bg-gradient-to-br from-accent1 to-accent2 p-6 text-center relative z-10">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-darkBrown shadow-md overflow-hidden">
+                <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="POOKUBEH Logo" class="w-full h-full object-cover" />
+            </div>
+            <h1 class="text-4xl font-bold text-darkBrown">POOKUBEH</h1>
+            <p class="text-base text-lightBrown font-bold tracking-wider">קובות מבושלות, מטוגנות ומרקים</p>
+        </div>
+
+        <!-- מחירון -->
+        <div class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
+            <h2 class="text-xl font-bold text-center mb-5">מחירון - קובות בעבודת יד (10 יחידות, ארוז בוואקום)</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between"><span>🥣 קובה עגולה במילוי בשר טחון</span><span class="text-brightYellow font-bold">80 ₪</span></div>
+                <div class="flex justify-between"><span>🥩 קובה שטוחה במילוי סיסקה מפורק</span><span class="text-brightYellow font-bold">85 ₪</span></div>
+                <div class="flex justify-between"><span>🌾 קובה בורגול בעבודת יד</span><span class="text-brightYellow font-bold">100 ₪</span></div>
+                <div class="flex justify-between"><span>🥔 קובה פטטה ללא גלוטן</span><span class="text-brightYellow font-bold">110 ₪</span></div>
+                <div class="flex justify-between"><span>🚫 קובה ללא גלוטן עם סיסקה</span><span class="text-brightYellow font-bold">100 ₪</span></div>
+                <div class="flex justify-between"><span>🔴 קובה עגולה ללא גלוטן</span><span class="text-brightYellow font-bold">80 ₪</span></div>
+            </div>
+        </div>
+
+        <!-- מרקים -->
+        <div class="bg-secondary p-4 text-white relative z-10">
+            <h3 class="text-lg font-bold text-center mb-3">🍲 מרקים</h3>
+            <div class="flex justify-between"><span>2 ליטר</span><span>50 ₪</span></div>
+            <div class="flex justify-between"><span>4 ליטר</span><span>70 ₪</span></div>
+        </div>
+
+        <!-- תמונות -->
+        <div class="grid grid-cols-2 h-48 relative z-10">
+            <div class="bg-cover bg-center" style="background-image: url('https://i.ibb.co/WWbmzKjJ/Whats-App-2025-06-06-22-28-09-90d2de68.jpg');"></div>
+            <div class="bg-cover bg-center" style="background-image: url('https://i.ibb.co/ccWtCmzQ/Whats-App-2025-06-06-22-30-51-3b7a1b35.jpg');"></div>
+        </div>
+
+        <!-- פוטר -->
+        <div class="bg-darkBlue p-5 text-center text-white relative z-10 rounded-b-2xl space-y-4">
+            <div>
+                <a href="tel:0546225706" class="text-3xl font-bold text-customGreen block">📞 054-6225706</a>
+                <div class="flex justify-center gap-4 text-3xl mt-2">
+                    <a href="https://www.instagram.com/" target="_blank" class="text-secondary hover:text-white"><i class="fab fa-instagram-square"></i></a>
+                    <a href="https://wa.me/0546225706" target="_blank" class="text-secondary hover:text-white"><i class="fab fa-whatsapp-square"></i></a>
+                    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="text-secondary hover:text-white"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="text-sm bg-white bg-opacity-10 p-2 rounded-lg">
+                <span class="beat-icon">BIT</span> מקבלים תשלום בביט, פייבוקס ומזומן
+            </div>
+
+            <div class="bg-white bg-opacity-20 p-4 rounded-lg font-bold text-white">
+                ⭐ הזמנות יתקבלו עד יום רביעי ⭐
+            </div>
+
+            <div class="text-xs text-lightGray italic">
+                לא כולל מרק • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום
+            </div>
+        </div>
+    </div>
+</body>
+</html>
