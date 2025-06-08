@@ -14,53 +14,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4) !important;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
             min-height: 100vh;
-        }
-
-        /* Tailwind custom colors override */
-        .bg-gradient-to-br.from-accent1.to-accent2 {
-            background: linear-gradient(to bottom right, #FFE4B5, #FFDAB9) !important;
-        }
-
-        .bg-gradient-to-br.from-primary.to-orange-400 {
-            background: linear-gradient(to bottom right, #FF6B6B, #ff8c42) !important;
-        }
-
-        .bg-secondary {
-            background-color: #4ECDC4 !important;
-        }
-
-        .bg-darkBlue {
-            background-color: #2C3E50 !important;
-        }
-
-        .text-darkBrown {
-            color: #8B4513 !important;
-        }
-
-        .text-lightBrown {
-            color: #CD853F !important;
-        }
-
-        .text-brightYellow {
-            color: #FFFF99 !important;
-        }
-
-        .text-customGreen {
-            color: #28A745 !important;
-        }
-
-        .text-secondary {
-            color: #4ECDC4 !important;
-        }
-
-        .text-lightGray {
-            color: #BDC3C7 !important;
-        }
-
-        .border-darkBrown {
-            border-color: #8B4513 !important;
         }
 
         .watermark-text {
@@ -102,13 +57,54 @@
 
         .beat-icon {
             display: inline-block;
-            background: #FF6B6B !important;
+            background: #FF6B6B;
             color: white;
             padding: 4px 8px;
             border-radius: 15px;
             font-size: 12px;
             font-weight: bold;
             margin-left: 5px;
+        }
+
+        /* צבעים קבועים */
+        .header-bg {
+            background: linear-gradient(135deg, #FFE4B5, #FFDAB9);
+        }
+
+        .price-bg {
+            background: linear-gradient(135deg, #FF6B6B, #FF8C42);
+        }
+
+        .soup-bg {
+            background-color: #4ECDC4;
+        }
+
+        .footer-bg {
+            background-color: #2C3E50;
+        }
+
+        .dark-brown {
+            color: #8B4513;
+        }
+
+        .light-brown {
+            color: #CD853F;
+        }
+
+        .bright-yellow {
+            color: #FFFF99;
+        }
+
+        .custom-green {
+            color: #28A745;
+        }
+
+        .light-gray {
+            color: #BDC3C7;
+        }
+
+        .secondary-color {
+            color: #4ECDC4;
         }
     </style>
 </head>
@@ -121,29 +117,47 @@
         <div class="tiktok-watermark"><i class="fab fa-tiktok"></i></div>
 
         <!-- לוגו וכותרת -->
-        <div class="bg-gradient-to-br from-accent1 to-accent2 p-6 text-center relative z-10">
-            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-darkBrown shadow-md overflow-hidden">
+        <div class="header-bg p-6 text-center relative z-10">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 shadow-md overflow-hidden" style="border-color: #8B4513;">
                 <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="POOKUBEH Logo" class="w-full h-full object-cover" />
             </div>
-            <h1 class="text-4xl font-bold text-darkBrown">POOKUBEH</h1>
-            <p class="text-base text-lightBrown font-bold tracking-wider">קובות מבושלות, מטוגנות ומרקים</p>
+            <h1 class="text-4xl font-bold dark-brown">POOKUBEH</h1>
+            <p class="text-base light-brown font-bold tracking-wider">קובות מבושלות, מטוגנות ומרקים</p>
         </div>
 
         <!-- מחירון -->
-        <div class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
+        <div class="price-bg p-6 text-white relative z-10">
             <h2 class="text-xl font-bold text-center mb-5">מחירון - קובות בעבודת יד (10 יחידות, ארוז בוואקום)</h2>
             <div class="space-y-3 text-sm">
-                <div class="flex justify-between"><span>🥣 קובה עגולה במילוי בשר טחון</span><span class="text-brightYellow font-bold">80 ₪</span></div>
-                <div class="flex justify-between"><span>🥩 קובה שטוחה במילוי סיסקה מפורק</span><span class="text-brightYellow font-bold">85 ₪</span></div>
-                <div class="flex justify-between"><span>🌾 קובה בורגול בעבודת יד</span><span class="text-brightYellow font-bold">100 ₪</span></div>
-                <div class="flex justify-between"><span>🥔 קובה פטטה ללא גלוטן</span><span class="text-brightYellow font-bold">110 ₪</span></div>
-                <div class="flex justify-between"><span>🚫 קובה ללא גלוטן עם סיסקה</span><span class="text-brightYellow font-bold">100 ₪</span></div>
-                <div class="flex justify-between"><span>🔴 קובה עגולה ללא גלוטן</span><span class="text-brightYellow font-bold">80 ₪</span></div>
+                <div class="flex justify-between">
+                    <span>🥣 קובה עגולה במילוי בשר טחון</span>
+                    <span class="bright-yellow font-bold">80 ₪</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>🥩 קובה שטוחה במילוי סיסקה מפורק</span>
+                    <span class="bright-yellow font-bold">85 ₪</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>🌾 קובה בורגול בעבודת יד</span>
+                    <span class="bright-yellow font-bold">100 ₪</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>🥔 קובה פטטה ללא גלוטן</span>
+                    <span class="bright-yellow font-bold">110 ₪</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>🚫 קובה ללא גלוטן עם סיסקה</span>
+                    <span class="bright-yellow font-bold">100 ₪</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>🔴 קובה עגולה ללא גלוטן</span>
+                    <span class="bright-yellow font-bold">80 ₪</span>
+                </div>
             </div>
         </div>
 
         <!-- מרקים -->
-        <div class="bg-secondary p-4 text-white relative z-10">
+        <div class="soup-bg p-4 text-white relative z-10">
             <h3 class="text-lg font-bold text-center mb-3">🍲 מרקים</h3>
             <div class="flex justify-between"><span>2 ליטר</span><span>50 ₪</span></div>
             <div class="flex justify-between"><span>4 ליטר</span><span>70 ₪</span></div>
@@ -156,13 +170,13 @@
         </div>
 
         <!-- פוטר -->
-        <div class="bg-darkBlue p-5 text-center text-white relative z-10 rounded-b-2xl space-y-4">
+        <div class="footer-bg p-5 text-center text-white relative z-10 rounded-b-2xl space-y-4">
             <div>
-                <a href="tel:0546225706" class="text-3xl font-bold text-customGreen block">📞 054-6225706</a>
+                <a href="tel:0546225706" class="text-3xl font-bold custom-green block">📞 054-6225706</a>
                 <div class="flex justify-center gap-4 text-3xl mt-2">
-                    <a href="https://www.instagram.com/" target="_blank" class="text-secondary hover:text-white"><i class="fab fa-instagram-square"></i></a>
-                    <a href="https://wa.me/0546225706" target="_blank" class="text-secondary hover:text-white"><i class="fab fa-whatsapp-square"></i></a>
-                    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="text-secondary hover:text-white"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" class="secondary-color hover:text-white transition-colors"><i class="fab fa-instagram-square"></i></a>
+                    <a href="https://wa.me/0546225706" target="_blank" class="secondary-color hover:text-white transition-colors"><i class="fab fa-whatsapp-square"></i></a>
+                    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="secondary-color hover:text-white transition-colors"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
 
@@ -174,7 +188,7 @@
                 ⭐ הזמנות יתקבלו עד יום רביעי ⭐
             </div>
 
-            <div class="text-xs text-lightGray italic">
+            <div class="text-xs light-gray italic">
                 לא כולל מרק • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום
             </div>
         </div>
