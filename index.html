@@ -26,6 +26,7 @@
                         darkBlue: '#2C3E50',
                         lightGray: '#BDC3C7',
                         customGreen: '#28A745',
+                        bitBlue: '#0066CC',
                     },
                     animation: {
                         'bounce-slow': 'bounce 2s infinite',
@@ -165,6 +166,17 @@
                 box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
             }
 
+        .bit-button {
+            background: linear-gradient(45deg, #0066CC, #0080FF);
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+
+            .bit-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+            }
+
         .gallery-img {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -225,6 +237,16 @@
             font-size: 18px;
         }
 
+        .payment-buttons {
+            display: none;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+            .payment-buttons.show {
+                display: flex;
+            }
+
         @media (max-width: 640px) {
             .flyer {
                 margin: 10px;
@@ -234,6 +256,10 @@
             .quantity-controls {
                 flex-direction: row;
                 gap: 8px;
+            }
+
+            .payment-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -408,8 +434,18 @@
 
         <!-- Footer with Order Button -->
         <div class="bg-darkBlue p-5 text-center text-white relative z-10 rounded-b-2xl space-y-4">
-            <!-- Main Order Button -->
-            <button class="order-button w-full py-4 rounded-xl text-xl font-bold text-white mb-4 animate-bounce-slow" onclick="makeOrder()">
+            <!-- Payment Buttons - Show when there's a total -->
+            <div id="paymentButtons" class="payment-buttons">
+                <button class="order-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="makeOrder()">
+                    💬 שלם בוואטסאפ
+                </button>
+                <button class="bit-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="payWithBit()">
+                    💳 שלם בביט
+                </button>
+            </div>
+
+            <!-- Main Order Button - Show when no total -->
+            <button id="mainOrderButton" class="order-button w-full py-4 rounded-xl text-xl font-bold text-white mb-4 animate-bounce-slow" onclick="makeOrder()">
                 🛒 הזמן עכשיו בוואטסאפ
             </button>
 
@@ -487,14 +523,20 @@
 
             const totalDisplay = document.getElementById('totalAmount');
             const floatingTotal = document.getElementById('floatingTotal');
+            const paymentButtons = document.getElementById('paymentButtons');
+            const mainOrderButton = document.getElementById('mainOrderButton');
 
             totalDisplay.textContent = totalAmount;
 
-            // Show/hide floating total based on total amount
+            // Show/hide elements based on total amount
             if (totalAmount > 0) {
                 floatingTotal.style.display = 'block';
+                paymentButtons.classList.add('show');
+                mainOrderButton.style.display = 'none';
             } else {
                 floatingTotal.style.display = 'none';
+                paymentButtons.classList.remove('show');
+                mainOrderButton.style.display = 'block';
             }
         }
 
@@ -516,28 +558,7 @@
             });
 
             if (!hasItems) {
-                // Using a custom message box instead of alert()
-                const messageBox = document.createElement('div');
-                messageBox.style.cssText = `
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background-color: #FF6B6B;
-                        color: white;
-                        padding: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                        z-index: 1001;
-                        font-size: 1.2em;
-                        text-align: center;
-                        cursor: pointer;
-                    `;
-                messageBox.textContent = 'אנא בחר מוצרים להזמנה';
-                document.body.appendChild(messageBox);
-                setTimeout(() => {
-                    document.body.removeChild(messageBox);
-                }, 2000); // Remove after 2 seconds
+                showMessage('אנא בחר מוצרים להזמנה');
                 return;
             }
 
@@ -546,33 +567,213 @@
             const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(orderText)}`;
             window.open(whatsappUrl, '_blank');
         }
+        // Function to pay with Bit
+        function payWithBit() {
+            const productItems = document.querySelectorAll('.product-item');
+            let hasItems = false;
 
-        // Function to open the image modal
-        function openModal(backgroundImage) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
+            productItems.forEach(item => {
+                const quantity = parseInt(item.querySelector('.quantity-input').value) || 0;
+                if (quantity > 0) {
+                    hasItems = true;
+                }
+            });
 
-            // Extract URL from background-image style
-            const url = backgroundImage.slice(5, -2); // Remove 'url("' and '")'
-
-            modal.style.display = 'block';
-            modalImg.src = url;
-        }
-
-        // Function to close the image modal
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Event listener for closing the modal via the 'X' button
-        document.querySelector('.close').onclick = closeModal;
-
-        // Event listener for closing the modal via the Escape key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                closeModal();
+            if (!hasItems) {
+                showMessage('אנא בחר מוצרים לתשלום');
+                return;
             }
-        });
+
+            // Show Bit payment instructions immediately
+            showBitInstructions();
+        }
+
+        // Function to show Bit payment instructions
+        function showBitInstructions() {
+            const amount = totalAmount;
+            const phoneNumber = '0546225706';
+
+            const instructionsHtml = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    z-index: 2000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">
+                    <div style="
+                        background: white;
+                        padding: 25px;
+                        border-radius: 20px;
+                        max-width: 380px;
+                        text-align: center;
+                        margin: 20px;
+                        direction: rtl;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    ">
+                        <div style="font-size: 50px; margin-bottom: 15px;">💳</div>
+                        <h3 style="color: #0066CC; margin-bottom: 20px; font-size: 24px;">תשלום בביט</h3>
+                        
+                        <div style="background: #f0f8ff; padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px solid #0066CC;">
+                            <div style="font-size: 20px; font-weight: bold; color: #0066CC; margin-bottom: 10px;">
+                                סכום לתשלום: ${amount}₪
+                            </div>
+                            <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 15px;">
+                                מספר טלפון: ${phoneNumber}
+                            </div>
+                            <div style="font-size: 14px; color: #666; background: white; padding: 10px; border-radius: 8px;">
+                                העתק את המספר ↑
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: right; margin: 20px 0; font-size: 15px; line-height: 1.6;">
+                            <div style="margin: 8px 0;">📱 <strong>שלב 1:</strong> פתח את אפליקציית ביט</div>
+                            <div style="margin: 8px 0;">💸 <strong>שלב 2:</strong> לחץ על "העבר כסף"</div>
+                            <div style="margin: 8px 0;">📞 <strong>שלב 3:</strong> הזן מספר: ${phoneNumber}</div>
+                            <div style="margin: 8px 0;">💰 <strong>שלב 4:</strong> הזן סכום: ${amount}₪</div>
+                            <div style="margin: 8px 0;">✅ <strong>שלב 5:</strong> שלח את התשלום</div>
+                        </div>
+                        
+                        <div style="margin-top: 25px; display: flex; gap: 10px; flex-direction: column;">
+                            <button onclick="openBitApp();" style="
+                                background: linear-gradient(45deg, #0066CC, #0080FF);
+                                color: white;
+                                border: none;
+                                padding: 15px 20px;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                font-size: 16px;
+                                font-weight: bold;
+                                transition: all 0.3s ease;
+                            ">📱 פתח את ביט</button>
+                            
+                            <button onclick="copyPhoneNumber();" style="
+                                background: #28A745;
+                                color: white;
+                                border: none;
+                                padding: 12px 20px;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                font-size: 14px;
+                                font-weight: bold;
+                            ">📋 העתק מספר טלפון</button>
+                            
+                            <button onclick="closeInstructions(); contactWhatsApp();" style="
+                                background: #25D366;
+                                color: white;
+                                border: none;
+                                padding: 12px 20px;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                font-size: 14px;
+                                font-weight: bold;
+                            ">💬 שלח הזמנה בוואטסאפ</button>
+                            
+                            <button onclick="closeInstructions();" style="
+                                background: #FF6B6B;
+                                color: white;
+                                border: none;
+                                padding: 12px 20px;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                font-size: 14px;
+                            ">✖️ סגור</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const instructionsDiv = document.createElement('div');
+            instructionsDiv.innerHTML = instructionsHtml;
+            instructionsDiv.id = 'bitInstructions';
+            document.body.appendChild(instructionsDiv);
+        }
+
+        // Function to open Bit app (simple version)
+        // Function to open Bit app (simple version)
+        function openBitApp() {
+            const phoneNumber = '0546225706';
+            const amount = totalAmount;
+
+            try {
+                // Try opening Bit with payment details
+                window.location.href = `bit://pay?phone=${phoneNumber}&amount=${amount}&description=קובות בעבודת יד POOKUBEH`;
+
+                // Fallback to simple Bit app opening after a short delay
+                setTimeout(() => {
+                    window.location.href = 'bit://';
+                }, 1000);
+            } catch (error) {
+                // If that doesn't work, try alternative
+                try {
+                    const link = document.createElement('a');
+                    link.href = `bit://pay?phone=${phoneNumber}&amount=${amount}&description=קובות בעבודת יד`;
+                    link.click();
+                } catch (e) {
+                    showMessage('אנא פתח את ביט ידנית');
+                }
+            }
+        }
+
+        // Function to copy phone number
+        function copyPhoneNumber() {
+            const phoneNumber = '0546225706';
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(phoneNumber).then(() => {
+                    showMessage('מספר הטלפון הועתק');
+                }).catch(() => {
+                    showMessage('אנא העתק ידנית: ' + phoneNumber);
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = phoneNumber;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showMessage('מספר הטלפון הועתק');
+                } catch (err) {
+                    showMessage('אנא העתק ידנית: ' + phoneNumber);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // Function to close Bit instructions
+        function closeInstructions() {
+            const instructions = document.getElementById('bitInstructions');
+            if (instructions) {
+                document.body.removeChild(instructions);
+            }
+        }
+
+        // Function to contact via WhatsApp after Bit payment
+        function contactWhatsApp() {
+            const productItems = document.querySelectorAll('.product-item');
+            let orderText = 'היי! אני מעוניין תשלום בביט :\n\n';
+
+            productItems.forEach(item => {
+                const quantity = parseInt(item.querySelector('.quantity-input').value) || 0;
+                if (quantity > 0) {
+                    const productName = item.querySelector('span').textContent.trim();
+                    const price = parseInt(item.dataset.price);
+                    const totalUnits = quantity * 10;
+                    orderText += `${productName} - ${totalUnits} יחידות (${price * quantity}₪)\n`;
+                }
+            });
+
+            orderText += `\nסכום לתשלום בביט: ${totalAmount}₪\nאשמח לאישור ותיאום התשלום. תודה!`;
+
+            const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(orderText)}`;
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
 </html>
