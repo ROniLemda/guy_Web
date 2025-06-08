@@ -64,7 +64,7 @@
 
         .watermark-text {
             position: absolute;
-            top: 50%;
+            top: 25%; /* Adjusted: moved up */
             left: 50%;
             transform: translate(-50%, -50%) rotate(-20deg);
             font-size: 90px;
@@ -77,8 +77,8 @@
 
         .instagram-watermark {
             position: absolute;
-            top: 85%;
-            left: 20%;
+            bottom: 10%; /* Adjusted: moved to bottom */
+            left: 15%; /* Adjusted: moved slightly right */
             transform: translate(-50%, -50%) rotate(15deg);
             font-size: 70px;
             color: rgba(0, 0, 0, 0.02);
@@ -89,8 +89,8 @@
 
         .tiktok-watermark {
             position: absolute;
-            top: 15%;
-            right: 10%;
+            top: 10%; /* Adjusted: moved down */
+            right: 15%; /* Adjusted: moved slightly left */
             transform: translate(-50%, -50%) rotate(-15deg);
             font-size: 70px;
             color: rgba(0, 0, 0, 0.02);
@@ -241,12 +241,12 @@
 <body class="flex items-center justify-center py-4">
     <div class="flyer max-w-sm mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
 
-        <!-- סימני מים -->
+        <!-- Watermarks -->
         <div class="watermark-text">POOKUBEH</div>
         <div class="instagram-watermark"><i class="fab fa-instagram"></i></div>
         <div class="tiktok-watermark"><i class="fab fa-tiktok"></i></div>
 
-        <!-- לוגו וכותרת -->
+        <!-- Logo and Title -->
         <div class="bg-gradient-to-br from-accent1 to-accent2 p-6 text-center relative z-10">
             <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-darkBrown shadow-md overflow-hidden animate-pulse-slow">
                 <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="POOKUBEH Logo" class="w-full h-full object-cover" />
@@ -263,7 +263,7 @@
             </div>
         </div>
 
-        <!-- מחירון עם מונה כמויות -->
+        <!-- Price List with Quantity Counter -->
         <div class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
             <h2 class="text-xl font-bold text-center mb-5">🛒 מחירון - קובות בעבודת יד</h2>
             <p class="text-center text-sm mb-4 bg-white bg-opacity-20 p-2 rounded-lg">
@@ -345,7 +345,7 @@
             </div>
         </div>
 
-        <!-- מרקים -->
+        <!-- Soups -->
         <div class="bg-secondary p-4 text-white relative z-10">
             <h3 class="text-lg font-bold text-center mb-3">🍲 מרקים ביתיים</h3>
             <div class="space-y-2">
@@ -374,13 +374,13 @@
             </div>
         </div>
 
-        <!-- גלריית תמונות -->
+        <!-- Image Gallery -->
         <div class="grid grid-cols-2 h-48 relative z-10">
             <div class="gallery-img bg-cover bg-center" style="background-image: url('https://i.ibb.co/WWbmzKjJ/Whats-App-2025-06-06-22-28-09-90d2de68.jpg');" onclick="openModal(this.style.backgroundImage)"></div>
             <div class="gallery-img bg-cover bg-center" style="background-image: url('https://i.ibb.co/ccWtCmzQ/Whats-App-2025-06-06-22-30-51-3b7a1b35.jpg');" onclick="openModal(this.style.backgroundImage)"></div>
         </div>
 
-        <!-- הוראות הכנה -->
+        <!-- Preparation Instructions -->
         <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-4 text-white relative z-10">
             <h3 class="text-lg font-bold text-center mb-3">👩‍🍳 הוראות הכנה</h3>
             <div class="text-sm space-y-3">
@@ -406,22 +406,22 @@
             </div>
         </div>
 
-        <!-- פוטר עם כפתור הזמנה -->
+        <!-- Footer with Order Button -->
         <div class="bg-darkBlue p-5 text-center text-white relative z-10 rounded-b-2xl space-y-4">
-            <!-- כפתור הזמנה מרכזי -->
+            <!-- Main Order Button -->
             <button class="order-button w-full py-4 rounded-xl text-xl font-bold text-white mb-4 animate-bounce-slow" onclick="makeOrder()">
                 🛒 הזמן עכשיו בוואטסאפ
             </button>
 
             <div>
                 <div class="text-center mt-4">
-                    <!-- טלפון -->
+                    <!-- Phone -->
                     <a href="tel:+972546225706" class="text-3xl font-bold text-customGreen block hover:text-white transition-colors">
                         📞 054-6225706
                     </a>
 
-                    <!-- אייקונים חברתיים -->
-                    <div class="flex justify-center gap-6 text-4xl mt-4">
+                    <!-- Social Icons -->
+                    <div class="flex justify-center gap-6 text-4xl mt-2 mb-4">
                         <a href="https://www.instagram.com/" target="_blank" class="text-[#E1306C] hover:text-white transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -433,30 +433,31 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="text-sm bg-white bg-opacity-10 p-2 rounded-lg">
-                    <span class="beat-icon">BIT</span> מקבלים תשלום בביט, פייבוקס ומזומן
-                </div>
-
-                <div class="bg-white bg-opacity-20 p-4 rounded-lg font-bold text-white">
-                    ⭐ הזמנות יתקבלו עד יום רביעי ⭐<br>
-                    <small class="text-xs">משלוחים באזור תל אביב | איסוף עצמי גם כן אפשרי</small>
-                </div>
-
-                <div class="text-xs text-lightGray italic">
-                    לא כולל מרק • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום<br>
-                    <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
-                </div>
             </div>
+
+            <div class="text-sm bg-white bg-opacity-10 p-2 rounded-lg">
+                <span class="beat-icon">BIT</span> מקבלים תשלום בביט, פייבוקס ומזומן
+            </div>
+
+            <div class="bg-white bg-opacity-20 p-4 rounded-lg font-bold text-white">
+                ⭐ הזמנות יתקבלו עד יום רביעי ⭐<br>
+                <small class="text-xs">משלוחים באזור תל אביב | איסוף עצמי גם כן אפשרי</small>
+            </div>
+
+            <div class="text-xs text-lightGray italic">
+                לא כולל מרק • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום<br>
+                <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
+            </div>
+        </div>
     </div>
 
-    <!-- Modal לתמונות -->
+    <!-- Image Modal -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close">&times;</span>
         <img class="modal-content" id="modalImage">
     </div>
 
-    <!-- סכום כולל צף -->
+    <!-- Floating Total Amount -->
     <div id="floatingTotal" class="floating-total">
         סכום כולל: <span id="totalAmount">0</span>₪
     </div>
@@ -464,6 +465,7 @@
     <script>
         let totalAmount = 0;
 
+        // Function to change product quantity
         function changeQuantity(button, change) {
             const input = button.parentElement.querySelector('.quantity-input');
             let currentValue = parseInt(input.value) || 0;
@@ -472,6 +474,7 @@
             updateTotal();
         }
 
+        // Function to update the total amount
         function updateTotal() {
             totalAmount = 0;
             const productItems = document.querySelectorAll('.product-item');
@@ -487,6 +490,7 @@
 
             totalDisplay.textContent = totalAmount;
 
+            // Show/hide floating total based on total amount
             if (totalAmount > 0) {
                 floatingTotal.style.display = 'block';
             } else {
@@ -494,6 +498,7 @@
             }
         }
 
+        // Function to construct and send WhatsApp order
         function makeOrder() {
             const productItems = document.querySelectorAll('.product-item');
             let orderText = 'היי! אני רוצה להזמין:\n\n';
@@ -504,14 +509,35 @@
                 if (quantity > 0) {
                     const productName = item.querySelector('span').textContent.trim();
                     const price = parseInt(item.dataset.price);
-                    const totalUnits = quantity * 10; // כל כמות = 10 יחידות
+                    const totalUnits = quantity * 10; // Each quantity unit equals 10 actual items
                     orderText += `${productName} - ${totalUnits} יחידות (${quantity} אריזות × ${price}₪ = ${price * quantity}₪)\n`;
                     hasItems = true;
                 }
             });
 
             if (!hasItems) {
-                alert('אנא בחר מוצרים להזמנה');
+                // Using a custom message box instead of alert()
+                const messageBox = document.createElement('div');
+                messageBox.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: #FF6B6B;
+                        color: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                        z-index: 1001;
+                        font-size: 1.2em;
+                        text-align: center;
+                        cursor: pointer;
+                    `;
+                messageBox.textContent = 'אנא בחר מוצרים להזמנה';
+                document.body.appendChild(messageBox);
+                setTimeout(() => {
+                    document.body.removeChild(messageBox);
+                }, 2000); // Remove after 2 seconds
                 return;
             }
 
@@ -521,6 +547,7 @@
             window.open(whatsappUrl, '_blank');
         }
 
+        // Function to open the image modal
         function openModal(backgroundImage) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
@@ -532,14 +559,15 @@
             modalImg.src = url;
         }
 
+        // Function to close the image modal
         function closeModal() {
             document.getElementById('imageModal').style.display = 'none';
         }
 
-        // Close modal when clicking the X
+        // Event listener for closing the modal via the 'X' button
         document.querySelector('.close').onclick = closeModal;
 
-        // Close modal when pressing Escape
+        // Event listener for closing the modal via the Escape key
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 closeModal();
