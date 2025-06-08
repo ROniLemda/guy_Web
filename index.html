@@ -7,29 +7,6 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            inter: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            primary: '#FF6B6B',
-            secondary: '#4ECDC4',
-            accent1: '#FFE4B5',
-            accent2: '#FFDAB9',
-            darkBrown: '#8B4513',
-            lightBrown: '#CD853F',
-            brightYellow: '#FFFF99',
-            darkBlue: '#2C3E50',
-            lightGray: '#BDC3C7',
-            customGreen: '#28A745',
-          },
-        },
-      },
-    }
-    </script>
 
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
@@ -37,8 +14,53 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4) !important;
             min-height: 100vh;
+        }
+
+        /* Tailwind custom colors override */
+        .bg-gradient-to-br.from-accent1.to-accent2 {
+            background: linear-gradient(to bottom right, #FFE4B5, #FFDAB9) !important;
+        }
+
+        .bg-gradient-to-br.from-primary.to-orange-400 {
+            background: linear-gradient(to bottom right, #FF6B6B, #ff8c42) !important;
+        }
+
+        .bg-secondary {
+            background-color: #4ECDC4 !important;
+        }
+
+        .bg-darkBlue {
+            background-color: #2C3E50 !important;
+        }
+
+        .text-darkBrown {
+            color: #8B4513 !important;
+        }
+
+        .text-lightBrown {
+            color: #CD853F !important;
+        }
+
+        .text-brightYellow {
+            color: #FFFF99 !important;
+        }
+
+        .text-customGreen {
+            color: #28A745 !important;
+        }
+
+        .text-secondary {
+            color: #4ECDC4 !important;
+        }
+
+        .text-lightGray {
+            color: #BDC3C7 !important;
+        }
+
+        .border-darkBrown {
+            border-color: #8B4513 !important;
         }
 
         .watermark-text {
@@ -80,7 +102,7 @@
 
         .beat-icon {
             display: inline-block;
-            background: #FF6B6B;
+            background: #FF6B6B !important;
             color: white;
             padding: 4px 8px;
             border-radius: 15px;
@@ -111,12 +133,12 @@
         <div class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
             <h2 class="text-xl font-bold text-center mb-5">מחירון - קובות בעבודת יד (10 יחידות, ארוז בוואקום)</h2>
             <div class="space-y-3 text-sm">
-                <div class="flex justify-between"><span>🥣 קובה עגולה במילוי בשר טחון (10 יחידות)</span><span class="text-brightYellow font-bold">65 ₪</span></div>
-                <div class="flex justify-between"><span>🥩 קובה שטוחה במילוי סיסקה מפורק (10 יחידות) </span><span class="text-brightYellow font-bold">85 ₪</span></div>
-                <div class="flex justify-between"><span>🌾 קובה בורגול (10 יחידות) </span><span class="text-brightYellow font-bold">100 ₪</span></div>
-                <div class="flex justify-between"><span>🥔 קובה פטטה ללא גלוטן (10 יחידות)</span><span class="text-brightYellow font-bold">110 ₪</span></div>
-                <div class="flex justify-between"><span>🚫 קובה ללא גלוטן עם סיסקה (10 יחידות)</span><span class="text-brightYellow font-bold">100 ₪</span></div>
-                <div class="flex justify-between"><span>🔴 קובה עגולה ללא גלוטן (10 יחידות)</span><span class="text-brightYellow font-bold">80 ₪</span></div>
+                <div class="flex justify-between"><span>🥣 קובה עגולה במילוי בשר טחון</span><span class="text-brightYellow font-bold">80 ₪</span></div>
+                <div class="flex justify-between"><span>🥩 קובה שטוחה במילוי סיסקה מפורק</span><span class="text-brightYellow font-bold">85 ₪</span></div>
+                <div class="flex justify-between"><span>🌾 קובה בורגול בעבודת יד</span><span class="text-brightYellow font-bold">100 ₪</span></div>
+                <div class="flex justify-between"><span>🥔 קובה פטטה ללא גלוטן</span><span class="text-brightYellow font-bold">110 ₪</span></div>
+                <div class="flex justify-between"><span>🚫 קובה ללא גלוטן עם סיסקה</span><span class="text-brightYellow font-bold">100 ₪</span></div>
+                <div class="flex justify-between"><span>🔴 קובה עגולה ללא גלוטן</span><span class="text-brightYellow font-bold">80 ₪</span></div>
             </div>
         </div>
 
