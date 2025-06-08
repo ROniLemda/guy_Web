@@ -702,7 +702,8 @@
 
             try {
                 // Try opening Bit with payment details
-                window.location.href = `bit://pay?phone=${phoneNumber}&amount=${amount}&description=קובות בעבודת יד POOKUBEH`;
+                window.open('https://www.bitpay.co.il/app/me/B073857A-94E6-8958-E0A5-8F229A048E87ECE5', '_blank');
+
 
                 // Fallback to simple Bit app opening after a short delay
                 setTimeout(() => {
