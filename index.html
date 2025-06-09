@@ -657,10 +657,23 @@
                 <button class="order-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="makeOrder()">
                     💬 שלם בוואטסאפ
                 </button>
+                <div class="text-center mt-2">
+                    <button onclick="showAdminLogin()" style="
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.3);
+        color: rgba(255,255,255,0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 10px;
+        cursor: pointer;
+    ">
+                        מנהל 
+                    </button>
+                </div>
 
                 <!--   <button class="bit-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="payWithBit()">
-            💳 שלם בביט
-        </button>-->
+        💳 שלם בביט
+    </button>-->
                 <button class="bit-button locked flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="showBitLockedMessage()">
             </div>
             <div class="locked-notice">
@@ -1132,6 +1145,99 @@
         function showMessage(message) {
             alert(message);
         }
+        // 1. הוסף משתנים בתחילת הקוד JavaScript:
+        let isAdminMode = false;
+        let isBitEnabled = false;
+
+        // 2. הוסף פונקציות חדשות:
+        function showAdminLogin() {
+            const password = prompt('הזן קוד מנהל:');
+            if (password === 'matan1') {
+                isAdminMode = true;
+                showAdminPanel();
+            } else if (password !== null) {
+                alert('קוד שגוי!');
+            }
+        }
+
+        function showAdminPanel() {
+            const panelHTML = `
+        <div id="adminPanel" style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 3000;
+            direction: rtl;
+        ">
+            <h3 style="color: #0066CC; margin-bottom: 15px;">🔧 פאנל מנהל</h3>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">מצב ביט:</label>
+                <button onclick="toggleBit()" id="bitToggle" style="
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    color: white;
+                ">${isBitEnabled ? '🔓 פעיל' : '🔒 סגור'}</button>
+            </div>
+            <button onclick="closeAdminPanel()" style="
+                background: #FF6B6B;
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 8px;
+                cursor: pointer;
+            ">סגור</button>
+        </div>
+    `;
+
+            document.body.insertAdjacentHTML('beforeend', panelHTML);
+            updateBitToggleButton();
+        }
+
+        function toggleBit() {
+            isBitEnabled = !isBitEnabled;
+            updateBitButton();
+            updateBitToggleButton();
+        }
+
+        function updateBitButton() {
+            const bitButton = document.querySelector('.bit-button');
+            const lockedNotice = document.querySelector('.locked-notice');
+
+            if (isBitEnabled) {
+                bitButton.classList.remove('locked');
+                bitButton.onclick = payWithBit;
+                bitButton.innerHTML = '💳 שלם בביט';
+                if (lockedNotice) lockedNotice.style.display = 'none';
+            } else {
+                bitButton.classList.add('locked');
+                bitButton.onclick = showBitLockedMessage;
+                if (lockedNotice) lockedNotice.style.display = 'block';
+            }
+        }
+
+        function updateBitToggleButton() {
+            const toggleButton = document.getElementById('bitToggle');
+            if (toggleButton) {
+                toggleButton.textContent = isBitEnabled ? '🔓 פעיל' : '🔒 סגור';
+                toggleButton.style.background = isBitEnabled ? '#28A745' : '#FF6B6B';
+            }
+        }
+
+        function closeAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            if (panel) {
+                panel.remove();
+            }
+            isAdminMode = false;
+        }
+
     </script>
 </body>
 </html>
