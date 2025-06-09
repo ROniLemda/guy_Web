@@ -69,6 +69,46 @@
                 opacity: 0;
             }
         }
+        .bit-button.locked::before {
+            content: 'ביט סגור זמנית';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            z-index: 1;
+        }
+
+        .bit-button.locked::after {
+            display: none; /* מסתיר את אייקון המנעול */
+        }
+        .bit-button.locked {
+            background: linear-gradient(45deg, #999, #666);
+            cursor: not-allowed;
+            opacity: 0.6;
+            position: relative;
+        }
+
+            .bit-button.locked::after {
+                content: '🔒';
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                font-size: 18px;
+            }
+
+        .locked-notice {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
+        }
         /* עיצוב מיוחד להזמנות עד רביעי */
         .deadline-notice {
             background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f);
@@ -463,8 +503,11 @@
             <div class="space-y-4 text-sm">
                 <div class="product-item" data-price="65">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex-1">🥣 קובה עגולה במילוי בשר טחון</span>
+                        <span class="flex-1">קובה עגולה במילוי בשר טחון</span>
                         <span class="text-brightYellow font-bold">65₪</span>
+                    </div>
+                    <div class="text-xs text-center mb-2 opacity-80">
+                        מתאים למרק סלק/דלעת
                     </div>
                     <div class="flex justify-center items-center gap-3 quantity-controls">
                         <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
@@ -475,8 +518,11 @@
 
                 <div class="product-item" data-price="85">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex-1">🥩 קובה שטוחה במילוי סיסקה מפורק</span>
+                        <span class="flex-1"> קובה שטוחה במילוי סיסקה מפורק</span>
                         <span class="text-brightYellow font-bold">85₪</span>
+                    </div>
+                    <div class="text-xs text-center mb-2 opacity-80">
+                        מתאים למרק חמוסטה
                     </div>
                     <div class="flex justify-center items-center gap-3 quantity-controls">
                         <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
@@ -487,7 +533,7 @@
 
                 <div class="product-item" data-price="100">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex-1">🌾 קובה בורגול</span>
+                        <span class="flex-1"> קובה בורגול</span>
                         <span class="text-brightYellow font-bold">100₪</span>
                     </div>
                     <div class="flex justify-center items-center gap-3 quantity-controls">
@@ -499,7 +545,7 @@
 
                 <div class="product-item" data-price="110">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex-1">🥔 קובה פטטה ללא גלוטן</span>
+                        <span class="flex-1"> קובה פטטה ללא גלוטן</span>
                         <span class="text-brightYellow font-bold">110₪</span>
                     </div>
                     <div class="flex justify-center items-center gap-3 quantity-controls">
@@ -511,7 +557,7 @@
 
                 <div class="product-item" data-price="100">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex-1">🚫 קובה ללא גלוטן עם סיסקה</span>
+                        <span class="flex-1"> קובה ללא גלוטן עם סיסקה</span>
                         <span class="text-brightYellow font-bold">100₪</span>
                     </div>
                     <div class="flex justify-center items-center gap-3 quantity-controls">
@@ -523,45 +569,53 @@
 
                 <div class="product-item" data-price="80">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex-1">🔴 קובה עגולה ללא גלוטן</span>
+                        <span class="flex-1"> קובה עגולה ללא גלוטן</span>
                         <span class="text-brightYellow font-bold">80₪</span>
                     </div>
-                    <div class="flex justify-center items-center gap-3 quantity-controls">
-                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                        <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                    </div>
+         
+                <div class="text-xs text-center mb-2 opacity-80">
+                    מתאים למרק סלק/דלעת
                 </div>
+                <div class="flex justify-center items-center gap-3 quantity-controls">
+                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                    <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
+                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                </div>
+            </div>
             </div>
         </div>
 
         <!-- Soups -->
+        <!-- Soups -->
         <div class="bg-secondary p-4 text-white relative z-10">
             <h3 class="text-lg font-bold text-center mb-3">🍲 מרקים ביתיים</h3>
-            <div class="space-y-2">
-                <div class="product-item" data-price="50">
-                    <div class="flex justify-between items-center mb-2">
-                        <span>2 ליטר</span>
-                        <span class="font-bold">50₪</span>
-                    </div>
-                    <div class="flex justify-center items-center gap-3 quantity-controls">
-                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                        <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                    </div>
-                </div>
-                <div class="product-item" data-price="70">
-                    <div class="flex justify-between items-center mb-2">
-                        <span>4 ליטר</span>
-                        <span class="font-bold">70₪</span>
-                    </div>
-                    <div class="flex justify-center items-center gap-3 quantity-controls">
-                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                        <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                    </div>
-                </div>
+            <div class="text-xs text-center mb-3 bg-white bg-opacity-20 p-2 rounded-lg">
+                סוגי מרקים: סלק, חמוסטה, דלעת
+
+            <!-- שאר קוד המרקים... -->
+        <div class="product-item" data-price="50">
+            <div class="flex justify-between items-center mb-2">
+                <span>2 ליטר</span>
+                <span class="font-bold">50₪</span>
             </div>
+            <div class="flex justify-center items-center gap-3 quantity-controls">
+                <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
+                <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+            </div>
+        </div>
+        <div class="product-item" data-price="70">
+            <div class="flex justify-between items-center mb-2">
+                <span>4 ליטר</span>
+                <span class="font-bold">70₪</span>
+            </div>
+            <div class="flex justify-center items-center gap-3 quantity-controls">
+                <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
+                <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+            </div>
+        </div>
+    </div>
         </div>
 
         <!-- Image Gallery -->
@@ -603,9 +657,14 @@
                 <button class="order-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="makeOrder()">
                     💬 שלם בוואטסאפ
                 </button>
-                <button class="bit-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="payWithBit()">
-                    💳 שלם בביט
-                </button>
+
+                <!--   <button class="bit-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="payWithBit()">
+            💳 שלם בביט
+        </button>-->
+                <button class="bit-button locked flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="showBitLockedMessage()">
+            </div>
+            <div class="locked-notice">
+                🔒 תשלום בביט סגור זמנית - בעל החנות בחופשה
             </div>
 
             <!-- Main Order Button - Show when no total -->
@@ -743,7 +802,7 @@
 
         // צ'אט פשוט
         function openChat() {
-            const chatText = 'היי! הגעתי מאתר POOKUBEH אשמח לשאול כמה שאלות...';
+            const chatText = 'היי! יש לי שאלה על הקובות...';
             const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(chatText)}`;
             window.open(whatsappUrl, '_blank');
         }
@@ -1063,6 +1122,15 @@
 
             const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(orderText)}`;
             window.open(whatsappUrl, '_blank');
+        }
+        // Function to show locked Bit message
+        function showBitLockedMessage() {
+            showMessage('💳 תשלום בביט סגור זמנית - בעל החנות בחופשה\n📞 ניתן להזמין בוואטסאפ ולשלם במזומן בלבד');
+        }
+
+        // Function to show message (if doesn't exist)
+        function showMessage(message) {
+            alert(message);
         }
     </script>
 </body>
