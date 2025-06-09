@@ -41,6 +41,152 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 
     <style>
+        /* אפקט נשירת קונפטי */
+        @keyframes confetti {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        /* עיצוב מיוחד להזמנות עד רביעי */
+        .deadline-notice {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f);
+            background-size: 200% 200%;
+            animation: gradientPulse 3s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .deadline-notice::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: repeating-linear-gradient( 45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px );
+                animation: slidePattern 4s linear infinite;
+            }
+
+        @keyframes gradientPulse {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes slidePattern {
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(100px);
+            }
+        }
+
+        .deadline-stars {
+            display: inline-block;
+            animation: starTwinkle 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes starTwinkle {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.2) rotate(10deg);
+                opacity: 0.8;
+            }
+        }
+
+        .deadline-text {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .urgent-border {
+            border: 3px solid #ff4757;
+            border-radius: 15px;
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% {
+                border-color: #ff4757;
+                box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+            }
+
+            50% {
+                border-color: #ffd93d;
+                box-shadow: 0 0 0 10px rgba(255, 217, 61, 0);
+            }
+        }
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        /* ביקורות */
+        .reviews-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .review {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* טיימר */
+        .countdown-container {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            animation: pulse 2s infinite;
+        }
+
+        /* צ'אט בוט */
+        .chat-button {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            animation: bounce 2s infinite;
+            z-index: 100;
+        }
+
+            .chat-button:hover {
+                transform: scale(1.1);
+            }
+
+        /* כפתור שיתוף */
+        .share-button {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+
+            .share-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #FFE4B5);
@@ -458,8 +604,7 @@
 
                     <!-- Social Icons -->
                     <div class="flex justify-center gap-6 text-4xl mt-2 mb-4">
-                       <a href="https://www.instagram.com/" class="text-pink-500 hover:text-black"><i class="fab fa-instagram"></i></a>
-                        </a>
+                        <a href="https://www.instagram.com/" class="text-pink-500 hover:text-black"><i class="fab fa-instagram"></i></a>                        </a>
                         <a href="https://wa.me/972546225706" target="_blank" class="text-[#25D366] hover:text-white transition-colors">
                             <i class="fab fa-whatsapp"></i>
                         </a>
@@ -476,13 +621,45 @@
 
             <div class="bg-white bg-opacity-20 p-4 rounded-lg font-bold text-white">
                 ⭐ הזמנות יתקבלו עד יום רביעי ⭐<br>
-                <small class="text-xs">משלוחים באזור תל אביב | איסוף עצמי גם כן אפשרי</small>
+                <small class="text-xs">משלוחים באזור ראש העין | איסוף עצמי גם כן אפשרי</small>
             </div>
 
             <div class="text-xs text-lightGray italic">
                 לא כולל מרק • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום<br>
                 <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
             </div>
+        </div>
+
+        <!-- טיימר עד סגירת הזמנות -->
+        <div id="countdownContainer" class="countdown-container text-white p-4 m-4 rounded-2xl text-center font-bold relative z-10">
+            <div class="text-lg mb-2">⏰ זמן מוגבל להזמנות!</div>
+            <div id="countdown" class="text-2xl">
+                נותרו: <span id="timer" class="text-yellow-300"></span> עד סגירת הזמנות (רביעי)
+            </div>
+        </div>
+
+        <!-- כפתור שיתוף -->
+        <div class="text-center p-4 relative z-10">
+            <button onclick="shareWebsite()" class="share-button text-white px-6 py-3 rounded-xl font-bold text-lg">
+                📤 שתף עם חברים - תעזור לנו להגיע ליותר אנשים!
+            </button>
+        </div>
+
+        <!-- מידע מיקום -->
+        <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 m-4 rounded-2xl text-center relative z-10">
+            <h3 class="text-lg font-bold mb-2">📍 איסוף עצמי ומשלוחים</h3>
+            <div class="text-sm">
+                <div class="mb-2">🏠 איסוף עצמי: אזור ראש העין</div>
+                <div class="mb-3">🚚 משלוחים: ראש העין והסביבה</div>
+                <button onclick="openMap()" class="bg-white text-green-600 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                    🗺️ פתח מפה
+                </button>
+            </div>
+        </div>
+
+        <!-- צ'אט בוט -->
+        <div class="chat-button fixed bottom-20 left-4" onclick="openChat()">
+            💬 יש שאלה?
         </div>
     </div>
 
@@ -498,6 +675,101 @@
     </div>
 
     <script>
+        // יצירת קונפטי
+        function createConfetti() {
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFE4B5', '#FFDAB9', '#FFFF99'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.parentNode.removeChild(confetti);
+                        }
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+
+        // שיתוף האתר
+        function shareWebsite() {
+            createConfetti(); // אפקט קונפטי
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'POOKUBEH - קובות בעבודת יד',
+                    text: 'הקובות הכי טעימות! בעבודת יד ואיכות ביתית',
+                    url: window.location.href
+                });
+            } else {
+                // העתקה ללוח
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    showMessage('הקישור הועתק! שתף עם חברים 🎉');
+                });
+            }
+        }
+
+        // פתיחת מפה
+        function openMap() {
+            const address = 'תל אביב, ישראל';
+            const encodedAddress = encodeURIComponent(address);
+            window.open(`https://www.google.com/maps/search/${encodedAddress}`, '_blank');
+        }
+
+        // צ'אט פשוט
+        function openChat() {
+            const chatText = 'היי! יש לי שאלה על הקובות...';
+            const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(chatText)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // טיימר עד יום רביעי
+        function updateCountdown() {
+            const now = new Date();
+            const currentDay = now.getDay(); // 0 = ראשון, 3 = רביעי
+
+            let nextWednesday = new Date();
+            let daysUntilWednesday = (3 - currentDay + 7) % 7;
+            if (daysUntilWednesday === 0 && now.getHours() >= 18) {
+                daysUntilWednesday = 7; // אם כבר עבר זמן ההזמנות היום
+            }
+            if (daysUntilWednesday === 0) daysUntilWednesday = 7;
+
+            nextWednesday.setDate(now.getDate() + daysUntilWednesday);
+            nextWednesday.setHours(18, 0, 0, 0); // עד 18:00 ברביעי
+
+            const timeDiff = nextWednesday.getTime() - now.getTime();
+
+            if (timeDiff > 0) {
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('timer').textContent = `${days} ימים, ${hours} שעות, ${minutes} דקות`;
+            } else {
+                document.getElementById('timer').textContent = 'ההזמנות נסגרו השבוע';
+            }
+        }
+
+        // הפעלת הטיימר
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // עדכון כל דקה
+
+        // הוספת אפקט קונפטי כשמזמינים
+        const originalMakeOrder = makeOrder;
+        makeOrder = function () {
+            createConfetti();
+            setTimeout(() => {
+                originalMakeOrder();
+            }, 1000);
+        };
         let totalAmount = 0;
 
         // Function to change product quantity
