@@ -69,6 +69,18 @@
                 opacity: 0;
             }
         }
+        #adminPanel {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+
+            #adminPanel button {
+                transition: all 0.3s ease;
+            }
+
+                #adminPanel button:hover {
+                    transform: scale(1.05);
+                }
         .bit-button.locked::before {
             content: 'ביט סגור זמנית';
             position: absolute;
@@ -84,6 +96,7 @@
         .bit-button.locked::after {
             display: none; /* מסתיר את אייקון המנעול */
         }
+
         .bit-button.locked {
             background: linear-gradient(45deg, #999, #666);
             cursor: not-allowed;
@@ -572,16 +585,16 @@
                         <span class="flex-1"> קובה עגולה ללא גלוטן</span>
                         <span class="text-brightYellow font-bold">80₪</span>
                     </div>
-         
-                <div class="text-xs text-center mb-2 opacity-80">
-                    מתאים למרק סלק/דלעת
+
+                    <div class="text-xs text-center mb-2 opacity-80">
+                        מתאים למרק סלק/דלעת
+                    </div>
+                    <div class="flex justify-center items-center gap-3 quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
                 </div>
-                <div class="flex justify-center items-center gap-3 quantity-controls">
-                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                    <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                </div>
-            </div>
             </div>
         </div>
 
@@ -592,30 +605,30 @@
             <div class="text-xs text-center mb-3 bg-white bg-opacity-20 p-2 rounded-lg">
                 סוגי מרקים: סלק, חמוסטה, דלעת
 
-            <!-- שאר קוד המרקים... -->
-        <div class="product-item" data-price="50">
-            <div class="flex justify-between items-center mb-2">
-                <span>2 ליטר</span>
-                <span class="font-bold">50₪</span>
+                <!-- שאר קוד המרקים... -->
+                <div class="product-item" data-price="50">
+                    <div class="flex justify-between items-center mb-2">
+                        <span>2 ליטר</span>
+                        <span class="font-bold">50₪</span>
+                    </div>
+                    <div class="flex justify-center items-center gap-3 quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <div class="product-item" data-price="70">
+                    <div class="flex justify-between items-center mb-2">
+                        <span>4 ליטר</span>
+                        <span class="font-bold">70₪</span>
+                    </div>
+                    <div class="flex justify-center items-center gap-3 quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
             </div>
-            <div class="flex justify-center items-center gap-3 quantity-controls">
-                <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-            </div>
-        </div>
-        <div class="product-item" data-price="70">
-            <div class="flex justify-between items-center mb-2">
-                <span>4 ליטר</span>
-                <span class="font-bold">70₪</span>
-            </div>
-            <div class="flex justify-center items-center gap-3 quantity-controls">
-                <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-            </div>
-        </div>
-    </div>
         </div>
 
         <!-- Image Gallery -->
@@ -667,13 +680,13 @@
         font-size: 10px;
         cursor: pointer;
     ">
-                        מנהל 
+                        מנהל
                     </button>
                 </div>
 
                 <!--   <button class="bit-button flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="payWithBit()">
-        💳 שלם בביט
-    </button>-->
+                    💳 שלם בביט
+                </button>-->
                 <button class="bit-button locked flex-1 py-4 rounded-xl text-lg font-bold text-white" onclick="showBitLockedMessage()">
             </div>
             <div class="locked-notice">
@@ -765,7 +778,8 @@
     </div>
 
     <script>
-        // יצירת קונפטי
+        // הגדרת משתנים גלובליים
+  
         function createConfetti() {
             const colors = ['#FF6B6B', '#4ECDC4', '#FFE4B5', '#FFDAB9', '#FFFF99'];
             for (let i = 0; i < 50; i++) {
@@ -955,99 +969,99 @@
             const phoneNumber = '0546225706';
 
             const instructionsHtml = `
-                <div style="
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.9);
-                    z-index: 2000;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                ">
                     <div style="
-                        background: white;
-                        padding: 25px;
-                        border-radius: 20px;
-                        max-width: 380px;
-                        text-align: center;
-                        margin: 20px;
-                        direction: rtl;
-                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.9);
+                        z-index: 2000;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     ">
-                        <div style="font-size: 50px; margin-bottom: 15px;">💳</div>
-                        <h3 style="color: #0066CC; margin-bottom: 20px; font-size: 24px;">תשלום בביט</h3>
-                        
-                        <div style="background: #f0f8ff; padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px solid #0066CC;">
-                            <div style="font-size: 20px; font-weight: bold; color: #0066CC; margin-bottom: 10px;">
-                                סכום לתשלום: ${amount}₪
+                        <div style="
+                            background: white;
+                            padding: 25px;
+                            border-radius: 20px;
+                            max-width: 380px;
+                            text-align: center;
+                            margin: 20px;
+                            direction: rtl;
+                            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        ">
+                            <div style="font-size: 50px; margin-bottom: 15px;">💳</div>
+                            <h3 style="color: #0066CC; margin-bottom: 20px; font-size: 24px;">תשלום בביט</h3>
+
+                            <div style="background: #f0f8ff; padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px solid #0066CC;">
+                                <div style="font-size: 20px; font-weight: bold; color: #0066CC; margin-bottom: 10px;">
+                                    סכום לתשלום: ${amount}₪
+                                </div>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 15px;">
+                                    מספר טלפון: ${phoneNumber}
+                                </div>
+                                <div style="font-size: 14px; color: #666; background: white; padding: 10px; border-radius: 8px;">
+                                    העתק את המספר ↑
+                                </div>
                             </div>
-                            <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 15px;">
-                                מספר טלפון: ${phoneNumber}
+
+                            <div style="text-align: right; margin: 20px 0; font-size: 15px; line-height: 1.6;">
+                                <div style="margin: 8px 0;">📱 <strong>שלב 1:</strong> פתח את אפליקציית ביט</div>
+                                <div style="margin: 8px 0;">💸 <strong>שלב 2:</strong> לחץ על "העבר כסף"</div>
+                                <div style="margin: 8px 0;">📞 <strong>שלב 3:</strong> הזן מספר: ${phoneNumber}</div>
+                                <div style="margin: 8px 0;">💰 <strong>שלב 4:</strong> הזן סכום: ${amount}₪</div>
+                                <div style="margin: 8px 0;">✅ <strong>שלב 5:</strong> שלח את התשלום</div>
                             </div>
-                            <div style="font-size: 14px; color: #666; background: white; padding: 10px; border-radius: 8px;">
-                                העתק את המספר ↑
+
+                            <div style="margin-top: 25px; display: flex; gap: 10px; flex-direction: column;">
+                                <button onclick="openBitApp();" style="
+                                    background: linear-gradient(45deg, #0066CC, #0080FF);
+                                    color: white;
+                                    border: none;
+                                    padding: 15px 20px;
+                                    border-radius: 12px;
+                                    cursor: pointer;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    transition: all 0.3s ease;
+                                ">📱 פתח את ביט</button>
+
+                                <button onclick="copyPhoneNumber();" style="
+                                    background: #28A745;
+                                    color: white;
+                                    border: none;
+                                    padding: 12px 20px;
+                                    border-radius: 12px;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                ">📋 העתק מספר טלפון</button>
+
+                                <button onclick="closeInstructions(); contactWhatsApp();" style="
+                                    background: #25D366;
+                                    color: white;
+                                    border: none;
+                                    padding: 12px 20px;
+                                    border-radius: 12px;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                ">💬 שלח הזמנה בוואטסאפ</button>
+
+                                <button onclick="closeInstructions();" style="
+                                    background: #FF6B6B;
+                                    color: white;
+                                    border: none;
+                                    padding: 12px 20px;
+                                    border-radius: 12px;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                ">✖️ סגור</button>
                             </div>
-                        </div>
-                        
-                        <div style="text-align: right; margin: 20px 0; font-size: 15px; line-height: 1.6;">
-                            <div style="margin: 8px 0;">📱 <strong>שלב 1:</strong> פתח את אפליקציית ביט</div>
-                            <div style="margin: 8px 0;">💸 <strong>שלב 2:</strong> לחץ על "העבר כסף"</div>
-                            <div style="margin: 8px 0;">📞 <strong>שלב 3:</strong> הזן מספר: ${phoneNumber}</div>
-                            <div style="margin: 8px 0;">💰 <strong>שלב 4:</strong> הזן סכום: ${amount}₪</div>
-                            <div style="margin: 8px 0;">✅ <strong>שלב 5:</strong> שלח את התשלום</div>
-                        </div>
-                        
-                        <div style="margin-top: 25px; display: flex; gap: 10px; flex-direction: column;">
-                            <button onclick="openBitApp();" style="
-                                background: linear-gradient(45deg, #0066CC, #0080FF);
-                                color: white;
-                                border: none;
-                                padding: 15px 20px;
-                                border-radius: 12px;
-                                cursor: pointer;
-                                font-size: 16px;
-                                font-weight: bold;
-                                transition: all 0.3s ease;
-                            ">📱 פתח את ביט</button>
-                            
-                            <button onclick="copyPhoneNumber();" style="
-                                background: #28A745;
-                                color: white;
-                                border: none;
-                                padding: 12px 20px;
-                                border-radius: 12px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                font-weight: bold;
-                            ">📋 העתק מספר טלפון</button>
-                            
-                            <button onclick="closeInstructions(); contactWhatsApp();" style="
-                                background: #25D366;
-                                color: white;
-                                border: none;
-                                padding: 12px 20px;
-                                border-radius: 12px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                font-weight: bold;
-                            ">💬 שלח הזמנה בוואטסאפ</button>
-                            
-                            <button onclick="closeInstructions();" style="
-                                background: #FF6B6B;
-                                color: white;
-                                border: none;
-                                padding: 12px 20px;
-                                border-radius: 12px;
-                                cursor: pointer;
-                                font-size: 14px;
-                            ">✖️ סגור</button>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
 
             const instructionsDiv = document.createElement('div');
             instructionsDiv.innerHTML = instructionsHtml;
@@ -1147,7 +1161,7 @@
         }
         // 1. הוסף משתנים בתחילת הקוד JavaScript:
         let isAdminMode = false;
-        let isBitEnabled = false;
+        let isBitEnabled = false; // נעילה של ביט
 
         // 2. הוסף פונקציות חדשות:
         function showAdminLogin() {
@@ -1162,39 +1176,39 @@
 
         function showAdminPanel() {
             const panelHTML = `
-        <div id="adminPanel" style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 3000;
-            direction: rtl;
-        ">
-            <h3 style="color: #0066CC; margin-bottom: 15px;">🔧 פאנל מנהל</h3>
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px;">מצב ביט:</label>
-                <button onclick="toggleBit()" id="bitToggle" style="
-                    padding: 10px 15px;
+            <div id="adminPanel" style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 3000;
+                direction: rtl;
+            ">
+                <h3 style="color: #0066CC; margin-bottom: 15px;">🔧 פאנל מנהל</h3>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">מצב ביט:</label>
+                    <button onclick="toggleBit()" id="bitToggle" style="
+                        padding: 10px 15px;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-weight: bold;
+                        color: white;
+                    ">${isBitEnabled ? '🔓 פעיל' : '🔒 סגור'}</button>
+                </div>
+                <button onclick="closeAdminPanel()" style="
+                    background: #FF6B6B;
+                    color: white;
                     border: none;
+                    padding: 8px 15px;
                     border-radius: 8px;
                     cursor: pointer;
-                    font-weight: bold;
-                    color: white;
-                ">${isBitEnabled ? '🔓 פעיל' : '🔒 סגור'}</button>
+                ">סגור</button>
             </div>
-            <button onclick="closeAdminPanel()" style="
-                background: #FF6B6B;
-                color: white;
-                border: none;
-                padding: 8px 15px;
-                border-radius: 8px;
-                cursor: pointer;
-            ">סגור</button>
-        </div>
-    `;
+        `;
 
             document.body.insertAdjacentHTML('beforeend', panelHTML);
             updateBitToggleButton();
@@ -1237,7 +1251,11 @@
             }
             isAdminMode = false;
         }
-
+        // אתחול כשהעמוד נטען
+        document.addEventListener('DOMContentLoaded', function () {
+            updateBitButton();
+            updateTotal();
+        });
     </script>
 </body>
 </html>
