@@ -939,6 +939,10 @@
 
         // Function to construct and send WhatsApp order
         function makeOrder() {
+            if (!isOrderingEnabled) {
+                showMessage('ההזמנות כרגע סגורות. נא לנסות מאוחר יותר.');
+                return;
+            }
             const productItems = document.querySelectorAll('.product-item');
             let orderText = 'היי! אני רוצה להזמין:\n\n';
             let hasItems = false;
@@ -1184,6 +1188,7 @@
         // 1. הוסף משתנים בתחילת הקוד JavaScript:
         let isAdminMode = false;
         let isBitEnabled = true; // נעילה של ביט
+        let isOrderingEnabled = true; // משנה ל-false כדי לחסום הזמנות
 
         // 2. הוסף פונקציות חדשות:
         function showAdminLogin() {
