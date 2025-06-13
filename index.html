@@ -82,7 +82,21 @@
             text-align: center;
             transition: all 0.3s ease;
         }
+        @media (max-width: 640px) {
+            .chat-button, .admin-contact-button {
+                padding: 8px 12px;
+                font-size: 10px;
+                bottom: 15px;
+            }
 
+            .chat-button {
+                left: 4px;
+            }
+
+            .admin-contact-button {
+                right: 4px;
+            }
+        }
             .admin-contact-button:hover {
                 transform: scale(1.1);
                 box-shadow: 0 6px 20px rgba(30, 58, 138, 0.6);
