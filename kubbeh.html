@@ -1,1 +1,269 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קובות - POOKUBEH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        accent1: '#FFE4B5',
+                        accent2: '#FFDAB9',
+                        darkBrown: '#8B4513',
+                        lightBrown: '#CD853F',
+                        brightYellow: '#FFFF99',
+                        darkBlue: '#2C3E50',
+                        lightGray: '#BDC3C7',
+                        customGreen: '#28A745',
+                        bitBlue: '#0066CC',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Rubik', sans-serif; background: linear-gradient(135deg, #FF6B6B, #FFDAB9); min-height: 100vh; }
+        .product-card { background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); }
+        .quantity-btn { background: #FF6B6B; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; }
+        .quantity-input { width: 50px; text-align: center; border: 1px solid #ddd; border-radius: 5px; }
+        .order-button { background: linear-gradient(45deg, #28A745, #20C997); }
+        .bit-button { background: linear-gradient(45deg, #0066CC, #0056B3); }
+        #cartModal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 80%; max-width: 500px; }
+        .cart-icon { position: fixed; top: 20px; left: 20px; background: #FF6B6B; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: white; color: #FF6B6B; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <!-- סל קניות צף -->
+    <div class="cart-icon" onclick="openCart()">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
 
+    <!-- פופאפ סל קניות -->
+    <div id="cartModal" onclick="closeCart()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 class="text-xl font-bold mb-4">סל קניות</h3>
+            <div id="cartItems" class="mb-4"></div>
+            <div class="font-bold mb-4">סך הכל: <span id="cartTotal">0</span> ₪</div>
+            <button onclick="makeOrder()" class="order-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">הזמן בוואטסאפ</button>
+            <button onclick="payWithBit()" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">שלם בביט</button>
+            <button onclick="closeCart()" class="w-full py-2 bg-gray-300 rounded-xl text-lg font-bold">סגור</button>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-4"> קובות בעבודת יד</h1>
+            <p class="text-white text-lg">כל המוצרים כוללים 10 יחידות ארוזות בוואקום</p>
+            <a href="index.html" class="inline-block mt-4 bg-white text-primary px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition">חזרה לדף הראשי</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- קובה עגולה במילוי בשר טחון -->
+            <div class="product-card p-6" data-name="קובה עגולה במילוי בשר טחון" data-price="45">
+                <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה עגולה במילוי בשר טחון</h3>
+                <p class="text-gray-600 mb-4">קובה עגולה מסורתית במילוי בשר טחון טרי</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">45 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה שטוחה במילוי סיסקה מפורק -->
+            <div class="product-card p-6" data-name="קובה שטוחה במילוי סיסקה מפורק" data-price="50">
+                <img src="https://i.ibb.co/Lz6sdB0j/Whats-App-2025-06-28-17-42-37-467bc22b.jpg" alt="קובה שטוחה" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה שטוחה במילוי סיסקה מפורק</h3>
+                <p class="text-gray-600 mb-4">קובה שטוחה במילוי סיסקה מפורק טרי</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה בורגול -->
+            <div class="product-card p-6" data-name="קובה בורגול" data-price="40">
+                <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה בורגול</h3>
+                <p class="text-gray-600 mb-4">קובה בורגול מסורתית</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">40 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה פטטה ללא גלוטן -->
+            <div class="product-card p-6" data-name="קובה פטטה ללא גלוטן" data-price="55">
+                <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה פטטה ללא גלוטן</h3>
+                <p class="text-gray-600 mb-4">קובה פטטה ללא גלוטן - מתאים לצליאקים</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">55 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה דלעת -->
+            <div class="product-card p-6" data-name="קובה דלעת" data-price="45">
+                <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה דלעת</h3>
+                <p class="text-gray-600 mb-4">קובה דלעת טעימה ומזינה</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">45 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה עגולה ללא גלוטן -->
+            <div class="product-card p-6" data-name="קובה עגולה ללא גלוטן" data-price="50">
+                <img src="https://i.ibb.co/whhPgjZV/Whats-App-2025-06-28-18-18-28-7bb82a83.jpg" alt="קובה עגולה ללא גלוטן" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה עגולה ללא גלוטן</h3>
+                <p class="text-gray-600 mb-4">קובה עגולה ללא גלוטן - מתאים לצליאקים</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center my-8">
+            <a href="instructions.html" class="inline-block bg-gradient-to-l from-primary to-secondary text-white px-6 py-2 rounded-full font-bold hover:bg-primary transition">
+                הוראות הכנה
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let cart = {};
+
+        function changeQuantity(button, delta) {
+            const itemDiv = button.closest('.product-card');
+            const name = itemDiv.dataset.name;
+            const price = parseFloat(itemDiv.dataset.price);
+            let input = itemDiv.querySelector('.quantity-input');
+            let value = Math.max(0, parseInt(input.value) + delta);
+            input.value = value;
+            if (value > 0) {
+                cart[name] = { name, price, quantity: value };
+            } else {
+                delete cart[name];
+            }
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateCart(input) {
+            const itemDiv = input.closest('.product-card');
+            const name = itemDiv.dataset.name;
+            const price = parseFloat(itemDiv.dataset.price);
+            let value = Math.max(0, parseInt(input.value));
+            if (value > 0) {
+                cart[name] = { name, price, quantity: value };
+            } else {
+                delete cart[name];
+            }
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateCartCount() {
+            const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function renderCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            let html = '';
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                html += `
+                    <div class="flex justify-between items-center mb-2">
+                        <span>${item.name}</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeCartItem('${item.name}', -1)" class="quantity-btn">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="changeCartItem('${item.name}', 1)" class="quantity-btn">+</button>
+                            <span>${item.price * item.quantity}₪</span>
+                        </div>
+                    </div>
+                `;
+                total += item.price * item.quantity;
+            });
+            cartItemsDiv.innerHTML = html || '<p class="text-gray-500">הסל ריק</p>';
+            cartTotalSpan.textContent = total;
+        }
+
+        function changeCartItem(name, delta) {
+            if (cart[name]) {
+                cart[name].quantity = Math.max(0, cart[name].quantity + delta);
+                if (cart[name].quantity === 0) {
+                    delete cart[name];
+                }
+                updateCartCount();
+                renderCart();
+                // עדכן גם את השדה בעמוד
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    itemDiv.querySelector('.quantity-input').value = cart[name] ? cart[name].quantity : 0;
+                }
+            }
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function makeOrder() {
+            const items = Object.values(cart).map(item => `${item.name} x${item.quantity}`).join('\n');
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `שלום! אני רוצה להזמין:\n\n${items}\n\nסך הכל: ${total}₪`;
+            window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
+        }
+
+        function payWithBit() {
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `תשלום בביט עבור הזמנת קובות בסך ${total}₪`;
+            window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
+        }
+    </script>
+</body>
+</html> 
