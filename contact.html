@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>צור קשר - POOKUBEH</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Heebo', 'Arial', sans-serif;
+        background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #FFE4B5);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+      .contact-form-section {
+        max-width: 400px;
+        margin: 60px auto 0 auto;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+        padding: 24px 18px;
+        text-align: center;
+      }
+      .contact-form-section h3 {
+        margin-bottom: 18px;
+        color: #1E3A8A;
+      }
+      #contactForm input, #contactForm textarea {
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 1em;
+      }
+      #contactForm textarea {
+        min-height: 70px;
+        resize: vertical;
+      }
+      #contactForm button {
+        background: linear-gradient(45deg, #1E3A8A, #3B82F6);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 0;
+        width: 100%;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      #contactForm button:hover {
+        background: linear-gradient(45deg, #3B82F6, #1E3A8A);
+      }
+      #contactFormStatus {
+        margin-top: 10px;
+        color: #28A745;
+        font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <!-- תפריט קטגוריות עליון -->
+    <nav class="w-full bg-gradient-to-l from-primary to-secondary py-3 px-2 flex justify-center gap-4 shadow-md">
+        <a href="kubbeh.html" class="text-white font-bold hover:underline transition">קובות</a>
+        <a href="soups.html" class="text-white font-bold hover:underline transition">מרקים</a>
+        <a href="instructions.html" class="text-white font-bold hover:underline transition">הוראות הכנה</a>
+        <a href="contact.html" class="text-white font-bold hover:underline transition">צור קשר</a>
+    </nav>
+    <div class="contact-form-section">
+      <h3>פנייה למנהל האתר</h3>
+      <form id="contactForm" onsubmit="sendContactForm(event)">
+        <input type="text" id="name" placeholder="שם מלא" required>
+        <input type="tel" id="phone" placeholder="טלפון (לא חובה)">
+        <textarea id="message" placeholder="ההודעה שלך" required></textarea>
+        <button type="submit">שלח</button>
+      </form>
+      <div id="contactFormStatus"></div>
+    </div>
+    <script>
+    function sendContactForm(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      const fullMessage = `פנייה מהאתר:\nשם: ${name}\nטלפון: ${phone}\nהודעה: ${message}`;
+      const whatsappUrl = `https://wa.me/972584462009?text=${encodeURIComponent(fullMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      document.getElementById('contactFormStatus').innerText = 'ההודעה נשלחה לוואטסאפ!';
+      document.getElementById('contactForm').reset();
+    }
+    </script>
+</body>
+</html> 
