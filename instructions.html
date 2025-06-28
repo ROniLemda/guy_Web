@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הוראות הכנה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        accent1: '#FFE4B5',
+                        accent2: '#FFDAB9',
+                        darkBrown: '#8B4513',
+                        lightBrown: '#CD853F',
+                        brightYellow: '#FFFF99',
+                        darkBlue: '#2C3E50',
+                        lightGray: '#BDC3C7',
+                        customGreen: '#28A745',
+                        bitBlue: '#0066CC',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
         
@@ -17,13 +40,65 @@
             font-family: 'Rubik', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
             line-height: 1.6;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FF6B6B;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #FF6B6B;
+            color: white;
+        }
+        
+        .nav-link.active {
+            background: #FF6B6B;
+            color: white;
         }
         
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 100px auto 20px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -206,6 +281,15 @@
         }
         
         @media (max-width: 768px) {
+            .nav-menu {
+                gap: 10px;
+            }
+            
+            .nav-link {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
             .header h1 {
                 font-size: 2rem;
             }
@@ -234,12 +318,18 @@
     </style>
 </head>
 <body>
-    <!-- תפריט קטגוריות עליון -->
-    <div class="flex justify-center gap-4 my-8">
-        <a href="kubbeh.html" class="bg-gradient-to-l from-primary to-secondary text-white px-6 py-2 rounded-full font-bold hover:bg-primary transition">קובות</a>
-        <a href="soups.html" class="bg-gradient-to-l from-primary to-secondary text-white px-6 py-2 rounded-full font-bold hover:bg-primary transition">מרקים</a>
-        <a href="instructions.html" class="bg-gradient-to-l from-primary to-secondary text-white px-6 py-2 rounded-full font-bold hover:bg-primary transition">הוראות הכנה</a>
-    </div>
+    <!-- תפריט עליון קבוע -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">POOKUBEH</a>
+            <ul class="nav-menu">
+                <li><a href="kubbeh.html" class="nav-link">קובות</a></li>
+                <li><a href="soups.html" class="nav-link">מרקים</a></li>
+                <li><a href="contact.html" class="nav-link">צור קשר</a></li>
+                <li><a href="instructions.html" class="nav-link active">הוראות הכנה</a></li>
+            </ul>
+        </div>
+    </nav>
     
     <div class="container">
         <div class="header">
