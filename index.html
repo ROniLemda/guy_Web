@@ -779,6 +779,7 @@
         <a href="kubbeh.html" class="text-white font-bold hover:underline transition">קובות</a>
         <a href="soups.html" class="text-white font-bold hover:underline transition">מרקים</a>
         <a href="instructions.html" class="text-white font-bold hover:underline transition">הוראות הכנה</a>
+        <a href="contact.html" class="text-white font-bold hover:underline transition">צור קשר</a>
     </nav>
     <!-- Main container for the flyer/store layout -->
     <div class="flyer max-w-4xl w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
@@ -1076,10 +1077,8 @@
         סכום כולל: <span id="totalAmount">0</span>₪
     </div>
 
-    <!-- Admin Contact Button -->
-    <div class="admin-contact-button fixed bottom-20 right-4" onclick="contactAdmin()">
-        פנייה למנהל האתר
-    </div>
+  
+
 
     <!-- Admin Login Modal -->
     <div id="adminLoginModal" class="modal">
@@ -1607,5 +1606,67 @@
             <button id="cartBitButton" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2" onclick="payWithBit()">שלם בביט</button>
         </div>
     </div>
+
+ 
+    <style>
+    .contact-form-section {
+      max-width: 400px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+      padding: 24px 18px;
+      text-align: center;
+    }
+    .contact-form-section h3 {
+      margin-bottom: 18px;
+      color: #1E3A8A;
+    }
+    #contactForm input, #contactForm textarea {
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1em;
+    }
+    #contactForm textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    #contactForm button {
+      background: linear-gradient(45deg, #1E3A8A, #3B82F6);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      width: 100%;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #contactForm button:hover {
+      background: linear-gradient(45deg, #3B82F6, #1E3A8A);
+    }
+    #contactFormStatus {
+      margin-top: 10px;
+      color: #28A745;
+      font-weight: bold;
+    }
+    </style>
+    <script>
+    function sendContactForm(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      const fullMessage = `פנייה מהאתר:\nשם: ${name}\nטלפון: ${phone}\nהודעה: ${message}`;
+      const whatsappUrl = `https://wa.me/972584462009?text=${encodeURIComponent(fullMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      document.getElementById('contactFormStatus').innerText = 'ההודעה נשלחה לוואטסאפ!';
+      document.getElementById('contactForm').reset();
+    }
+    </script>
 </body>
 </html>
