@@ -771,6 +771,297 @@
         @media (max-width: 600px) {
           .gallery-img-item { height: 80px; }
         }
+
+        .product-item {
+          background: #fff;
+          border-radius: 18px;
+          box-shadow: 0 4px 18px 0 rgba(44,62,80,0.10);
+          padding: 18px 12px 20px 12px;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          transition: box-shadow 0.25s, transform 0.18s;
+          border: 1.5px solid #ffe4b5;
+        }
+        .product-item:hover {
+          box-shadow: 0 8px 32px 0 rgba(44,62,80,0.18);
+          transform: translateY(-4px) scale(1.03);
+        }
+        .product-image-container {
+          width: 120px;
+          height: 120px;
+          border-radius: 14px;
+          overflow: hidden;
+          margin-bottom: 10px;
+          box-shadow: 0 2px 8px 0 rgba(44,62,80,0.10);
+          background: #f8fafc;
+        }
+        .product-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .product-item .flex {
+          justify-content: center;
+        }
+        .product-item .quantity-btn {
+          background: linear-gradient(135deg, #ffbfae, #ff6b6b);
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          font-size: 1.2rem;
+          font-weight: bold;
+          box-shadow: 0 2px 8px 0 rgba(255,107,107,0.10);
+          transition: background 0.2s, transform 0.18s;
+        }
+        .product-item .quantity-btn:hover {
+          background: linear-gradient(135deg, #ff6b6b, #ffbfae);
+          transform: scale(1.12);
+        }
+        .product-item .quantity-input {
+          width: 48px;
+          text-align: center;
+          border: 1.5px solid #ffd6d6;
+          border-radius: 8px;
+          padding: 7px;
+          font-weight: bold;
+          color: #ff6b6b;
+          background: #f8fafc;
+          margin: 0 4px;
+        }
+        .product-item .text-brightYellow {
+          color: #FFD700;
+          font-size: 1.1rem;
+          font-weight: bold;
+        }
+        .product-item .flex-1 {
+          font-size: 1.08rem;
+          font-weight: 600;
+          color: #8B4513;
+        }
+        @media (max-width: 600px) {
+          .product-image-container { width: 80px; height: 80px; }
+          .product-item { padding: 10px 4px 14px 4px; }
+        }
+
+        .hero-card {
+          background: #fff;
+          border-radius: 32px;
+          box-shadow: 0 8px 40px 0 rgba(44,62,80,0.18), 0 1.5px 0 #ffe4b5 inset;
+          padding: 48px 32px 36px 32px;
+          max-width: 520px;
+          margin: 40px auto 0 auto;
+          text-align: center;
+          position: relative;
+          overflow: visible;
+          transition: box-shadow 0.3s;
+        }
+        .hero-card:after {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0; right: 0; bottom: 0;
+          height: 30px;
+          border-radius: 0 0 32px 32px;
+          background: linear-gradient(90deg, #ffe4b5 0%, #ffd6d6 100%);
+          z-index: 1;
+        }
+        .hero-logo {
+          width: 110px;
+          height: 110px;
+          margin: 0 auto 18px auto;
+          border-radius: 50%;
+          background: #fff;
+          box-shadow: 0 0 0 10px #ffe4b5, 0 8px 32px 0 rgba(255,107,107,0.10);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+          z-index: 2;
+        }
+        .hero-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: #8B4513;
+          margin-bottom: 10px;
+          letter-spacing: 1px;
+          z-index: 2;
+          position: relative;
+        }
+        .hero-desc {
+          font-size: 1.15rem;
+          color: #b97a56;
+          font-weight: 500;
+          margin-bottom: 22px;
+          z-index: 2;
+          position: relative;
+        }
+        .hero-stars-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          margin-top: 8px;
+          z-index: 2;
+          position: relative;
+          flex-wrap: wrap;
+        }
+        .hero-stars {
+          color: #FFD700;
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          filter: drop-shadow(0 1px 2px #fff6e0);
+        }
+        .hero-quality {
+          color: #b97a56;
+          font-size: 1.08rem;
+          font-weight: 600;
+        }
+        @media (max-width: 600px) {
+          .hero-card { padding: 18px 4px 18px 4px; max-width: 98vw; }
+          .hero-title { font-size: 1.5rem; }
+          .hero-logo { width: 70px; height: 70px; }
+          .hero-stars { font-size: 1.1rem; }
+        }
+
+        /* Hero Fun Section */
+        .hero-fun {
+          background: #fff;
+          border-radius: 32px;
+          box-shadow: 0 8px 40px 0 rgba(44,62,80,0.13);
+          padding: 56px 32px 36px 32px;
+          max-width: 520px;
+          margin: 48px auto 0 auto;
+          text-align: center;
+          position: relative;
+          overflow: visible;
+        }
+        .hero-circle-bg {
+          position: absolute;
+          top: 18px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 140px;
+          height: 140px;
+          background: radial-gradient(circle at 60% 40%, #ffe4b5 60%, #ffd6d6 100%);
+          border-radius: 50%;
+          z-index: 1;
+          filter: blur(2px);
+        }
+        .hero-logo-fun {
+          width: 110px;
+          height: 110px;
+          margin: 0 auto 18px auto;
+          border-radius: 50%;
+          background: #fff;
+          box-shadow: 0 0 0 8px #ffe4b5, 0 8px 32px 0 rgba(255,107,107,0.10);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+          z-index: 2;
+        }
+        .hero-logo-fun img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .hero-title-fun {
+          font-size: 2.6rem;
+          font-weight: 900;
+          color: #8B4513;
+          margin-bottom: 10px;
+          letter-spacing: 1px;
+          z-index: 2;
+          position: relative;
+        }
+        .hero-desc-fun {
+          font-size: 1.15rem;
+          color: #b97a56;
+          font-weight: 500;
+          margin-bottom: 22px;
+          z-index: 2;
+          position: relative;
+        }
+        .hero-stars-fun {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          margin-top: 8px;
+          z-index: 2;
+          position: relative;
+        }
+        .hero-stars-fun i {
+          color: #FFD700;
+          font-size: 1.6rem;
+          margin: 0 2px;
+          filter: drop-shadow(0 1px 2px #fff6e0);
+          animation: star-pop 1.2s infinite alternate;
+        }
+        .hero-quality-fun {
+          color: #b97a56;
+          font-size: 1.08rem;
+          font-weight: 600;
+          margin-top: 2px;
+        }
+        @keyframes star-pop {
+          0% { transform: scale(1);}
+          60% { transform: scale(1.15);}
+          100% { transform: scale(1);}
+        }
+        .confetti {
+          position: absolute;
+          left: 10%; top: 10%;
+          width: 80%; height: 80%;
+          pointer-events: none;
+          z-index: 0;
+          background: url('https://svgshare.com/i/13kA.svg') repeat;
+          opacity: 0.12;
+          border-radius: 32px;
+        }
+        @media (max-width: 600px) {
+          .hero-fun { padding: 18px 4px 18px 4px; max-width: 98vw; }
+          .hero-title-fun { font-size: 1.5rem; }
+          .hero-logo-fun { width: 70px; height: 70px; }
+          .hero-stars-fun i { font-size: 1.1rem; }
+        }
+
+        .hero-image img {
+          width: 160px;
+          height: 160px;
+          object-fit: cover; /* במקום contain */
+          border-radius: 50%;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+          background: #fff;
+          padding: 12px;
+        }
+        @media (max-width: 700px) {
+          .hero-tenne {
+            flex-direction: column-reverse;
+            gap: 30px;
+            padding: 30px 10px 20px 10px;
+          }
+          .hero-content h1 {
+            font-size: 2.1rem;
+          }
+          .hero-image img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+          }
+        }
     </style>
 </head>
 <body class="flex items-center justify-center py-4">
@@ -784,28 +1075,92 @@
     <!-- Main container for the flyer/store layout -->
     <div class="flyer max-w-4xl w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
 
+        <!-- Hero Section - Modern Minimalist Inspired by Tenne Deli -->
+        <div class="hero-tenne">
+          <div class="hero-content">
+            <h1>POOKUBEH</h1>
+            <p>קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
+            <a href="#kubbeh-section" class="hero-btn">לצפייה בתפריט</a>
+          </div>
+          <div class="hero-image">
+            <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו קובות" />
+          </div>
+        </div>
+        <style>
+        .hero-tenne {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+          padding: 60px 20px 40px 20px;
+          border-radius: 24px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+          gap: 60px;
+          max-width: 900px;
+          margin: 40px auto 0 auto;
+          flex-wrap: wrap;
+        }
+        .hero-content {
+          flex: 1 1 300px;
+          text-align: right;
+        }
+        .hero-content h1 {
+          font-size: 3rem;
+          color: #b94e4e;
+          margin-bottom: 12px;
+          font-weight: 800;
+          letter-spacing: 1px;
+        }
+        .hero-content p {
+          font-size: 1.3rem;
+          color: #444;
+          margin-bottom: 28px;
+        }
+        .hero-btn {
+          background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+          color: #fff;
+          padding: 14px 38px;
+          border-radius: 30px;
+          font-size: 1.1rem;
+          text-decoration: none;
+          box-shadow: 0 2px 12px rgba(255,126,95,0.12);
+          transition: background 0.2s;
+          font-weight: 600;
+        }
+        .hero-btn:hover {
+          background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
+        }
+        .hero-image img {
+          width: 160px;
+          height: 160px;
+          object-fit: cover; /* במקום contain */
+          border-radius: 50%;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+          background: #fff;
+          padding: 12px;
+        }
+        @media (max-width: 700px) {
+          .hero-tenne {
+            flex-direction: column-reverse;
+            gap: 30px;
+            padding: 30px 10px 20px 10px;
+          }
+          .hero-content h1 {
+            font-size: 2.1rem;
+          }
+          .hero-image img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+          }
+        }
+        </style>
+        <!-- END Hero Section -->
+        
         <!-- Watermarks for brand visibility -->
         <div class="watermark-text">POOKUBEH</div>
         <div class="instagram-watermark"><i class="fab fa-instagram"></i></div>
         <div class="tiktok-watermark"><i class="fab fa-tiktok"></i></div>
-
-        <!-- Logo and Title Section -->
-        <div class="bg-gradient-to-br from-accent1 to-accent2 p-6 text-center relative z-10">
-            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-darkBrown shadow-md overflow-hidden animate-pulse-slow">
-                <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="POOKUBEH Logo" class="w-full h-full object-cover" />
-            </div>
-            <h1 class="text-4xl font-bold text-darkBrown mb-2">POOKUBEH</h1>
-            <p class="text-base text-lightBrown font-bold tracking-wider">קובות מבושלות, מטוגנות ומרקים</p>
-            <div class="mt-3 text-sm text-darkBrown">
-                <!-- Star rating for quality indication -->
-                <i class="fas fa-star text-yellow-400"></i>
-                <i class="fas fa-star text-yellow-400"></i>
-                <i class="fas fa-star text-yellow-400"></i>
-                <i class="fas fa-star text-yellow-400"></i>
-                <i class="fas fa-star text-yellow-400"></i>
-                <span class="mr-2">איכות ביתית מעולה</span>
-            </div>
-        </div>
 
         <!-- Price List with Quantity Counter for Kubbeh -->
         <div id="kubbeh-section" class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
