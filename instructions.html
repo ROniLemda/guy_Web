@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הוראות הכנה</title>
+    <title>מרקים - POOKUBEH</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF6B6B',
-                        secondary: '#4ECDC4',
+                        primary: '#4ECDC4',
+                        secondary: '#FF6B6B',
                         accent1: '#FFE4B5',
                         accent2: '#FFDAB9',
                         darkBrown: '#8B4513',
@@ -29,395 +29,393 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body { font-family: 'Rubik', sans-serif; background: linear-gradient(135deg, #4ECDC4, #FFDAB9); min-height: 100vh; }
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
         }
-        
-        body {
-            font-family: 'Rubik', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            line-height: 1.6;
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4ECDC4, #FF6B6B, #FFD700);
+            border-radius: 20px 20px 0 0;
         }
-        
+        .product-card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+            border-color: #4ECDC4;
+        }
+        .quantity-btn { background: #4ECDC4; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; }
+        .quantity-input { width: 50px; text-align: center; border: 1px solid #ddd; border-radius: 5px; }
+        .order-button { background: linear-gradient(45deg, #28A745, #20C997); }
+        .bit-button { background: linear-gradient(45deg, #0066CC, #0056B3); }
+        #cartModal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 80%; max-width: 500px; }
+        .cart-icon { position: fixed; top: 20px; left: 20px; background: #4ECDC4; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: white; color: #4ECDC4; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+        .product-card p,
+        .text-gray-600.mb-4 {
+            color: #111 !important;
+            font-size: 1.08rem;
+            font-weight: 500;
+        }
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 0 20px;
+            justify-content: center;
+            background: #7ee0d6;
+            padding: 30px 0 20px 0;
         }
-        
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: #FF6B6B;
-            text-decoration: none;
+            margin-bottom: 18px;
         }
-        
         .nav-menu {
-            display: flex;
-            gap: 20px;
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0;
+            margin: 0;
+            align-items: center;
         }
-        
         .nav-link {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            background: #FF6B6B;
-            color: white;
-        }
-        
-        .nav-link.active {
-            background: #FF6B6B;
-            color: white;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 100px auto 20px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-            background-size: 300% 300%;
-            animation: gradientShift 6s ease infinite;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(1px);
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .header h1 {
-            color: white;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-        
-        .instructions-grid {
-            padding: 40px;
-            display: grid;
-            gap: 25px;
-        }
-        
-        .instruction-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border-right: 5px solid;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .instruction-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--card-color), transparent);
-        }
-        
-        .instruction-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-        
-        .card-beet { 
-            border-color: #e74c3c;
-            --card-color: #e74c3c;
-        }
-        
-        .card-meat { 
-            border-color: #8b4513;
-            --card-color: #8b4513;
-        }
-        
-        .card-bulgur { 
-            border-color: #f39c12;
-            --card-color: #f39c12;
-        }
-        
-        .card-potato { 
-            border-color: #e67e22;
-            --card-color: #e67e22;
-        }
-        
-        .card-soup { 
-            border-color: #3498db;
-            --card-color: #3498db;
-        }
-        
-        .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            gap: 15px;
-        }
-        
-        .emoji {
-            font-size: 2.5rem;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-        }
-        
-        .card-title {
-            font-size: 1.4rem;
+            gap: 8px;
+            padding: 10px 28px;
+            border-radius: 18px;
+            background: #fff;
+            color: #1e3a8a;
             font-weight: 600;
-            color: #2c3e50;
-            flex: 1;
-        }
-        
-        .card-content {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.7;
-            background: rgba(0, 0, 0, 0.02);
-            padding: 15px;
-            border-radius: 10px;
-            border-right: 3px solid var(--card-color);
-        }
-        
-        .time-badge {
-            display: inline-block;
-            background: var(--card-color);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-top: 10px;
-        }
-        
-        .tip {
-            background: rgba(52, 152, 219, 0.1);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #2980b9;
-        }
-        
-        .tip::before {
-            content: "💡 ";
             font-size: 1.1rem;
-        }
-        
-        .back-button {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: background 0.2s, color 0.2s;
             text-decoration: none;
-            font-weight: bold;
+        }
+        .nav-link.active {
+            background: #ffe4b5;
+            color: #b94e4e;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+        .nav-link:hover {
+            background: #ffd6d6;
+            color: #b94e4e;
+        }
+        .portion-btn {
+            background: #ffe4b5;
+            color: #b94e4e;
+            border: none;
+            border-radius: 999px;
+            padding: 6px 18px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .portion-btn.active, .portion-btn:hover {
+            background: #ff6b6b;
+            color: #fff;
+        }
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: block;
             transition: all 0.3s ease;
-            display: inline-block;
-            margin: 20px;
         }
-        
-        .back-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        .product-card img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-color: #4ECDC4;
         }
-        
-        @media (max-width: 768px) {
-            .nav-menu {
-                gap: 10px;
-            }
-            
-            .nav-link {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .instructions-grid {
-                padding: 20px;
-                gap: 20px;
-            }
-            
-            .instruction-card {
-                padding: 20px;
-            }
-            
-            .card-header {
-                gap: 10px;
-            }
-            
-            .emoji {
-                font-size: 2rem;
-            }
-            
-            .card-title {
-                font-size: 1.2rem;
+        @media (max-width: 600px) {
+            .product-card img {
+                height: 120px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- תפריט עליון קבוע -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">POOKUBEH</a>
-            <ul class="nav-menu">
-                <li><a href="kubbeh.html" class="nav-link">קובות</a></li>
-                <li><a href="soups.html" class="nav-link">מרקים</a></li>
-                <li><a href="contact.html" class="nav-link">פנייה למנהל האתר</a></li>
-                <li><a href="instructions.html" class="nav-link active">הוראות הכנה</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    <div class="container">
-        <div class="header">
-            <div class="header-content">
-                <h1>🍲 הוראות הכנה</h1>
-                <p>מדריך מפורט להכנת מנות מסורתיות</p>
-            </div>
-        </div>
-        
-        <div class="instructions-grid">
-            <div class="instruction-card card-beet">
-                <div class="card-header">
-                    <span class="emoji">🥣</span>
-                    <h3 class="card-title">קובה סלק</h3>
-                </div>
-                <div class="card-content">
-                    להכניס את הקובות למרק ברגע שהמרק רותח ומבעבע אחת אחת (קפואות - אין צורך להפשיר) ולבשל במשך 8-10 דקות עד שצפות.
-                    <span class="time-badge">8-10 דקות</span>
-                    <div class="tip">
-                        ניתן להכניס ישירות מהמקפיא למרק רותח
-                    </div>
-                </div>
-            </div>
-            
-            <div class="instruction-card card-meat">
-                <div class="card-header">
-                    <span class="emoji">🥩</span>
-                    <h3 class="card-title">קובה חמוסטה סיסקה</h3>
-                </div>
-                <div class="card-content">
-                    להכניס את הקובות למרק ברגע שהמרק רותח ומבעבע אחת אחת (קפואות - אין צורך להפשיר) ולבשל במשך 10-15 דקות עד שמתחילות לצוף ולכבות את האש.
-                    <span class="time-badge">10-15 דקות</span>
-                    <div class="tip">
-                        כבה את האש מיד כשהקובות צפות
-                    </div>
-                </div>
-            </div>
-            
-            <div class="instruction-card card-bulgur">
-                <div class="card-header">
-                    <span class="emoji">🌾</span>
-                    <h3 class="card-title">קובות בורגול מטוגנות</h3>
-                </div>
-                <div class="card-content">
-                    לטגן בשמן עמוק עד שמזהיבות. עדיף להפשיר כ-30 דקות לפני הטיגון.
-                    <span class="time-badge">עד הזהבה</span>
-                    <div class="tip">
-                        הפשר 30 דקות לפני הטיגון לתוצאה מיטבית
-                    </div>
-                </div>
-            </div>
-            
-            <div class="instruction-card card-potato">
-                <div class="card-header">
-                    <span class="emoji">🥔</span>
-                    <h3 class="card-title">קובה פטטה</h3>
-                </div>
-                <div class="card-content">
-                    לטגן בשמן לא עמוק משני צדדים עד שמזהיבה. עדיף להפשיר כ-30 דקות לפני הטיגון.
-                    <span class="time-badge">עד הזהבה</span>
-                    <div class="tip">
-                        השתמש בשמן רדוד וטגן משני הצדדים
-                    </div>
-                </div>
-            </div>
-            
-            <div class="instruction-card card-soup">
-                <div class="card-header">
-                    <span class="emoji">🍲</span>
-                    <h3 class="card-title">מרק</h3>
-                </div>
-                <div class="card-content">
-                    לחמם על אש קטנה עד לרתיחה
-                    <span class="time-badge">עד רתיחה</span>
-                    <div class="tip">
-                        חמם באש נמוכה למניעת הדבקות
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- כפתור חזרה -->
-        <div class="text-center">
-            <a href="index.html" class="back-button">
-                <i class="fas fa-arrow-right ml-2"></i>
-                חזרה לדף הראשי
-            </a>
+    <!-- סל קניות צף -->
+    <div class="cart-icon" onclick="openCart()">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
+
+    <!-- פופאפ סל קניות -->
+    <div id="cartModal" onclick="closeCart()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 class="text-xl font-bold mb-4">סל קניות</h3>
+            <div id="cartItems" class="mb-4"></div>
+            <div class="font-bold mb-4">סך הכל: <span id="cartTotal">0</span> ₪</div>
+            <button onclick="makeOrder()" class="order-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">הזמן בוואטסאפ</button>
+            <button onclick="payWithBit()" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">שלם בביט</button>
+            <button onclick="closeCart()" class="w-full py-2 bg-gray-300 rounded-xl text-lg font-bold">סגור</button>
         </div>
     </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-4">🍲 מרקים ביתיים</h1>
+            <p class="text-white text-lg">מרקים טריים ומזינים - הזמנות עד יום רביעי</p>
+            <a href="index.html" class="inline-block mt-4 bg-white text-primary px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition">חזרה לדף הראשי</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <!-- מרק סלק -->
+            <div class="product-card p-6" data-name="מרק סלק" data-price="50" data-price4="70">
+                <img src="https://i.ibb.co/XrKHwf81/Whats-App-2025-06-29-01-04-46-1106dad7.jpg" alt="מרק סלק" class="w-full h-40 object-cover object-center rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">מרק סלק</h3>
+                <p class="text-gray-600 mb-4">מרק סלק ביתי טעים ומזין</p>
+                <div class="flex gap-2 mb-3">
+                  <button class="portion-btn active" onclick="selectPortion(this, 'מרק סלק', 2, 50)">2 ק"ג</button>
+                  <button class="portion-btn" onclick="selectPortion(this, 'מרק סלק', 4, 70)">4 ק"ג</button>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary" id="price-מרק סלק">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- מרק חמוסטה -->
+            <div class="product-card p-6" data-name="מרק חמוסטה" data-price="50" data-price4="70">
+                <img src="https://i.ibb.co/ksWP6H0Y/Whats-App-2025-06-28-18-13-39-3d342234.jpg" alt="מרק חמוסטה" class="w-full h-40 object-cover object-center rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">מרק חמוסטה</h3>
+                <p class="text-gray-600 mb-4">מרק חמוסטה מסורתי עם בשר טרי</p>
+                <div class="flex gap-2 mb-3">
+                  <button class="portion-btn active" onclick="selectPortion(this, 'מרק חמוסטה', 2, 50)">2 ק"ג</button>
+                  <button class="portion-btn" onclick="selectPortion(this, 'מרק חמוסטה', 4, 70)">4 ק"ג</button>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary" id="price-מרק חמוסטה">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- מרק דלעת -->
+            <div class="product-card p-6" data-name="מרק דלעת" data-price="50" data-price4="70">
+                <img src="https://i.ibb.co/GvTy4mkx/Whats-App-2025-06-28-18-19-44-bf1f87f0.jpg" alt="מרק דלעת" class="w-full h-40 object-cover object-center rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">מרק דלעת</h3>
+                <p class="text-gray-600 mb-4">מרק דלעת קרמי ומזין</p>
+                <div class="flex gap-2 mb-3">
+                  <button class="portion-btn active" onclick="selectPortion(this, 'מרק דלעת', 2, 50)">2 ק"ג</button>
+                  <button class="portion-btn" onclick="selectPortion(this, 'מרק דלעת', 4, 70)">4 ק"ג</button>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary" id="price-מרק דלעת">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Menu Modal -->
+    <div id="menuModal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1000;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;">
+        <div class="modal-content-admin" style="background:#fff;border-radius:18px;max-width:400px;width:90vw;padding:32px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;text-align:center;">
+            <span class="close" onclick="closeMenuModal()" style="position:absolute;top:12px;left:18px;font-size:2rem;cursor:pointer;color:#ff6b6b;">×</span>
+            <h2 class="text-2xl font-bold mb-4 text-pink-600">תפריט מרקים</h2>
+            <ul style="list-style:none;padding:0;margin:0 0 18px 0;text-align:right;">
+                <li style="margin-bottom:18px;">
+                    <span style="font-weight:bold;">מרק סלק</span> – 50₪ (2 ליטר) / 70₪ (4 ליטר)<br>
+                    <span style="color:#888;font-size:0.98em;">מרק סלק אדום מסורתי, עשיר בטעמים</span>
+                </li>
+                <li style="margin-bottom:18px;">
+                    <span style="font-weight:bold;">מרק חמוסטה</span> – 50₪ (2 ליטר) / 70₪ (4 ליטר)<br>
+                    <span style="color:#888;font-size:0.98em;">מרק חמוץ-מלוח עם ירקות ועשבי תיבול</span>
+                </li>
+                <li style="margin-bottom:18px;">
+                    <span style="font-weight:bold;">מרק דלעת</span> – 50₪ (2 ליטר) / 70₪ (4 ליטר)<br>
+                    <span style="color:#888;font-size:0.98em;">מרק דלעת כתומה, מתקתק ועדין</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // --- cart localStorage helpers ---
+        function saveCartToStorage(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        function loadCartFromStorage() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : {};
+        }
+        let cart = loadCartFromStorage();
+        // --- end helpers ---
+
+        function changeQuantity(button, delta) {
+            const itemDiv = button.closest('.product-card');
+            const name = itemDiv.dataset.name;
+            const price = parseFloat(itemDiv.dataset.price);
+            let input = itemDiv.querySelector('.quantity-input');
+            let value = Math.max(0, parseInt(input.value) + delta);
+            input.value = value;
+            if (value > 0) {
+                cart[name] = { name, price, quantity: value };
+            } else {
+                delete cart[name];
+            }
+            saveCartToStorage(cart);
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateCart(input) {
+            const itemDiv = input.closest('.product-card');
+            const name = itemDiv.dataset.name;
+            const price = parseFloat(itemDiv.dataset.price);
+            let value = Math.max(0, parseInt(input.value));
+            if (value > 0) {
+                cart[name] = { name, price, quantity: value };
+            } else {
+                delete cart[name];
+            }
+            saveCartToStorage(cart);
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateCartCount() {
+            const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function renderCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            let html = '';
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                html += `
+                    <div class="flex justify-between items-center mb-2">
+                        <span>${item.name}</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeCartItem('${item.name}', -1)" class="quantity-btn">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="changeCartItem('${item.name}', 1)" class="quantity-btn">+</button>
+                            <span>${item.price * item.quantity}₪</span>
+                        </div>
+                    </div>
+                `;
+                total += item.price * item.quantity;
+            });
+            cartItemsDiv.innerHTML = html || '<p class="text-gray-500">הסל ריק</p>';
+            cartTotalSpan.textContent = total;
+        }
+
+        function changeCartItem(name, delta) {
+            if (cart[name]) {
+                cart[name].quantity = Math.max(0, cart[name].quantity + delta);
+                if (cart[name].quantity === 0) {
+                    delete cart[name];
+                }
+                saveCartToStorage(cart);
+                updateCartCount();
+                renderCart();
+                // עדכן גם את השדה בעמוד
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    itemDiv.querySelector('.quantity-input').value = cart[name] ? cart[name].quantity : 0;
+                }
+            }
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function makeOrder() {
+            const items = Object.values(cart).map(item => `${item.name} x${item.quantity}`).join('\n');
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `שלום! אני רוצה להזמין:\n\n${items}\n\nסך הכל: ${total}₪`;
+            window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
+        }
+
+        function payWithBit() {
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `תשלום בביט עבור הזמנת מרקים בסך ${total}₪`;
+            window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
+        }
+
+        function openMenuModal() {
+            document.getElementById('menuModal').style.display = 'flex';
+        }
+
+        function closeMenuModal() {
+            document.getElementById('menuModal').style.display = 'none';
+        }
+
+        // חבר את כפתור 'לצפייה בתפריט' לפתיחת המודל
+        window.addEventListener('DOMContentLoaded',()=>{
+            document.querySelectorAll('button, a').forEach(btn=>{
+                if(btn.textContent.includes('לצפייה בתפריט')){
+                    btn.onclick = function(e){ e.preventDefault(); openMenuModal(); };
+                }
+            });
+        });
+
+        // --- Load cart on page load ---
+        window.addEventListener('DOMContentLoaded', function() {
+            // עדכן את הכמויות בשדות
+            Object.entries(cart).forEach(([name, item]) => {
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    itemDiv.querySelector('.quantity-input').value = item.quantity;
+                }
+            });
+            updateCartCount();
+            renderCart();
+        });
+
+        function selectPortion(btn, name, portion, price) {
+          // הסר active מכל הכפתורים בקבוצה
+          const card = btn.closest('.product-card');
+          card.querySelectorAll('.portion-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          // עדכן מחיר
+          card.dataset.price = price;
+          card.querySelector('[id^="price-"]').textContent = price + ' ₪';
+          // אפס כמות בסל אם כבר נבחרה מידה אחרת
+          const input = card.querySelector('.quantity-input');
+          input.value = 0;
+          updateCart(input);
+        }
+    </script>
 </body>
-</html>
+</html> 
