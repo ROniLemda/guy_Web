@@ -1594,7 +1594,7 @@
           <!-- Menu PDF Button -->
           <a href="menu.html" target="_blank"
              class="block w-full max-w-md mx-auto bg-gradient-to-l from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-3 rounded-2xl text-xl font-bold shadow-lg transition mb-4">
-            📋 צפייה בתפריט <i class="fas fa-file-pdf ml-2"></i>
+             צפייה בתפריט <i class="fas fa-file-pdf ml-2"></i>
           </a>
 
           <!-- Phone Number -->
@@ -1810,6 +1810,7 @@
             } else {
                 delete cart[name];
             }
+            saveCartToStorage(cart);
             updateCartCount();
             updateTotal();
             renderCart(); // הוסף שורה זו!
@@ -2077,7 +2078,16 @@
             updateBitButtonStatus(); // Set initial state of Bit button
         });
         // סל קניות
-        let cart = {};
+        // --- cart localStorage helpers ---
+        function saveCartToStorage(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        function loadCartFromStorage() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : {};
+        }
+        let cart = loadCartFromStorage();
+        // --- end helpers ---
 
         function updateCartCount() {
             const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
@@ -2119,6 +2129,7 @@
             if (!cart[name]) return;
             cart[name].quantity += delta;
             if (cart[name].quantity <= 0) delete cart[name];
+            saveCartToStorage(cart);
             updateCartCount();
             renderCart();
             syncCartToInputs();
@@ -2146,6 +2157,7 @@
                 } else {
                     delete cart[name];
                 }
+                saveCartToStorage(cart);
                 updateCartCount();
                 updateTotal();
                 renderCart(); // הוספתי!
@@ -2182,6 +2194,16 @@
 
         // הפעלת עדכון מיידי
         document.addEventListener('DOMContentLoaded', () => {
+            // עדכן את הכמויות בשדות
+            Object.entries(cart).forEach(([name, item]) => {
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    const input = itemDiv.querySelector('.quantity-input');
+                    if (input) {
+                        input.value = item.quantity;
+                    }
+                }
+            });
             updateCartCount();
             updateTotal();
         });
@@ -2260,7 +2282,7 @@
       const message = document.getElementById('message').value;
       const fullMessage = `פנייה מהאתר:\nשם: ${name}\nטלפון: ${phone}\nהודעה: ${message}`;
       const whatsappUrl = `https://wa.me/972584462009?text=${encodeURIComponent(fullMessage)}`;
-      window.open(whatsappUrl, '_blank');
+      window.open(wלtsappUrl, '_blank');
       document.getElementById('contactFormStatus').innerText = 'ההודעה נשלחה לוואטסאפ!';
       document.getElementById('contactForm').reset();
     }
@@ -2271,7 +2293,7 @@
       <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו" class="hero-logo-mobile" />
       <h1 class="hero-title-mobile">POOKUBEH</h1>
       <p class="hero-desc-mobile">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
-      <a href="#kubbeh-section" class="hero-btn-mobile">לצפייה בתפריט</a>
+      <a href="#kubbeh-section" class="hero-btn-mobile">לצפייה ב תפריט</a>
     </div>
 
     <style>
