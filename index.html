@@ -1610,9 +1610,9 @@
           <p class="text-white text-lg md:text-xl font-medium mb-5 drop-shadow">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
           <!-- Dropdown Menu Button -->
           <div class="relative flex flex-col items-center">
-            <button id="menuDropdownBtn" type="button" class="bg-white text-pink-600 font-bold rounded-full px-8 py-3 text-lg shadow-lg transition hover:bg-pink-100 hover:text-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 mb-3">
+            <a href="menu.html" class="bg-white text-pink-600 font-bold rounded-full px-8 py-3 text-lg shadow-lg transition hover:bg-pink-100 hover:text-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 mb-3">
               צפייה בתפריט
-            </button>
+            </a>
             <div class="flex flex-row gap-3 mt-1">
               <a href="kubbeh.html" class="bg-white text-pink-500 font-bold rounded-full px-5 py-2 text-base shadow-md hover:bg-pink-50 hover:text-pink-700 transition border border-pink-200">קובות</a>
               <a href="soups.html" class="bg-white text-pink-500 font-bold rounded-full px-5 py-2 text-base shadow-md hover:bg-pink-50 hover:text-pink-700 transition border border-pink-200">מרקים</a>
@@ -2141,13 +2141,13 @@
                 const mainOrderButton = document.getElementById('mainOrderButton');
 
                 if (total > 0) {
-                    floatingTotal.style.display = 'block';
-                    paymentButtons.classList.add('show');
-                    mainOrderButton.style.display = 'none';
+                    if (floatingTotal) floatingTotal.style.display = 'block';
+                    if (paymentButtons) paymentButtons.classList.add('show');
+                    if (mainOrderButton) mainOrderButton.style.display = 'none';
                 } else {
-                    floatingTotal.style.display = 'none';
-                    paymentButtons.classList.remove('show');
-                    mainOrderButton.style.display = 'block';
+                    if (floatingTotal) floatingTotal.style.display = 'none';
+                    if (paymentButtons) paymentButtons.classList.remove('show');
+                    if (mainOrderButton) mainOrderButton.style.display = 'block';
                 }
             }
 
@@ -2247,13 +2247,17 @@
                 const bitButton = document.getElementById('bitButton');
                 const bitLockedNotice = document.getElementById('bitLockedNotice');
                 if (bitPaymentLocked) {
-                    bitButton.classList.add('locked');
-                    bitButton.onclick = showBitLockedMessage; // Set click handler to show message
-                    bitLockedNotice.style.display = 'block';
+                    if (bitButton) {
+                        bitButton.classList.add('locked');
+                        bitButton.onclick = showBitLockedMessage; // Set click handler to show message
+                    }
+                    if (bitLockedNotice) bitLockedNotice.style.display = 'block';
                 } else {
-                    bitButton.classList.remove('locked');
-                    bitButton.onclick = payWithBit; // Set click handler to open Bit modal
-                    bitLockedNotice.style.display = 'none';
+                    if (bitButton) {
+                        bitButton.classList.remove('locked');
+                        bitButton.onclick = payWithBit; // Set click handler to open Bit modal
+                    }
+                    if (bitLockedNotice) bitLockedNotice.style.display = 'none';
                 }
             }
 
@@ -2369,12 +2373,12 @@
 
                     // Display the result
                     if (distance > 0) {
-                        timerElement.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
-                        countdownContainer.style.display = 'block'; // Ensure container is visible
+                        if (timerElement) timerElement.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
+                        if (countdownContainer) countdownContainer.style.display = 'block'; // Ensure container is visible
                     } else {
                         clearInterval(updateTimer);
-                        timerElement.innerHTML = "הזמנות לרביעי נסגרו!";
-                        countdownContainer.classList.add('urgent-border'); // Add urgent border effect
+                        if (timerElement) timerElement.innerHTML = "הזמנות לרביעי נסגרו!";
+                        if (countdownContainer) countdownContainer.classList.add('urgent-border'); // Add urgent border effect
                         // Optionally hide quantity inputs or disable order button if past deadline
                     }
                 }, 1000);
