@@ -40,6 +40,58 @@
         .modal-content { background: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 80%; max-width: 500px; }
         .cart-icon { position: fixed; top: 20px; left: 20px; background: #4ECDC4; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .cart-count { position: absolute; top: -5px; right: -5px; background: white; color: #4ECDC4; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+        .product-card p,
+        .text-gray-600.mb-4 {
+            color: #111 !important;
+            font-size: 1.08rem;
+            font-weight: 500;
+        }
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #7ee0d6;
+            padding: 30px 0 20px 0;
+        }
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 28px;
+            border-radius: 18px;
+            background: #fff;
+            color: #1e3a8a;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+        }
+        .nav-link.active {
+            background: #ffe4b5;
+            color: #b94e4e;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+        .nav-link:hover {
+            background: #ffd6d6;
+            color: #b94e4e;
+        }
     </style>
 </head>
 <body>
@@ -131,8 +183,39 @@
         </div>
     </div>
 
+    <!-- Popup Menu Modal -->
+    <div id="menuModal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1000;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;">
+        <div class="modal-content-admin" style="background:#fff;border-radius:18px;max-width:400px;width:90vw;padding:32px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;text-align:center;">
+            <span class="close" onclick="closeMenuModal()" style="position:absolute;top:12px;left:18px;font-size:2rem;cursor:pointer;color:#ff6b6b;">×</span>
+            <h2 class="text-2xl font-bold mb-4 text-pink-600">תפריט מרקים</h2>
+            <ul style="list-style:none;padding:0;margin:0 0 18px 0;text-align:right;">
+                <li style="margin-bottom:18px;">
+                    <span style="font-weight:bold;">מרק סלק</span> – 50₪ (2 ליטר) / 70₪ (4 ליטר)<br>
+                    <span style="color:#888;font-size:0.98em;">מרק סלק אדום מסורתי, עשיר בטעמים</span>
+                </li>
+                <li style="margin-bottom:18px;">
+                    <span style="font-weight:bold;">מרק חמוסטה</span> – 50₪ (2 ליטר) / 70₪ (4 ליטר)<br>
+                    <span style="color:#888;font-size:0.98em;">מרק חמוץ-מלוח עם ירקות ועשבי תיבול</span>
+                </li>
+                <li style="margin-bottom:18px;">
+                    <span style="font-weight:bold;">מרק דלעת</span> – 50₪ (2 ליטר) / 70₪ (4 ליטר)<br>
+                    <span style="color:#888;font-size:0.98em;">מרק דלעת כתומה, מתקתק ועדין</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <script>
-        let cart = {};
+        // --- cart localStorage helpers ---
+        function saveCartToStorage(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        function loadCartFromStorage() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : {};
+        }
+        let cart = loadCartFromStorage();
+        // --- end helpers ---
 
         function changeQuantity(button, delta) {
             const itemDiv = button.closest('.product-card');
@@ -146,6 +229,7 @@
             } else {
                 delete cart[name];
             }
+            saveCartToStorage(cart);
             updateCartCount();
             renderCart();
         }
@@ -160,6 +244,7 @@
             } else {
                 delete cart[name];
             }
+            saveCartToStorage(cart);
             updateCartCount();
             renderCart();
         }
@@ -198,6 +283,7 @@
                 if (cart[name].quantity === 0) {
                     delete cart[name];
                 }
+                saveCartToStorage(cart);
                 updateCartCount();
                 renderCart();
                 // עדכן גם את השדה בעמוד
@@ -228,6 +314,36 @@
             const message = `תשלום בביט עבור הזמנת מרקים בסך ${total}₪`;
             window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
         }
+
+        function openMenuModal() {
+            document.getElementById('menuModal').style.display = 'flex';
+        }
+
+        function closeMenuModal() {
+            document.getElementById('menuModal').style.display = 'none';
+        }
+
+        // חבר את כפתור 'לצפייה בתפריט' לפתיחת המודל
+        window.addEventListener('DOMContentLoaded',()=>{
+            document.querySelectorAll('button, a').forEach(btn=>{
+                if(btn.textContent.includes('לצפייה בתפריט')){
+                    btn.onclick = function(e){ e.preventDefault(); openMenuModal(); };
+                }
+            });
+        });
+
+        // --- Load cart on page load ---
+        window.addEventListener('DOMContentLoaded', function() {
+            // עדכן את הכמויות בשדות
+            Object.entries(cart).forEach(([name, item]) => {
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    itemDiv.querySelector('.quantity-input').value = item.quantity;
+                }
+            });
+            updateCartCount();
+            renderCart();
+        });
     </script>
 </body>
 </html> 
