@@ -30,8 +30,31 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Rubik', sans-serif; background: linear-gradient(135deg, #4ECDC4, #FFDAB9); min-height: 100vh; }
-        .product-card { background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-        .product-card:hover { transform: translateY(-5px); }
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4ECDC4, #FF6B6B, #FFD700);
+            border-radius: 20px 20px 0 0;
+        }
+        .product-card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+            border-color: #4ECDC4;
+        }
         .quantity-btn { background: #4ECDC4; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; }
         .quantity-input { width: 50px; text-align: center; border: 1px solid #ddd; border-radius: 5px; }
         .order-button { background: linear-gradient(45deg, #28A745, #20C997); }
@@ -92,6 +115,44 @@
             background: #ffd6d6;
             color: #b94e4e;
         }
+        .portion-btn {
+            background: #ffe4b5;
+            color: #b94e4e;
+            border: none;
+            border-radius: 999px;
+            padding: 6px 18px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .portion-btn.active, .portion-btn:hover {
+            background: #ff6b6b;
+            color: #fff;
+        }
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .product-card img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-color: #4ECDC4;
+        }
+        @media (max-width: 600px) {
+            .product-card img {
+                height: 120px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -122,12 +183,16 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <!-- מרק סלק -->
-            <div class="product-card p-6" data-name="מרק סלק" data-price="35">
-                <img src="https://i.ibb.co/WWbmzKjJ/Whats-App-2025-06-06-22-28-09-90d2de68.jpg" alt="מרק סלק" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="product-card p-6" data-name="מרק סלק" data-price="50" data-price4="70">
+                <img src="https://i.ibb.co/XrKHwf81/Whats-App-2025-06-29-01-04-46-1106dad7.jpg" alt="מרק סלק" class="w-full h-40 object-cover object-center rounded-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">מרק סלק</h3>
                 <p class="text-gray-600 mb-4">מרק סלק ביתי טעים ומזין</p>
+                <div class="flex gap-2 mb-3">
+                  <button class="portion-btn active" onclick="selectPortion(this, 'מרק סלק', 2, 50)">2 ק"ג</button>
+                  <button class="portion-btn" onclick="selectPortion(this, 'מרק סלק', 4, 70)">4 ק"ג</button>
+                </div>
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-2xl font-bold text-primary">35 ₪</span>
+                    <span class="text-2xl font-bold text-primary" id="price-מרק סלק">50 ₪</span>
                     <div class="flex items-center gap-2">
                         <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
                         <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
@@ -137,12 +202,16 @@
             </div>
 
             <!-- מרק חמוסטה -->
-            <div class="product-card p-6" data-name="מרק חמוסטה" data-price="40">
-                <img src="https://i.ibb.co/ccWtCmzQ/Whats-App-2025-06-06-22-30-51-3b7a1b35.jpg" alt="מרק חמוסטה" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="product-card p-6" data-name="מרק חמוסטה" data-price="50" data-price4="70">
+                <img src="https://i.ibb.co/ksWP6H0Y/Whats-App-2025-06-28-18-13-39-3d342234.jpg" alt="מרק חמוסטה" class="w-full h-40 object-cover object-center rounded-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">מרק חמוסטה</h3>
                 <p class="text-gray-600 mb-4">מרק חמוסטה מסורתי עם בשר טרי</p>
+                <div class="flex gap-2 mb-3">
+                  <button class="portion-btn active" onclick="selectPortion(this, 'מרק חמוסטה', 2, 50)">2 ק"ג</button>
+                  <button class="portion-btn" onclick="selectPortion(this, 'מרק חמוסטה', 4, 70)">4 ק"ג</button>
+                </div>
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-2xl font-bold text-primary">40 ₪</span>
+                    <span class="text-2xl font-bold text-primary" id="price-מרק חמוסטה">50 ₪</span>
                     <div class="flex items-center gap-2">
                         <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
                         <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
@@ -152,27 +221,16 @@
             </div>
 
             <!-- מרק דלעת -->
-            <div class="product-card p-6" data-name="מרק דלעת" data-price="30">
-                <img src="https://i.ibb.co/WWbmzKjJ/Whats-App-2025-06-06-22-28-09-90d2de68.jpg" alt="מרק דלעת" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="product-card p-6" data-name="מרק דלעת" data-price="50" data-price4="70">
+                <img src="https://i.ibb.co/GvTy4mkx/Whats-App-2025-06-28-18-19-44-bf1f87f0.jpg" alt="מרק דלעת" class="w-full h-40 object-cover object-center rounded-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">מרק דלעת</h3>
                 <p class="text-gray-600 mb-4">מרק דלעת קרמי ומזין</p>
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-2xl font-bold text-primary">30 ₪</span>
-                    <div class="flex items-center gap-2">
-                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
-                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                    </div>
+                <div class="flex gap-2 mb-3">
+                  <button class="portion-btn active" onclick="selectPortion(this, 'מרק דלעת', 2, 50)">2 ק"ג</button>
+                  <button class="portion-btn" onclick="selectPortion(this, 'מרק דלעת', 4, 70)">4 ק"ג</button>
                 </div>
-            </div>
-
-            <!-- מרק עדשים -->
-            <div class="product-card p-6" data-name="מרק עדשים" data-price="25">
-                <img src="https://i.ibb.co/ccWtCmzQ/Whats-App-2025-06-06-22-30-51-3b7a1b35.jpg" alt="מרק עדשים" class="w-full h-48 object-cover rounded-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">מרק עדשים</h3>
-                <p class="text-gray-600 mb-4">מרק עדשים בריא ומזין</p>
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-2xl font-bold text-primary">25 ₪</span>
+                    <span class="text-2xl font-bold text-primary" id="price-מרק דלעת">50 ₪</span>
                     <div class="flex items-center gap-2">
                         <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
                         <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
@@ -344,6 +402,20 @@
             updateCartCount();
             renderCart();
         });
+
+        function selectPortion(btn, name, portion, price) {
+          // הסר active מכל הכפתורים בקבוצה
+          const card = btn.closest('.product-card');
+          card.querySelectorAll('.portion-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          // עדכן מחיר
+          card.dataset.price = price;
+          card.querySelector('[id^="price-"]').textContent = price + ' ₪';
+          // אפס כמות בסל אם כבר נבחרה מידה אחרת
+          const input = card.querySelector('.quantity-input');
+          input.value = 0;
+          updateCart(input);
+        }
     </script>
 </body>
 </html> 
