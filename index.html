@@ -1369,6 +1369,248 @@
             text-align: right !important;
           }
         }
+
+        .social-icon-gradient {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #fff 60%, #f7e1ff 100%);
+          box-shadow: 0 4px 18px rgba(0,0,0,0.13), 0 1.5px 0 #fff inset;
+          border: 2.5px solid #fff;
+          font-size: 2rem;
+          transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+          position: relative;
+        }
+        .social-icon-gradient i {
+          transition: color 0.18s;
+        }
+        .social-icon-gradient:hover {
+          transform: scale(1.09) translateY(-2px);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 0 #fff inset;
+          background: linear-gradient(135deg, #ffe4ec 0%, #e0e7ff 100%);
+        }
+        .social-icon-gradient:hover .fa-instagram { color: #e1306c; }
+        .social-icon-gradient:hover .fa-whatsapp { color: #25d366; }
+        .social-icon-gradient:hover .fa-tiktok { color: #000; }
+        .social-icon-gradient .fa-instagram { color: #e1306c; }
+        .social-icon-gradient .fa-whatsapp { color: #25d366; }
+        .social-icon-gradient .fa-tiktok { color: #000; }
+
+        .cart-fab {
+          background: linear-gradient(135deg, #ff4757, #ff3742);
+          color: #222;
+          border-radius: 50%;
+          box-shadow: 0 8px 25px rgba(255,71,87,0.4), 0 4px 10px rgba(0,0,0,0.1);
+          border: none;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          position: fixed;
+          left: 24px;
+          top: 96px;
+          cursor: pointer;
+          overflow: hidden;
+        }
+        .cart-fab::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s;
+        }
+        .cart-fab:hover::before {
+          left: 100%;
+        }
+        .cart-fab:hover {
+          background: linear-gradient(135deg, #ff3742, #ff4757);
+          color: #111;
+          transform: scale(1.1) rotate(5deg);
+          box-shadow: 0 12px 35px rgba(255,71,87,0.6), 0 6px 15px rgba(0,0,0,0.15);
+        }
+        .cart-fab:active {
+          transform: scale(0.95);
+        }
+        .cart-fab i {
+          font-size: 1.5rem;
+          color: #2f3542;
+          font-weight: bold;
+          z-index: 1;
+        }
+        .cart-count-badge {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background: #2f3542;
+          color: #fff;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.75rem;
+          font-weight: bold;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+          border: 2px solid white;
+          animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+        
+        /* פופאפ סל קניות משודרג */
+        #cartModal {
+          background: rgba(0,0,0,0.7);
+          backdrop-filter: blur(8px);
+        }
+        
+        #cartModal .modal-content-admin {
+          background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 8px 25px rgba(0,0,0,0.1);
+          border: 1px solid rgba(255,255,255,0.2);
+          animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        #cartModal h2 {
+          background: linear-gradient(135deg, #ff4757, #ff3742);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-size: 1.5rem;
+          text-align: center;
+          margin-bottom: 1.5rem;
+        }
+        
+        #cartItems {
+          max-height: 300px;
+          overflow-y: auto;
+          padding-right: 8px;
+        }
+        
+        #cartItems::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        #cartItems::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 10px;
+        }
+        
+        #cartItems::-webkit-scrollbar-thumb {
+          background: linear-gradient(135deg, #ff4757, #ff3742);
+          border-radius: 10px;
+        }
+        
+        #cartItems .flex {
+          background: white;
+          border-radius: 12px;
+          padding: 12px;
+          margin-bottom: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+          border: 1px solid #f0f0f0;
+          transition: all 0.2s ease;
+        }
+        
+        #cartItems .flex:hover {
+          transform: translateX(5px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          border-color: #ff4757;
+        }
+        
+        #cartItems .quantity-btn {
+          background: linear-gradient(135deg, #ff4757, #ff3742);
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 28px;
+          height: 28px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-weight: bold;
+          transition: all 0.2s ease;
+        }
+        
+        #cartItems .quantity-btn:hover {
+          transform: scale(1.1);
+          box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+        }
+        
+        #cartItems .quantity-btn:active {
+          transform: scale(0.95);
+        }
+        
+        #cartTotal {
+          background: linear-gradient(135deg, #ff4757, #ff3742);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-size: 1.25rem;
+        }
+        
+        .order-button {
+          background: linear-gradient(135deg, #28a745, #20c997);
+          border: none;
+          box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+          transition: all 0.3s ease;
+        }
+        
+        .order-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .bit-button {
+          background: linear-gradient(135deg, #0066cc, #0056b3);
+          border: none;
+          box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+          transition: all 0.3s ease;
+        }
+        
+        .bit-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+        }
+        
+        #cartModal .close {
+          position: absolute;
+          top: 15px;
+          right: 20px;
+          font-size: 2rem;
+          color: #ff4757;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        
+        #cartModal .close:hover {
+          transform: scale(1.2);
+          color: #ff3742;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center py-4">
@@ -1571,17 +1813,71 @@
 
         <!-- Image Gallery -->
         <div class="gallery-section px-4 py-6">
-          <div class="gallery-grid">
-            <img src="https://i.ibb.co/mCDBCFgM/Whats-App-2025-06-28-18-18-29-94679c48.jpg"" alt="קובה סלק" class="gallery-img-item" />
-            <img src="https://i.ibb.co/JWSykSGf/Whats-App-2025-06-29-01-04-45-112fa016.jpg" alt="קובה בורגול" class="gallery-img-item" />
-            <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="gallery-img-item" />
-            <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="gallery-img-item" />
-            <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="gallery-img-item" />
-            <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="gallery-img-item" />
-            <img src="https://i.ibb.co/VWLbZG1j/Whats-App-2025-06-28-17-42-38-2a503937.jpg" alt="קובה חדשה נוספת" class="gallery-img-item" />
-            <img src="https://i.ibb.co/20HVBmjb/Whats-App-2025-06-28-18-13-38-f35bafbb.jpg" alt="קובה חדשה נוספת" class="gallery-img-item" />
+          <div class="gallery-horizontal upgraded-gallery overflow-x-auto whitespace-nowrap flex gap-6 pb-2">
+            <img src="https://i.ibb.co/mCDBCFgM/Whats-App-2025-06-28-18-18-29-94679c48.jpg" alt="קובה סלק" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/JWSykSGf/Whats-App-2025-06-29-01-04-45-112fa016.jpg" alt="קובה בורגול" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/VWLbZG1j/Whats-App-2025-06-28-17-42-38-2a503937.jpg" alt="קובה חדשה נוספת" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
+            <img src="https://i.ibb.co/20HVBmjb/Whats-App-2025-06-28-18-13-38-f35bafbb.jpg" alt="קובה חדשה נוספת" class="gallery-img-item upgraded-img inline-block" onclick="openGalleryModal(this.src)" />
           </div>
         </div>
+        <!-- גלריה פופאפ -->
+        <div id="galleryModal" class="modal" style="display:none;z-index:2000;">
+          <span class="close" onclick="closeGalleryModal()">×</span>
+          <img class="modal-content" id="galleryModalImg">
+        </div>
+        <style>
+        .gallery-horizontal::-webkit-scrollbar { height: 8px; background: #eee; }
+        .gallery-horizontal::-webkit-scrollbar-thumb { background: #ffd6d6; border-radius: 8px; }
+        .upgraded-gallery { animation: fadeInUp 1.2s cubic-bezier(.23,1.01,.32,1) both; }
+        @keyframes fadeInUp { 0% { opacity:0; transform:translateY(40px);} 100% { opacity:1; transform:translateY(0);} }
+        .upgraded-img {
+          border-radius: 50%;
+          border: 4px solid transparent;
+          background: linear-gradient(135deg,#ffb199,#4ECDC4,#ff0844,#FFD700) border-box;
+          box-shadow: 0 6px 32px 0 rgba(44,62,80,0.18), 0 1.5px 0 #ffe4b5 inset;
+          transition: transform 0.25s, box-shadow 0.25s, border 0.25s;
+          cursor: pointer;
+          aspect-ratio: 1/1;
+          width: 120px; height: 120px;
+          object-fit: cover;
+          display: inline-block;
+        }
+        .upgraded-img:hover {
+          transform: scale(1.08) rotate(-2deg);
+          box-shadow: 0 12px 40px 0 rgba(255,107,107,0.22), 0 2px 0 #ffd6d6 inset;
+          border: 4px solid #FFD700;
+        }
+        @media (max-width: 700px) {
+          .upgraded-img { width: 80px; height: 80px; }
+        }
+        #galleryModal .modal-content {
+          border-radius: 24px;
+          box-shadow: 0 8px 40px 0 rgba(44,62,80,0.22);
+          max-width: 90vw;
+          max-height: 80vh;
+          object-fit: contain;
+          background: #fff;
+        }
+        #galleryModal .close {
+          color: #ff0844;
+          font-size: 3rem;
+          top: 20px;
+          right: 40px;
+        }
+        </style>
+        <script>
+        function openGalleryModal(src) {
+          document.getElementById('galleryModalImg').src = src;
+          document.getElementById('galleryModal').style.display = 'flex';
+        }
+        function closeGalleryModal() {
+          document.getElementById('galleryModal').style.display = 'none';
+        }
+        </script>
 
         <!-- Footer with Order Button -->
         <div class="bg-gradient-to-br from-darkBlue to-secondary p-8 text-center text-white rounded-b-2xl shadow-2xl space-y-6 mt-8">
@@ -1598,15 +1894,17 @@
           </a>
 
           <!-- Phone Number -->
-          <div class="text-3xl font-extrabold text-customGreen tracking-wider mb-2">
-            <a href="tel:+972546225706" class="hover:underline">054-6225706</a>
+          <div class="flex flex-col items-center mb-4">
+            <a href="tel:+972546225706" class="text-5xl font-extrabold bg-gradient-to-r from-green-400 via-green-500 to-teal-400 bg-clip-text text-transparent underline underline-offset-8 decoration-4 decoration-green-300 tracking-widest transition-all duration-300 hover:from-pink-400 hover:to-yellow-400 hover:decoration-pink-400" style="letter-spacing:4px;">
+              054-6225706
+            </a>
           </div>
 
           <!-- Social Icons -->
-          <div class="flex justify-center gap-6 text-3xl mb-4">
-            <a href="https://www.instagram.com/pookubeh" target="_blank" class="bg-white text-pink-500 rounded-full p-2 shadow hover:bg-pink-100 transition"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/972546225706" target="_blank" class="bg-white text-green-500 rounded-full p-2 shadow hover:bg-green-100 transition"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.tiktok.com/@guyrefael00?_t=ZS-8xaqEyGgTze&_r=1" target="_blank" class="bg-white text-black rounded-full p-2 shadow hover:bg-gray-200 transition"><i class="fab fa-tiktok"></i></a>
+          <div class="flex justify-center gap-6 text-4xl mb-4">
+            <a href="https://www.instagram.com/pookubeh" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i></a>
+            <a href="https://wa.me/972546225706" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i></a>
+            <a href="https://www.tiktok.com/@guyrefael00?_t=ZS-8xaqEyGgTze&_r=1" target="_blank"><i class="fab fa-tiktok" style="color:#000;"></i></a>
           </div>
 
           <!-- Payment Methods -->
@@ -1629,21 +1927,7 @@
             <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
           </div>
         </div>
-
-        <!-- Countdown Timer for Orders -->
-        <div id="countdownContainer" class="countdown-container text-white p-4 m-4 rounded-2xl text-center font-bold relative z-10">
-            <div class="text-lg mb-2">⏰ זמן מוגבל להזמנות!</div>
-            <div id="countdown" class="text-2xl">
-                 <span id="timer" class="text-yellow-300"></span>  סגירת הזמנות (רביעי)
-            </div>
-        </div>
-
-        <!-- Share Button -->
-        <div class="text-center p-4 relative z-10">
-            <button onclick="shareWebsite()" class="share-button text-white px-6 py-3 rounded-xl font-bold text-lg">
-                📤 שתף עם חברים - תעזור לנו להגיע ליותר אנשים!
-            </button>
-        </div>
+        <!-- END Footer with Order Button -->
 
         <!-- Location Information and Map Button -->
         <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 m-4 rounded-2xl text-center relative z-10">
@@ -2209,9 +2493,9 @@
         });
     </script>
     <!-- אייקון עגלה צף -->
-    <button id="cartButton" onclick="toggleCart()" class="fixed top-24 left-4 z-50 bg-primary text-white rounded-full shadow-lg p-4 flex items-center justify-center hover:bg-secondary transition-all">
-        <i class="fas fa-shopping-cart text-2xl"></i>
-        <span id="cartCount" class="bg-white text-primary rounded-full px-2 ml-2 font-bold text-sm" style="display:none;">0</span>
+    <button id="cartButton" onclick="toggleCart()" class="fixed top-24 left-4 z-50 cart-fab">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cartCount" class="cart-count-badge">0</span>
     </button>
 
     <!-- פופאפ סל קניות -->
@@ -2441,6 +2725,5 @@
       .hero-img-bg-mobile { display: none !important; }
     }
     </style>
-    <!-- END HERO עם תמונת קובה ברקע -->
 </body>
 </html>
