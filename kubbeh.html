@@ -1,40 +1,15 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="POOKUBEH - קובות בעבודת יד">
-    <meta property="og:description" content="קובות בעבודת יד איכותיות - קובה עגולה, שטוחה, בורגול ופטטה. מרקים ביתיים. הזמנות: 054-6225706">
-    <meta property="og:image" content="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg">
-    <meta property="og:url" content="https://pookubeh.netlify.app/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="POOKUBEH">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="POOKUBEH - קובות בעבודת יד">
-    <meta name="twitter:description" content="קובות בעבודת יד איכותיות - מרקים ביתיים. הזמנות: 054-6225706">
-    <meta name="twitter:image" content="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>POOKUBEH - קובות בעבודת יד | הזמנות: 054-6225706</title>
-    <meta name="description" content="קובות בעבודת יד איכותיות - קובה עגולה, שטוחה, בורגול ופטטה. מרקים ביתיים. הזמנות עד יום רביעי. משלוחים באזור תל אביב.">
-
-    <!-- Tailwind CSS CDN -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קובות - POOKUBEH</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Tailwind CSS configuration for custom colors and animations
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        // Custom font family 'Inter'
-                        inter: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        // Custom color palette for the website
                         primary: '#FF6B6B',
                         secondary: '#4ECDC4',
                         accent1: '#FFE4B5',
@@ -46,1527 +21,160 @@
                         lightGray: '#BDC3C7',
                         customGreen: '#28A745',
                         bitBlue: '#0066CC',
-                    },
-                    animation: {
-                        // Custom animations for a lively feel
-                        'bounce-slow': 'bounce 2s infinite',
-                        'pulse-slow': 'pulse 3s infinite',
                     }
-                },
-            },
+                }
+            }
         }
     </script>
-
-    <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <style>
-        /* Confetti animation for celebratory effects */
-        @keyframes confetti {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Admin contact button styling with gradient and animation */
-        .admin-contact-button {
-            background: linear-gradient(45deg, #1E3A8A, #3B82F6);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
-            animation: bounce 2s infinite;
-            z-index: 100;
-            font-weight: bold;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-            .admin-contact-button:hover {
-                transform: scale(1.1);
-                box-shadow: 0 6px 20px rgba(30, 58, 138, 0.6);
-            }
-
-        /* Admin panel basic styling */
-        #adminPanel {
-            font-family: 'Inter', sans-serif;
-            color: #333;
-        }
-
-            #adminPanel button {
-                transition: all 0.3s ease;
-            }
-
-                #adminPanel button:hover {
-                    transform: scale(1.05);
-                }
-
-        /* Styling for the locked Bit payment button */
-        .bit-button.locked::before {
-            content: 'ביט סגור זמנית';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14px;
-            font-weight: bold;
-            color: white;
-            z-index: 1;
-        }
-
-        .bit-button.locked::after {
-            display: none; /* Hides the padlock icon when text is shown */
-        }
-
-        .bit-button.locked {
-            background: linear-gradient(45deg, #999, #666);
-            cursor: not-allowed;
-            opacity: 0.6;
-            position: relative;
-        }
-
-            .bit-button.locked::after {
-                content: '🔒';
-                position: absolute;
-                top: 50%;
-                right: 10px;
-                transform: translateY(-50%);
-                font-size: 18px;
-            }
-
-        /* Notice for locked features */
-        .locked-notice {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        /* Special styling for deadline notice (orders until Wednesday) */
-        .deadline-notice {
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f);
-            background-size: 200% 200%;
-            animation: gradientPulse 3s ease infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .deadline-notice::before {
-                content: '';
-                position: absolute;
-                top: -50%;
-                left: -50%;
-                width: 200%;
-                height: 200%;
-                background: repeating-linear-gradient( 45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px );
-                animation: slidePattern 4s linear infinite;
-            }
-
-        /* Keyframe animations for deadline notice */
-        @keyframes gradientPulse {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes slidePattern {
-            0% {
-                transform: translateX(-100px);
-            }
-
-            100% {
-                transform: translateX(100px);
-            }
-        }
-
-        .deadline-stars {
-            display: inline-block;
-            animation: starTwinkle 1.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes starTwinkle {
-            0% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1.2) rotate(10deg);
-                opacity: 0.8;
-            }
-        }
-
-        .deadline-text {
-            position: relative;
-            z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* Urgent border animation */
-        .urgent-border {
-            border: 3px solid #ff4757;
-            border-radius: 15px;
-            animation: borderPulse 2s infinite;
-        }
-
-        @keyframes borderPulse {
-            0%, 100% {
-                border-color: #ff4757;
-                box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
-            }
-
-            50% {
-                border-color: #ffd93d;
-                box-shadow: 0 0 0 10px rgba(255, 217, 61, 0);
-            }
-        }
-
-        /* Confetti particle styling */
-        .confetti {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            z-index: 1000;
-            pointer-events: none;
-            border-radius: 50%; /* Make confetti round */
-        }
-
-        /* Reviews section styling */
-        .reviews-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .review {
-            background: rgba(255,255,255,0.2);
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 10px;
-            text-align: center;
-            font-style: italic;
-        }
-
-        /* Countdown timer container styling */
-        .countdown-container {
-            background: linear-gradient(45deg, #ff4757, #ff3742);
-            animation: pulse 2s infinite;
-        }
-
-        /* Chat button styling (WhatsApp) */
-        .chat-button {
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            animation: bounce 2s infinite;
-            z-index: 100;
-        }
-
-            .chat-button:hover {
-                transform: scale(1.1);
-            }
-
-        /* Share button styling */
-        .share-button {
-            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-            transition: all 0.3s ease;
-        }
-
-            .share-button:hover {
-                transform: scale(1.05);
-                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-            }
-
-        /* Body background with animated gradient */
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #FFE4B5);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Watermark styling */
-        .watermark-text {
-            position: absolute;
-            top: 25%; /* Adjusted: moved up */
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-20deg);
-            font-size: 90px;
-            font-weight: bold;
-            color: rgba(0, 0, 0, 0.03);
-            pointer-events: none;
-            z-index: 0;
-            user-select: none;
-        }
-
-        .instagram-watermark {
-            position: absolute;
-            bottom: 10%; /* Adjusted: moved to bottom */
-            left: 15%; /* Adjusted: moved slightly right */
-            transform: translate(-50%, -50%) rotate(15deg);
-            font-size: 70px;
-            color: rgba(0, 0, 0, 0.02);
-            pointer-events: none;
-            z-index: 0;
-            user-select: none;
-        }
-
-        .tiktok-watermark {
-            position: absolute;
-            top: 10%; /* Adjusted: moved down */
-            right: 15%; /* Adjusted: moved slightly left */
-            transform: translate(-50%, -50%) rotate(-15deg);
-            font-size: 70px;
-            color: rgba(0, 0, 0, 0.02);
-            pointer-events: none;
-            z-index: 0;
-            user-select: none;
-        }
-
-        /* Beat icon (for BIT payment) */
-        .beat-icon {
-            display: inline-block;
-            background: #FF6B6B;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-
-        /* Quantity buttons styling */
-        .quantity-btn {
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #FF6B6B;
-            background: white;
-            color: #FF6B6B;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-            .quantity-btn:hover {
-                background: #FF6B6B;
-                color: white;
-                transform: scale(1.1);
-            }
-
-        /* Quantity input styling */
-        .quantity-input {
-            width: 50px;
-            text-align: center;
-            border: 2px solid #FF6B6B;
-            border-radius: 8px;
-            padding: 8px;
-            font-weight: bold;
-            color: #FF6B6B;
-        }
-
-        /* Product item styling with hover effect */
-        .product-item {
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            padding: 12px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
-            display: flex; /* Use flexbox for layout */
-            flex-direction: column; /* Stack image and details vertically */
-            align-items: center; /* Center items horizontally */
-            text-align: center; /* Center text */
-        }
-
-            .product-item:hover {
-                background: rgba(255, 255, 255, 0.2); /* More transparent on hover */
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-        
-        .product-image-container {
-            width: 100%; /* Take full width of product item */
-            max-width: 150px; /* Limit image size */
-            height: 120px;
-            overflow: hidden;
-            border-radius: 8px; /* Rounded corners for images */
-            margin-bottom: 10px; /* Space below image */
-        }
-
-        .product-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cover the container without distortion */
-        }
-
-
-        /* Order button styling with gradient and hover effect */
-        .order-button {
-            background: linear-gradient(45deg, #28A745, #34D058);
-            transition: all 0.3s ease;
-            transform: scale(1);
-        }
-
-            .order-button:hover {
-                transform: scale(1.05);
-                box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-            }
-
-        /* Bit button styling with gradient and hover effect */
-        .bit-button {
-            background: linear-gradient(45deg, #0066CC, #0080FF);
-            transition: all 0.3s ease;
-            transform: scale(1);
-        }
-
-            .bit-button:hover {
-                transform: scale(1.05);
-                box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
-            }
-
-        /* Gallery image styling with hover effect */
-        .gallery-img {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background-size: cover;
-            background-position: center;
-        }
-
-            .gallery-img:hover {
-                transform: scale(1.05);
-                filter: brightness(1.1);
-            }
-
-        /* Modal for image display */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 700px;
-            max-height: 90%;
-            object-fit: contain;
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-            .close:hover {
-                color: #FF6B6B;
-            }
-
-        /* Floating total amount display */
-        .floating-total {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
-            z-index: 100;
-            display: none; /* Hidden by default */
-            font-weight: bold;
-            font-size: 18px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Payment buttons container */
-        .payment-buttons {
-            display: none; /* Hidden by default */
-            gap: 10px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-            .payment-buttons.show {
-                display: flex; /* Show when 'show' class is added */
-            }
-
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 640px) {
-            .flyer {
-                margin: 10px;
-                max-width: calc(100vw - 20px);
-            }
-
-            .quantity-controls {
-                flex-direction: row;
-                gap: 8px;
-            }
-
-            .payment-buttons {
-                flex-direction: column;
-            }
-
-            .watermark-text, .instagram-watermark, .tiktok-watermark {
-                font-size: 50px; /* Smaller watermarks on mobile */
-            }
-        }
-
-        /* Admin panel modal specific styles */
-        #adminLoginModal, #successMessageModal, #errorMessageModal, #bitPaymentModal { /* Added bitPaymentModal here */
-            display: none;
-            position: fixed;
-            z-index: 1001; /* Higher than image modal */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #adminLoginModal .modal-content-admin,
-        #successMessageModal .modal-content-admin,
-        #errorMessageModal .modal-content-admin,
-        #bitPaymentModal .modal-content-admin { /* Added bitPaymentModal here */
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-            max-width: 350px;
-            width: 90%;
-        }
-        #adminLoginModal input[type="password"] {
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: calc(100% - 20px);
-            margin-bottom: 15px;
-            border-radius: 8px;
-            text-align: center; /* Center text in phone input */
-            font-size: 16px;
-        }
-        #adminLoginModal button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #adminLoginModal button:hover {
-            opacity: 0.9;
-        }
-
-        /* Specific styles for the Bit Payment Modal based on the image */
-        #bitPaymentModal .modal-content-admin {
-            max-width: 400px;
-            padding: 20px;
-        }
-        #bitPaymentModal .bit-card-icon {
-            font-size: 50px;
-            color: #ffc107; /* A gold/yellow color for the card icon */
-            margin-bottom: 10px;
-        }
-        #bitPaymentModal .bit-summary-box {
-            background-color: #e0f2f7; /* Light blue background */
-            border: 1px solid #b2ebf2; /* Light blue border */
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        #bitPaymentModal .bit-phone-input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
-            margin-top: 10px; /* Space between number and copy button */
-        }
-        #bitPaymentModal .bit-copy-phone-btn {
-            background-color: #f0f0f0; /* Light gray */
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        #bitPaymentModal .bit-instructions ul {
-            list-style: none;
-            padding: 0;
-            text-align: right; /* RTL */
-        }
-        #bitPaymentModal .bit-instructions li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 15px;
-            color: #555;
-        }
-        #bitPaymentModal .bit-instructions li i {
-            margin-left: 10px; /* Space for icons */
-            font-size: 18px;
-            color: #007bff; /* Blue for icons */
-        }
-        #bitPaymentModal .bit-action-buttons button {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        #bitPaymentModal .bit-action-buttons .open-bit-btn {
-            background-color: #007bff; /* Bit blue */
-            color: white;
-        }
-        #bitPaymentModal .bit-action-buttons .copy-phone-btn {
-            background-color: #4CAF50; /* Green for WhatsApp-like action */
-            color: white;
-        }
-        #bitPaymentModal .bit-action-buttons .whatsapp-order-btn {
-            background-color: #25D366; /* WhatsApp green */
-            color: white;
-        }
-        #bitPaymentModal .bit-action-buttons .close-btn {
-            background-color: #f44336; /* Red for close */
-            color: white;
-        }
-
-        /* General button hover effects for modals */
-        #bitPaymentModal .bit-action-buttons button:hover {
-            filter: brightness(0.9);
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .flyer {
-            margin-top: 80px; /* תן מרווח כדי שהתוכן לא יתחבא מאחורי התפריט */
-        }
-
-        #main-nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        .flyer {
-            margin-top: 80px;
-        }
-
-        #cartModal .modal-content-admin {
-          background: #fff;
-          color: #222;
-          border-radius: 20px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-          padding: 30px 20px;
-          max-width: 400px;
-          width: 90vw;
-          margin: 0 auto;
-        }
-
-        #cartModal .flex {
-          align-items: center;
-        }
-
-        #cartModal .quantity-btn {
-          background: #fff;
-          color: #FF6B6B;
-          border: 2px solid #FF6B6B;
-        }
-
-        #cartModal .quantity-btn:hover {
-          background: #FF6B6B;
-          color: #fff;
-        }
-
-        .gallery-section {
-          background: #f8fafc;
-          border-radius: 18px;
-          margin: 0 auto 32px auto;
-          max-width: 900px;
-          box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-        }
-        .gallery-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-          gap: 16px;
-          padding: 8px 0;
-        }
-        .gallery-img-item {
-          width: 100%;
-          height: 120px;
-          object-fit: cover;
-          border-radius: 14px;
-          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
-          transition: transform 0.2s, box-shadow 0.2s;
-          background: #e2e8f0;
-          cursor: pointer;
-        }
-        .gallery-img-item:hover {
-          transform: scale(1.04);
-          box-shadow: 0 4px 16px 0 rgba(0,0,0,0.16);
-        }
-        @media (max-width: 600px) {
-          .gallery-img-item { height: 80px; }
-        }
-
-        .product-item {
-          background: #fff;
-          border-radius: 18px;
-          box-shadow: 0 4px 18px 0 rgba(44,62,80,0.10);
-          padding: 18px 12px 20px 12px;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          transition: box-shadow 0.25s, transform 0.18s;
-          border: 1.5px solid #ffe4b5;
-        }
-        .product-item:hover {
-          box-shadow: 0 8px 32px 0 rgba(44,62,80,0.18);
-          transform: translateY(-4px) scale(1.03);
-        }
-        .product-image-container {
-          width: 120px;
-          height: 120px;
-          border-radius: 14px;
-          overflow: hidden;
-          margin-bottom: 10px;
-          box-shadow: 0 2px 8px 0 rgba(44,62,80,0.10);
-          background: #f8fafc;
-        }
-        .product-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .product-item .flex {
-          justify-content: center;
-        }
-        .product-item .quantity-btn {
-          background: linear-gradient(135deg, #ffbfae, #ff6b6b);
-          color: #fff;
-          border: none;
-          border-radius: 50%;
-          width: 36px;
-          height: 36px;
-          font-size: 1.2rem;
-          font-weight: bold;
-          box-shadow: 0 2px 8px 0 rgba(255,107,107,0.10);
-          transition: background 0.2s, transform 0.18s;
-        }
-        .product-item .quantity-btn:hover {
-          background: linear-gradient(135deg, #ff6b6b, #ffbfae);
-          transform: scale(1.12);
-        }
-        .product-item .quantity-input {
-          width: 48px;
-          text-align: center;
-          border: 1.5px solid #ffd6d6;
-          border-radius: 8px;
-          padding: 7px;
-          font-weight: bold;
-          color: #ff6b6b;
-          background: #f8fafc;
-          margin: 0 4px;
-        }
-        .product-item .text-brightYellow {
-          color: #FFD700;
-          font-size: 1.1rem;
-          font-weight: bold;
-        }
-        .product-item .flex-1 {
-          font-size: 1.08rem;
-          font-weight: 600;
-          color: #8B4513;
-        }
-        @media (max-width: 600px) {
-          .product-image-container { width: 80px; height: 80px; }
-          .product-item { padding: 10px 4px 14px 4px; }
-        }
-
-        .hero-card {
-          background: #fff;
-          border-radius: 32px;
-          box-shadow: 0 8px 40px 0 rgba(44,62,80,0.18), 0 1.5px 0 #ffe4b5 inset;
-          padding: 48px 32px 36px 32px;
-          max-width: 520px;
-          margin: 40px auto 0 auto;
-          text-align: center;
-          position: relative;
-          overflow: visible;
-          transition: box-shadow 0.3s;
-        }
-        .hero-card:after {
-          content: '';
-          display: block;
-          position: absolute;
-          left: 0; right: 0; bottom: 0;
-          height: 30px;
-          border-radius: 0 0 32px 32px;
-          background: linear-gradient(90deg, #ffe4b5 0%, #ffd6d6 100%);
-          z-index: 1;
-        }
-        .hero-logo {
-          width: 110px;
-          height: 110px;
-          margin: 0 auto 18px auto;
-          border-radius: 50%;
-          background: #fff;
-          box-shadow: 0 0 0 10px #ffe4b5, 0 8px 32px 0 rgba(255,107,107,0.10);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          position: relative;
-          z-index: 2;
-        }
-        .hero-logo img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .hero-title {
-          font-size: 2.5rem;
-          font-weight: 900;
-          color: #8B4513;
-          margin-bottom: 10px;
-          letter-spacing: 1px;
-          z-index: 2;
-          position: relative;
-        }
-        .hero-desc {
-          font-size: 1.15rem;
-          color: #b97a56;
-          font-weight: 500;
-          margin-bottom: 22px;
-          z-index: 2;
-          position: relative;
-        }
-        .hero-stars-row {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          margin-top: 8px;
-          z-index: 2;
-          position: relative;
-          flex-wrap: wrap;
-        }
-        .hero-stars {
-          color: #FFD700;
-          font-size: 1.5rem;
-          letter-spacing: 2px;
-          filter: drop-shadow(0 1px 2px #fff6e0);
-        }
-        .hero-quality {
-          color: #b97a56;
-          font-size: 1.08rem;
-          font-weight: 600;
-        }
-        @media (max-width: 600px) {
-          .hero-card { padding: 18px 4px 18px 4px; max-width: 98vw; }
-          .hero-title { font-size: 1.5rem; }
-          .hero-logo { width: 70px; height: 70px; }
-          .hero-stars { font-size: 1.1rem; }
-        }
-
-        /* Hero Fun Section */
-        .hero-fun {
-          background: #fff;
-          border-radius: 32px;
-          box-shadow: 0 8px 40px 0 rgba(44,62,80,0.13);
-          padding: 56px 32px 36px 32px;
-          max-width: 520px;
-          margin: 48px auto 0 auto;
-          text-align: center;
-          position: relative;
-          overflow: visible;
-        }
-        .hero-circle-bg {
-          position: absolute;
-          top: 18px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 140px;
-          height: 140px;
-          background: radial-gradient(circle at 60% 40%, #ffe4b5 60%, #ffd6d6 100%);
-          border-radius: 50%;
-          z-index: 1;
-          filter: blur(2px);
-        }
-        .hero-logo-fun {
-          width: 110px;
-          height: 110px;
-          margin: 0 auto 18px auto;
-          border-radius: 50%;
-          background: #fff;
-          box-shadow: 0 0 0 8px #ffe4b5, 0 8px 32px 0 rgba(255,107,107,0.10);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          position: relative;
-          z-index: 2;
-        }
-        .hero-logo-fun img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .hero-title-fun {
-          font-size: 2.6rem;
-          font-weight: 900;
-          color: #8B4513;
-          margin-bottom: 10px;
-          letter-spacing: 1px;
-          z-index: 2;
-          position: relative;
-        }
-        .hero-desc-fun {
-          font-size: 1.15rem;
-          color: #b97a56;
-          font-weight: 500;
-          margin-bottom: 22px;
-          z-index: 2;
-          position: relative;
-        }
-        .hero-stars-fun {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-          margin-top: 8px;
-          z-index: 2;
-          position: relative;
-        }
-        .hero-stars-fun i {
-          color: #FFD700;
-          font-size: 1.6rem;
-          margin: 0 2px;
-          filter: drop-shadow(0 1px 2px #fff6e0);
-          animation: star-pop 1.2s infinite alternate;
-        }
-        .hero-quality-fun {
-          color: #b97a56;
-          font-size: 1.08rem;
-          font-weight: 600;
-          margin-top: 2px;
-        }
-        @keyframes star-pop {
-          0% { transform: scale(1);}
-          60% { transform: scale(1.15);}
-          100% { transform: scale(1);}
-        }
-        .confetti {
-          position: absolute;
-          left: 10%; top: 10%;
-          width: 80%; height: 80%;
-          pointer-events: none;
-          z-index: 0;
-          background: url('https://svgshare.com/i/13kA.svg') repeat;
-          opacity: 0.12;
-          border-radius: 32px;
-        }
-        @media (max-width: 600px) {
-          .hero-fun { padding: 18px 4px 18px 4px; max-width: 98vw; }
-          .hero-title-fun { font-size: 1.5rem; }
-          .hero-logo-fun { width: 70px; height: 70px; }
-          .hero-stars-fun i { font-size: 1.1rem; }
-        }
-
-        .hero-image img {
-          width: 160px;
-          height: 160px;
-          object-fit: cover; /* במקום contain */
-          border-radius: 50%;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-          background: #fff;
-          padding: 12px;
-        }
-        @media (max-width: 700px) {
-          .hero-tenne {
-            flex-direction: column-reverse;
-            gap: 30px;
-            padding: 30px 10px 20px 10px;
-          }
-          .hero-content h1 {
-            font-size: 2.1rem;
-          }
-          .hero-image img {
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-          }
-        }
-
-        .product-item .text-xs,
-        .product-item .text-center,
-        .product-item .text-gray-600 {
-          color: #111 !important;
-          font-size: 0.82rem !important;
-          font-weight: 500 !important;
-          opacity: 1 !important;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Rubik', sans-serif; background: linear-gradient(135deg, #FF6B6B, #FFDAB9); min-height: 100vh; }
+        .product-card { background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); }
+        .quantity-btn { background: #FF6B6B; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; }
+        .quantity-input { width: 50px; text-align: center; border: 1px solid #ddd; border-radius: 5px; }
+        .order-button { background: linear-gradient(45deg, #28A745, #20C997); }
+        .bit-button { background: linear-gradient(45deg, #0066CC, #0056B3); }
+        #cartModal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 80%; max-width: 500px; }
+        .cart-icon { position: fixed; top: 20px; left: 20px; background: #FF6B6B; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: white; color: #FF6B6B; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
     </style>
 </head>
-<body class="flex items-center justify-center py-4">
-    <!-- תפריט קטגוריות עליון -->
-    <nav id="main-nav" class="w-full bg-gradient-to-l from-primary to-secondary py-3 px-2 flex justify-center gap-4 shadow-md">
-        <a href="kubbeh.html" class="text-white font-bold hover:underline transition">קובות</a>
-        <a href="soups.html" class="text-white font-bold hover:underline transition">מרקים</a>
-        <a href="instructions.html" class="text-white font-bold hover:underline transition">הוראות הכנה</a>
-        <a href="contact.html" class="text-white font-bold hover:underline transition">פנייה למנהל האתר</a>
-    </nav>
-    <!-- Main container for the flyer/store layout -->
-    <div class="flyer max-w-4xl w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
+<body>
+    <!-- סל קניות צף -->
+    <div class="cart-icon" onclick="openCart()">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
 
-        <!-- Hero Section - Modern Minimalist Inspired by Tenne Deli -->
-        <div class="hero-tenne">
-          <div class="hero-content">
-            <h1>POOKUBEH</h1>
-            <p>קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
-            <a href="#kubbeh-section" class="hero-btn">לצפייה בתפריט</a>
-          </div>
-          <div class="hero-image">
-            <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו קובות" />
-          </div>
-        </div>
-        <style>
-        .hero-tenne {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #fff;
-          padding: 60px 20px 40px 20px;
-          border-radius: 24px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.07);
-          gap: 60px;
-          max-width: 900px;
-          margin: 40px auto 0 auto;
-          flex-wrap: wrap;
-        }
-        .hero-content {
-          flex: 1 1 300px;
-          text-align: right;
-        }
-        .hero-content h1 {
-          font-size: 3rem;
-          color: #b94e4e;
-          margin-bottom: 12px;
-          font-weight: 800;
-          letter-spacing: 1px;
-        }
-        .hero-content p {
-          font-size: 1.3rem;
-          color: #444;
-          margin-bottom: 28px;
-        }
-        .hero-btn {
-          background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
-          color: #fff;
-          padding: 14px 38px;
-          border-radius: 30px;
-          font-size: 1.1rem;
-          text-decoration: none;
-          box-shadow: 0 2px 12px rgba(255,126,95,0.12);
-          transition: background 0.2s;
-          font-weight: 600;
-        }
-        .hero-btn:hover {
-          background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
-        }
-        .hero-image img {
-          width: 160px;
-          height: 160px;
-          object-fit: cover; /* במקום contain */
-          border-radius: 50%;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-          background: #fff;
-          padding: 12px;
-        }
-        @media (max-width: 700px) {
-          .hero-tenne {
-            flex-direction: column-reverse;
-            gap: 30px;
-            padding: 30px 10px 20px 10px;
-          }
-          .hero-content h1 {
-            font-size: 2.1rem;
-          }
-          .hero-image img {
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-          }
-        }
-        </style>
-        <!-- END Hero Section -->
-        
-        <!-- Watermarks for brand visibility -->
-        <div class="watermark-text">POOKUBEH</div>
-        <div class="instagram-watermark"><i class="fab fa-instagram"></i></div>
-        <div class="tiktok-watermark"><i class="fab fa-tiktok"></i></div>
-
-        <!-- Price List with Quantity Counter for Kubbeh -->
-        <div id="kubbeh-section" class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
-            <h2 class="text-xl font-bold text-center mb-5">🛒 מחירון - קובות בעבודת יד</h2>
-            <p class="text-center text-sm mb-4 bg-white bg-opacity-20 p-2 rounded-lg">
-                כל המוצרים כוללים 10 יחידות ארוזות בוואקום
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                <!-- Product: Kubbeh with minced meat -->
-                <div class="product-item" data-price="65" data-name="קובה עגולה במילוי בשר טחון">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה במילוי בשר טחון" class="product-image">
-                    </div>
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right">קובה עגולה במילוי בשר טחון</span>
-                            <span class="text-brightYellow font-bold ml-2 whitespace-nowrap">65₪</span>
-                        </div>
-                        <div class="text-xs text-center mb-2 opacity-80 px-2">
-                            מתאים למרק סלק/דלעת
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product: Kubbeh with pulled brisket -->
-                <div class="product-item" data-price="85" data-name="קובה שטוחה במילוי סיסקה מפורק">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/Lz6sdB0j/Whats-App-2025-06-28-17-42-37-467bc22b.jpg" alt="קובה שטוחה במילוי סיסקה מפורק" class="product-image">
-                    </div>
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right"> קובה שטוחה במילוי סיסקה מפורק</span>
-                            <span class="text-brightYellow font-bold ml-2 whitespace-nowrap">85₪</span>
-                        </div>
-                        <div class="text-xs text-center mb-2 opacity-80 px-2">
-                            מתאים למרק חמוסטה
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product: Burghul Kubbeh -->
-                <div class="product-item" data-price="100" data-name="קובה בורגול">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="product-image">
-                    </div>
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right"> קובה בורגול</span>
-                            <span class="text-brightYellow font-bold ml-2 whitespace-nowrap">100₪</span>
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product: Gluten-free Potato Kubbeh -->
-                <div class="product-item" data-price="110" data-name="קובה פטטה ללא גלוטן">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה ללא גלוטן" class="product-image">
-                    </div>
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right"> קובה פטטה ללא גלוטן</span>
-                            <span class="text-brightYellow font-bold ml-2 whitespace-nowrap">110₪</span>
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product: Gluten-free Kubbeh with brisket -->
-                <div class="product-item" data-price="100" data-name="קובה דלעת">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה ללא גלוטן עם סיסקה" class="product-image">
-                    </div>
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right"> קובה דלעת</span>
-                            <span class="text-brightYellow font-bold ml-2 whitespace-nowrap">100₪</span>
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product: Gluten-free Round Kubbeh -->
-                <div class="product-item" data-price="80" data-name="קובה עגולה ללא גלוטן">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/whhPgjZV/Whats-App-2025-06-28-18-18-28-7bb82a83.jpg" alt="קובה עגולה ללא גלוטן" class="product-image">
-                    </div>
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right"> קובה עגולה ללא גלוטן</span>
-                            <span class="text-brightYellow font-bold ml-2 whitespace-nowrap">80₪</span>
-                        </div>
-
-                        <div class="text-xs text-center mb-2 opacity-80 px-2">
-                            מתאים למרק סלק/דלעת
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Soups Section -->
-        <div id="soups-section" class="bg-secondary p-4 text-white relative z-10">
-            <h3 class="text-xl font-bold text-center mb-5">🍲 מרקים ביתיים</h3>
-            <div class="text-xs text-center mb-3 bg-white bg-opacity-20 p-2 rounded-lg">
-                סוגי מרקים: סלק, חמוסטה, דלעת
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <!-- Soup: 2 Liters -->
-                <div class="product-item" data-price="50" data-name="מרק 2 ליטר">
-
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right">2 ליטר</span>
-                            <span class="font-bold text-brightYellow ml-2 whitespace-nowrap">50₪</span>
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Soup: 4 Liters -->
-                <div class="product-item" data-price="70" data-name="מרק 4 ליטר">
-
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2 px-2">
-                            <span class="flex-1 text-right">4 ליטר</span>
-                            <span class="font-bold text-brightYellow ml-2 whitespace-nowrap">70₪</span>
-                        </div>
-                        <div class="flex justify-center items-center gap-3 quantity-controls w-full px-2">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <input type="number" value="0" min="0" class="quantity-input" onchange="updateTotal()">
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Image Gallery -->
-        <div class="gallery-section px-4 py-6">
-          <div class="gallery-grid">
-            <img src="https://i.ibb.co/WWbmzKjJ/Whats-App-2025-06-06-22-28-09-90d2de68.jpg" alt="קובה סלק" class="gallery-img-item">
-            <img src="https://i.ibb.co/ccWtCmzQ/Whats-App-2025-06-06-22-30-51-3b7a1b35.jpg" alt="קובה בורגול" class="gallery-img-item">
-            <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="gallery-img-item">
-            <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="gallery-img-item">
-            <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="gallery-img-item">
-            <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="gallery-img-item">
-            <img src="https://i.ibb.co/4ZT2JhR8/Whats-App-2025-06-28-18-15-10-5fec1143.jpg" alt="קובה מטוגנת" class="gallery-img-item">
-            <img src="https://i.ibb.co/9mdYNxSj/Whats-App-2025-06-28-18-13-39-d2dcd39b.jpg" alt="קובה אדומה" class="gallery-img-item">
-            <img src="https://i.ibb.co/fPjZPRX/Whats-App-2025-06-28-18-19-44-12bed107.jpg" alt="קובה במרק" class="gallery-img-item">
-            <img src="https://i.ibb.co/LzTvTvqh/Whats-App-2025-06-06-22-02-43-db9e6158.jpg" alt="קובה סלק" class="gallery-img-item">
-          </div>
-        </div>
-
-        <!-- Footer with Order Button -->
-        <div class="bg-gradient-to-br from-darkBlue to-secondary p-8 text-center text-white rounded-b-2xl shadow-2xl space-y-6 mt-8">
-          <!-- WhatsApp Order Button -->
-          <a href="https://wa.me/972546225706" target="_blank"
-             class="block w-full max-w-md mx-auto bg-gradient-to-l from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white py-4 rounded-2xl text-2xl font-bold shadow-lg transition mb-4">
-            הזמן עכשיו בוואטסאפ <i class="fab fa-whatsapp ml-2"></i>
-          </a>
-
-          <!-- Phone Number -->
-          <div class="text-3xl font-extrabold text-customGreen tracking-wider mb-2">
-            <a href="tel:+972546225706" class="hover:underline">054-6225706</a>
-          </div>
-
-          <!-- Social Icons -->
-          <div class="flex justify-center gap-6 text-3xl mb-4">
-            <a href="https://www.instagram.com/pookubeh" target="_blank" class="bg-white text-pink-500 rounded-full p-2 shadow hover:bg-pink-100 transition"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/972546225706" target="_blank" class="bg-white text-green-500 rounded-full p-2 shadow hover:bg-green-100 transition"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.tiktok.com/@pookubeh" target="_blank" class="bg-white text-black rounded-full p-2 shadow hover:bg-gray-200 transition"><i class="fab fa-tiktok"></i></a>
-          </div>
-
-          <!-- Payment Methods -->
-          <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-2">
-            <span class="bg-white bg-opacity-20 px-4 py-2 rounded-lg font-bold flex items-center gap-2">
-              <span class="bg-gradient-to-l from-pink-400 to-pink-600 text-white px-3 py-1 rounded-full font-bold text-sm">BIT</span>
-              מקבלים תשלום בביט, פייבוקס ומזומן
-            </span>
-          </div>
-
-          <!-- Order Deadline -->
-          <div class="bg-white bg-opacity-10 p-4 rounded-xl font-bold text-lg flex flex-col items-center gap-2 mb-2">
-            <span>⭐ הזמנות יתקבלו עד יום רביעי ⭐</span>
-            <span class="text-base font-normal">משלוחים באזור ראש העין | איסוף עצמי גם כן אפשרי</span>
-          </div>
-
-          <!-- Notice -->
-          <div class="text-xs text-lightGray italic mt-2">
-            לא כולל מרק • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום<br>
-            <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
-          </div>
-        </div>
-
-        <!-- Countdown Timer for Orders -->
-        <div id="countdownContainer" class="countdown-container text-white p-4 m-4 rounded-2xl text-center font-bold relative z-10">
-            <div class="text-lg mb-2">⏰ זמן מוגבל להזמנות!</div>
-            <div id="countdown" class="text-2xl">
-                נותרו: <span id="timer" class="text-yellow-300"></span> עד סגירת הזמנות (רביעי)
-            </div>
-        </div>
-
-        <!-- Share Button -->
-        <div class="text-center p-4 relative z-10">
-            <button onclick="shareWebsite()" class="share-button text-white px-6 py-3 rounded-xl font-bold text-lg">
-                📤 שתף עם חברים - תעזור לנו להגיע ליותר אנשים!
-            </button>
-        </div>
-
-        <!-- Location Information and Map Button -->
-        <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 m-4 rounded-2xl text-center relative z-10">
-            <h3 class="text-lg font-bold mb-2">📍 איסוף עצמי ומשלוחים</h3>
-            <div class="text-sm">
-                <div class="mb-2">🏠 איסוף עצמי: אזור ראש העין</div>
-                <div class="mb-3">🚚 משלוחים: ראש העין והסביבה</div>
-                <button onclick="openMap()" class="bg-white text-green-600 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
-                    🗺️ פתח מפה
-                </button>
-            </div>
-        </div>
-
-        <!-- Chat Bot Button (WhatsApp) -->
-        <div class="chat-button fixed bottom-20 left-4" onclick="openChat()">
-            💬 יש שאלה?
+    <!-- פופאפ סל קניות -->
+    <div id="cartModal" onclick="closeCart()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 class="text-xl font-bold mb-4">סל קניות</h3>
+            <div id="cartItems" class="mb-4"></div>
+            <div class="font-bold mb-4">סך הכל: <span id="cartTotal">0</span> ₪</div>
+            <button onclick="makeOrder()" class="order-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">הזמן בוואטסאפ</button>
+            <button onclick="payWithBit()" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">שלם בביט</button>
+            <button onclick="closeCart()" class="w-full py-2 bg-gray-300 rounded-xl text-lg font-bold">סגור</button>
         </div>
     </div>
 
-    <!-- Image Modal for gallery images -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close">×</span>
-        <img class="modal-content" id="modalImage">
-    </div>
-
-    <!-- Floating Total Amount Display -->
-    <div id="floatingTotal" class="floating-total">
-        סכום כולל: <span id="totalAmount">0</span>₪
-    </div>
-
-  
-
-
-    <!-- Admin Login Modal -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeAdminLogin()">×</span>
-            <h2 class="text-xl font-bold mb-4">כניסת מנהל</h2>
-            <input type="password" id="adminPassword" placeholder="הכנס סיסמה" class="mb-4">
-            <button onclick="loginAdmin()">התחבר</button>
-            <p id="adminLoginError" class="text-red-500 text-sm mt-2 hidden">סיסמה שגויה!</p>
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-4"> קובות בעבודת יד</h1>
+            <p class="text-white text-lg">כל המוצרים כוללים 10 יחידות ארוזות בוואקום</p>
+            <a href="index.html" class="inline-block mt-4 bg-white text-primary px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition">חזרה לדף הראשי</a>
         </div>
-    </div>
 
-    <!-- Success Message Modal -->
-    <div id="successMessageModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeMessageModal('successMessageModal')">×</span>
-            <p class="text-green-600 text-lg font-bold">✅ בוצע בהצלחה!</p>
-            <button onclick="closeMessageModal('successMessageModal')" class="mt-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">אישור</button>
-        </div>
-    </div>
-
-    <!-- Error Message Modal -->
-    <div id="errorMessageModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeMessageModal('errorMessageModal')">×</span>
-            <p class="text-red-600 text-lg font-bold">❌ שגיאה!</p>
-            <p id="errorMessageText" class="mt-2 mb-4">אירעה שגיאה. נסה/י שוב.</p>
-            <button onclick="closeMessageModal('errorMessageModal')" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">אישור</button>
-        </div>
-    </div>
-
-    <!-- Bit Payment Modal (New/Re-introduced) -->
-    <div id="bitPaymentModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeMessageModal('bitPaymentModal')">×</span>
-            <i class="fas fa-credit-card bit-card-icon"></i>
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">תשלום בביט</h2>
-
-            <div class="bit-summary-box mb-6">
-                <p class="text-lg font-bold text-gray-800">סכום לתשלום: <span id="bitModalTotalAmount" class="text-bitBlue">0₪</span></p>
-                <p class="text-md text-gray-700">מספר טלפון: <span id="bitModalPhoneNumber" class="font-bold">054-6225706</span></p>
-                <button onclick="copyBitPhoneNumber()" class="bit-copy-phone-btn hover:underline">העתק את המספר <i class="far fa-copy mr-1"></i></button>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- קובה עגולה במילוי בשר טחון -->
+            <div class="product-card p-6" data-name="קובה עגולה במילוי בשר טחון" data-price="45">
+                <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה עגולה במילוי בשר טחון</h3>
+                <p class="text-gray-600 mb-4">קובה עגולה מסורתית במילוי בשר טחון טרי</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">45 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="bit-instructions text-right text-gray-700 mb-6">
-                <h3 class="text-lg font-bold mb-3">איך משלמים?</h3>
-                <ul>
-                    <li><i class="fas fa-mobile-alt"></i> **שלב 1:** פתח/י את אפליקציית ביט (או לחץ/י על "פתח את ביט" מטה).</li>
-                    <li><i class="fas fa-arrow-right"></i> **שלב 2:** לחץ/י על "העבר כסף" (או "שלח/י כסף").</li>
-                    <li><i class="fas fa-phone"></i> **שלב 3:** הזן/י מספר: <span class="font-bold">0546225706</span></li>
-                    <li><i class="fas fa-shekel-sign"></i> **שלב 4:** הזן/י סכום: <span id="bitModalInstructionAmount" class="font-bold">0₪</span></li>
-                    <li><i class="fas fa-check-circle"></i> **שלב 5:** שלח/י את התשלום.</li>
-                </ul>
+            <!-- קובה שטוחה במילוי סיסקה מפורק -->
+            <div class="product-card p-6" data-name="קובה שטוחה במילוי סיסקה מפורק" data-price="50">
+                <img src="https://i.ibb.co/Lz6sdB0j/Whats-App-2025-06-28-17-42-37-467bc22b.jpg" alt="קובה שטוחה" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה שטוחה במילוי סיסקה מפורק</h3>
+                <p class="text-gray-600 mb-4">קובה שטוחה במילוי סיסקה מפורק טרי</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="bit-action-buttons">
-                <button onclick="openBitApp()" class="open-bit-btn"><i class="fas fa-external-link-alt ml-2"></i> פתח את ביט</button>
-                <button onclick="copyBitPhoneNumber()" class="copy-phone-btn"><i class="far fa-copy ml-2"></i> העתק מספר טלפון</button>
-                <button onclick="sendOrderViaWhatsappFromModal()" class="whatsapp-order-btn"><i class="fab fa-whatsapp ml-2"></i> שלח הזמנה בוואטסאפ</button>
-                <button onclick="closeMessageModal('bitPaymentModal')" class="close-btn"><i class="fas fa-times ml-2"></i> סגור</button>
+            <!-- קובה בורגול -->
+            <div class="product-card p-6" data-name="קובה בורגול" data-price="40">
+                <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה בורגול</h3>
+                <p class="text-gray-600 mb-4">קובה בורגול מסורתית</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">40 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה פטטה ללא גלוטן -->
+            <div class="product-card p-6" data-name="קובה פטטה ללא גלוטן" data-price="55">
+                <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה פטטה ללא גלוטן</h3>
+                <p class="text-gray-600 mb-4">קובה פטטה ללא גלוטן - מתאים לצליאקים</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">55 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה דלעת -->
+            <div class="product-card p-6" data-name="קובה דלעת" data-price="45">
+                <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה דלעת</h3>
+                <p class="text-gray-600 mb-4">קובה דלעת טעימה ומזינה</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">45 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- קובה עגולה ללא גלוטן -->
+            <div class="product-card p-6" data-name="קובה עגולה ללא גלוטן" data-price="50">
+                <img src="https://i.ibb.co/whhPgjZV/Whats-App-2025-06-28-18-18-28-7bb82a83.jpg" alt="קובה עגולה ללא גלוטן" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">קובה עגולה ללא גלוטן</h3>
+                <p class="text-gray-600 mb-4">קובה עגולה ללא גלוטן - מתאים לצליאקים</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-primary">50 ₪</span>
+                    <div class="flex items-center gap-2">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="0" min="0" onchange="updateCart(this)">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Global variables for admin functionality
-        const ADMIN_PASSWORD = "admin123"; // This should be stored securely in a real application
-        const BUSINESS_PHONE_NUMBER = "0546225706"; // The business phone number for Bit payments and WhatsApp
-        let bitPaymentLocked = localStorage.getItem('bitPaymentLocked') === 'true'; // Load state from localStorage
-
-        // Function to create confetti particles on the screen
-        function createConfetti() {
-            const colors = ['#FF6B6B', '#4ECDC4', '#FFE4B5', '#FFDAB9', '#FFFF99'];
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 3 + 's';
-                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    document.body.appendChild(confetti);
-
-                    // Remove confetti after animation to prevent DOM clutter
-                    setTimeout(() => {
-                        if (confetti.parentNode) {
-                            confetti.parentNode.removeChild(confetti);
-                        }
-                    }, 5000);
-                }, i * 100);
-            }
+        // --- cart localStorage helpers ---
+        function saveCartToStorage(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
-
-        // Function to share the website URL using the Web Share API
-        function shareWebsite() {
-            createConfetti(); // Trigger confetti animation
-            if (navigator.share) {
-                navigator.share({
-                    title: 'POOKUBEH - קובות בעבודת יד',
-                    text: 'הזמינו קובות ומרקים ביתיים מ-POOKUBEH!',
-                    url: 'https://pookubeh.netlify.app/', // Replace with your actual website URL
-                })
-                    .then(() => console.log('שיתוף בוצע בהצלחה'))
-                    .catch((error) => console.error('שגיאה בשיתוף:', error));
-            } else {
-                // Fallback for browsers that do not support Web Share API
-                copyToClipboard('https://pookubeh.netlify.app/');
-                showMessageModal('successMessageModal', 'קישור האתר הועתק ללוח העריכה!');
-            }
+        function loadCartFromStorage() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : {};
         }
+        let cart = loadCartFromStorage();
+        // --- end helpers ---
 
-        // Helper function to copy text to clipboard
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-        }
-
-        // Function to change product quantity
         function changeQuantity(button, delta) {
-            const itemDiv = button.closest('.product-item');
+            const itemDiv = button.closest('.product-card');
             const name = itemDiv.dataset.name;
             const price = parseFloat(itemDiv.dataset.price);
             let input = itemDiv.querySelector('.quantity-input');
@@ -1577,286 +185,29 @@
             } else {
                 delete cart[name];
             }
+            saveCartToStorage(cart);
             updateCartCount();
-            updateTotal();
-            renderCart(); // הוסף שורה זו!
+            renderCart();
         }
 
-        // Function to update the total amount and show/hide payment buttons
-        function updateTotal() {
-            let total = 0;
-            const productItems = document.querySelectorAll('.product-item');
-            productItems.forEach(item => {
-                const price = parseFloat(item.dataset.price);
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-                total += price * quantity;
-            });
-
-            document.getElementById('totalAmount').textContent = total;
-            const floatingTotal = document.getElementById('floatingTotal');
-            const paymentButtons = document.getElementById('paymentButtons');
-            const mainOrderButton = document.getElementById('mainOrderButton');
-
-            if (total > 0) {
-                floatingTotal.style.display = 'block';
-                paymentButtons.classList.add('show');
-                mainOrderButton.style.display = 'none';
+        function updateCart(input) {
+            const itemDiv = input.closest('.product-card');
+            const name = itemDiv.dataset.name;
+            const price = parseFloat(itemDiv.dataset.price);
+            let value = Math.max(0, parseInt(input.value));
+            if (value > 0) {
+                cart[name] = { name, price, quantity: value };
             } else {
-                floatingTotal.style.display = 'none';
-                paymentButtons.classList.remove('show');
-                mainOrderButton.style.display = 'block';
+                delete cart[name];
             }
+            saveCartToStorage(cart);
+            updateCartCount();
+            renderCart();
         }
-
-        // Function to construct and send WhatsApp order message
-        function makeOrder(fromModal = false) { // Added fromModal parameter
-            let orderMessage = "שלום, ברצוני לבצע הזמנה מ-POOKUBEH:\n\n";
-            let hasItems = false;
-            let total = 0;
-
-            const productItems = document.querySelectorAll('.product-item');
-            productItems.forEach(item => {
-                const productName = item.dataset.name;
-                const price = parseFloat(item.dataset.price);
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-
-                if (quantity > 0) {
-                    orderMessage += `${productName}: ${quantity} יחידות - ${price * quantity}₪\n`;
-                    total += price * quantity;
-                    hasItems = true;
-                }
-            });
-
-            if (!hasItems) {
-                showMessageModal('errorMessageModal', 'אנא בחר/י מוצרים לפני ביצוע הזמנה.');
-                return;
-            }
-
-            orderMessage += `\nסה"כ לתשלום: ${total}₪\n\n`;
-
-            if (fromModal) { // Add specific message if from Bit modal
-                orderMessage += `זוהי הזמנה בעקבות תשלום/כוונה לתשלום בביט.`;
-            }
-
-            orderMessage += "תודה!";
-
-            const whatsappUrl = `https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${encodeURIComponent(orderMessage)}`;
-            window.open(whatsappUrl, '_blank');
-
-            if (fromModal) {
-                closeMessageModal('bitPaymentModal');
-                showMessageModal('successMessageModal', 'הזמנתך נשלחה בהצלחה לוואטסאפ של החנות!');
-            }
-        }
-
-        // Function to send WhatsApp order message from inside the Bit modal
-        function sendOrderViaWhatsappFromModal() {
-            makeOrder(true); // Call makeOrder with fromModal = true
-        }
-
-        // Function to open the image modal
-        function openModal(backgroundImageUrl) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = backgroundImageUrl.slice(5, -2); // Extract URL from background-image style
-            modal.style.display = 'flex'; // Use flex to center the content
-        }
-
-        // Function to close the image modal
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Function to open admin login modal
-        function showAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'flex';
-            document.getElementById('adminPassword').value = ''; // Clear password field
-            document.getElementById('adminLoginError').classList.add('hidden'); // Hide error message
-        }
-
-        // Function to close admin login modal
-        function closeAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'none';
-        }
-
-        // Function to handle admin login
-        function loginAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            const errorMessage = document.getElementById('adminLoginError');
-            if (password === ADMIN_PASSWORD) {
-                closeAdminLogin();
-                toggleBitPaymentStatus(); // Toggle status on successful login
-            } else {
-                errorMessage.classList.remove('hidden');
-            }
-        }
-
-        // Function to toggle Bit payment status
-        function toggleBitPaymentStatus() {
-            bitPaymentLocked = !bitPaymentLocked; // Toggle the state
-            localStorage.setItem('bitPaymentLocked', bitPaymentLocked); // Save to localStorage
-            updateBitButtonStatus(); // Update UI immediately
-            showMessageModal('successMessageModal', `תשלום בביט כעת ${bitPaymentLocked ? 'נעול' : 'פתוח'}.`);
-        }
-
-        // Function to update the Bit button and notice visibility
-        function updateBitButtonStatus() {
-            const bitButton = document.getElementById('bitButton');
-            const bitLockedNotice = document.getElementById('bitLockedNotice');
-            if (bitPaymentLocked) {
-                bitButton.classList.add('locked');
-                bitButton.onclick = showBitLockedMessage; // Set click handler to show message
-                bitLockedNotice.style.display = 'block';
-            } else {
-                bitButton.classList.remove('locked');
-                bitButton.onclick = payWithBit; // Set click handler to open Bit modal
-                bitLockedNotice.style.display = 'none';
-            }
-        }
-
-        // Function to open the Bit payment modal
-        function payWithBit() {
-            if (bitPaymentLocked) {
-                showBitLockedMessage();
-                return;
-            }
-            let total = parseInt(document.getElementById('totalAmount').textContent);
-            if (total === 0) {
-                showMessageModal('errorMessageModal', 'אין פריטים בסל לתשלום בביט.');
-                return;
-            }
-
-            // Update modal content before showing
-            document.getElementById('bitModalTotalAmount').textContent = `${total}₪`;
-            document.getElementById('bitModalInstructionAmount').textContent = `${total}₪`;
-            document.getElementById('bitModalPhoneNumber').textContent = BUSINESS_PHONE_NUMBER;
-
-            document.getElementById('bitPaymentModal').style.display = 'flex';
-        }
-
-        // Function to open the Bit app via a direct link (from inside the modal)
-        function openBitApp() {
-            // This function now opens the specific BitPay profile link without amount/message
-            window.open('https://www.bitpay.co.il/app/me/B073857A-94E6-8958-E0A5-8F229A048E87ECE5', '_blank');
-        }
-
-        // Function to copy the business Bit phone number to clipboard (from inside the modal)
-        function copyBitPhoneNumber() {
-            copyToClipboard(BUSINESS_PHONE_NUMBER);
-            showMessageModal('successMessageModal', `מספר הטלפון ${BUSINESS_PHONE_NUMBER} הועתק ללוח העריכה!`);
-        }
-
-        // Function to show a message modal (success/error/bit payment)
-        function showMessageModal(modalId, message) {
-            const modal = document.getElementById(modalId);
-            const messageTextElement = modal.querySelector('#errorMessageText') || modal.querySelector('p');
-            if (messageTextElement) {
-                messageTextElement.textContent = message;
-            }
-            modal.style.display = 'flex';
-        }
-
-        // Function to close any message modal
-        function closeMessageModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Function to display the Bit locked message
-        function showBitLockedMessage() {
-            showMessageModal('errorMessageModal', 'תשלום בביט סגור זמנית - בעל החנות בחופשה.');
-        }
-
-        // Function to contact admin via WhatsApp
-        function contactAdmin() {
-            const adminMessage = encodeURIComponent("שלום, ברצוני לפנות אליך בנוגע לאתר POOKUBEH.");
-            window.open(`https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${adminMessage}`, '_blank');
-        }
-
-        // Function to open general chat via WhatsApp
-        function openChat() {
-            const chatMessage = encodeURIComponent("שלום, יש לי שאלה בנוגע ל-POOKUBEH.");
-            window.open(`https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${chatMessage}`, '_blank');
-        }
-
-        // Function to open Google Maps to Ra'anana
-        function openMap() {
-            // Using a general location for Ra'anana as a placeholder.
-            // For a specific address, you would replace 'Ra\'anana' with the full address.
-            window.open('https://maps.google.com/?q=Ra\'anana', '_blank');
-        }
-
-        // Countdown timer logic
-        function startCountdown() {
-            const timerElement = document.getElementById('timer');
-            const countdownContainer = document.getElementById('countdownContainer');
-
-            // Find the next Wednesday at 23:59:59 (11:59:59 PM)
-            function getNextWednesdayDeadline() {
-                const now = new Date();
-                const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-
-                let daysUntilWednesday = 3 - dayOfWeek; // Days until Wednesday
-                if (daysUntilWednesday < 0) { // If it's Thursday-Sunday, go to next week's Wednesday
-                    daysUntilWednesday += 7;
-                }
-                // If it's Wednesday and after the deadline time, go to next week's Wednesday
-                if (dayOfWeek === 3 && (now.getHours() > 23 || (now.getHours() === 23 && now.getMinutes() > 59))) {
-                    daysUntilWednesday += 7;
-                }
-
-
-                const deadline = new Date(now);
-                deadline.setDate(now.getDate() + daysUntilWednesday);
-                deadline.setHours(23, 59, 59, 999); // Set to end of day
-
-                return deadline.getTime();
-            }
-
-            const deadlineTime = getNextWednesdayDeadline();
-
-            const updateTimer = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = deadlineTime - now;
-
-                // Calculate time units
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Display the result
-                if (distance > 0) {
-                    timerElement.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
-                    countdownContainer.style.display = 'block'; // Ensure container is visible
-                } else {
-                    clearInterval(updateTimer);
-                    timerElement.innerHTML = "הזמנות לרביעי נסגרו!";
-                    countdownContainer.classList.add('urgent-border'); // Add urgent border effect
-                    // Optionally hide quantity inputs or disable order button if past deadline
-                }
-            }, 1000);
-        }
-
-        // Initial calls when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            updateTotal(); // Initialize total and button visibility
-            startCountdown(); // Start the countdown timer
-            updateBitButtonStatus(); // Set initial state of Bit button
-        });
-        // סל קניות
-        let cart = {};
 
         function updateCartCount() {
             const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
-            const cartCount = document.getElementById('cartCount');
-            cartCount.textContent = count;
-            cartCount.style.display = count > 0 ? 'inline-block' : 'none';
-        }
-
-        function toggleCart() {
-            const modal = document.getElementById('cartModal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-            renderCart();
+            document.getElementById('cartCount').textContent = count;
         }
 
         function renderCart() {
@@ -1866,171 +217,72 @@
             let total = 0;
             Object.values(cart).forEach(item => {
                 html += `
-      <div class="flex justify-between items-center mb-4 p-2 border-b">
-        <span style="min-width:100px; text-align:right;">${item.name}</span>
-        <div class="flex items-center gap-2">
-          <button onclick="changeCartItem('${item.name}', -1)" class="quantity-btn">-</button>
-          <span>${item.quantity}</span>
-          <button onclick="changeCartItem('${item.name}', 1)" class="quantity-btn">+</button>
-          <span>${item.price * item.quantity}₪</span>
-        </div>
-      </div>
-    `;
+                    <div class="flex justify-between items-center mb-2">
+                        <span>${item.name}</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeCartItem('${item.name}', -1)" class="quantity-btn">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="changeCartItem('${item.name}', 1)" class="quantity-btn">+</button>
+                            <span>${item.price * item.quantity}₪</span>
+                        </div>
+                    </div>
+                `;
                 total += item.price * item.quantity;
             });
-            cartItemsDiv.innerHTML = html || '<div class="text-gray-500 text-center">הסל ריק</div>';
+            cartItemsDiv.innerHTML = html || '<p class="text-gray-500">הסל ריק</p>';
             cartTotalSpan.textContent = total;
         }
 
         function changeCartItem(name, delta) {
-            if (!cart[name]) return;
-            cart[name].quantity += delta;
-            if (cart[name].quantity <= 0) delete cart[name];
-            updateCartCount();
-            renderCart();
-            syncCartToInputs();
-        }
-
-        // סנכרון בין הכפתורים של המוצרים לסל
-        function syncCartToInputs() {
-            document.querySelectorAll('.product-item').forEach(item => {
-                const name = item.dataset.name;
-                const input = item.querySelector('.quantity-input');
-                input.value = cart[name]?.quantity || 0;
-            });
-            updateTotal();
-        }
-
-        // שינוי ידני בשדה כמות
-        document.querySelectorAll('.quantity-input').forEach(input => {
-            input.addEventListener('change', function () {
-                const itemDiv = input.closest('.product-item');
-                const name = itemDiv.dataset.name;
-                const price = parseFloat(itemDiv.dataset.price);
-                let value = Math.max(0, parseInt(input.value));
-                if (value > 0) {
-                    cart[name] = { name, price, quantity: value };
-                } else {
+            if (cart[name]) {
+                cart[name].quantity = Math.max(0, cart[name].quantity + delta);
+                if (cart[name].quantity === 0) {
                     delete cart[name];
                 }
+                saveCartToStorage(cart);
                 updateCartCount();
-                updateTotal();
-                renderCart(); // הוספתי!
-            });
-        });
+                renderCart();
+                // עדכן גם את השדה בעמוד
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    itemDiv.querySelector('.quantity-input').value = cart[name] ? cart[name].quantity : 0;
+                }
+            }
+        }
 
-        // שליחת הזמנה בוואטסאפ (משתמש בסל)
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
         function makeOrder() {
-            let orderMessage = "שלום, ברצוני לבצע הזמנה מ-POOKUBEH:\n\n";
-            let hasItems = false;
-            let total = 0;
-            Object.values(cart).forEach(item => {
-                if (item.quantity > 0) {
-                    orderMessage += `${item.name}: ${item.quantity} יחידות - ${item.price * item.quantity}₪\n`;
-                    total += item.price * item.quantity;
-                    hasItems = true;
+            const items = Object.values(cart).map(item => `${item.name} x${item.quantity}`).join('\n');
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `שלום! אני רוצה להזמין:\n\n${items}\n\nסך הכל: ${total}₪`;
+            window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
+        }
+
+        function payWithBit() {
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `תשלום בביט עבור הזמנת קובות בסך ${total}₪`;
+            window.open(`https://wa.me/972546225706?text=${encodeURIComponent(message)}`);
+        }
+
+        // --- Load cart on page load ---
+        window.addEventListener('DOMContentLoaded', function() {
+            // עדכן את הכמויות בשדות
+            Object.entries(cart).forEach(([name, item]) => {
+                const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                if (itemDiv) {
+                    itemDiv.querySelector('.quantity-input').value = item.quantity;
                 }
             });
-            if (!hasItems) {
-                alert('הסל ריק!');
-                return;
-            }
-            orderMessage += `\nסה"כ לתשלום: ${total}₪\n\nתודה!`;
-            const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(orderMessage)}`;
-            window.open(whatsappUrl, '_blank');
-            toggleCart();
-        }
-
-        // סגירת סל בלחיצה מחוץ לחלון
-        window.onclick = function (event) {
-            const modal = document.getElementById('cartModal');
-            if (event.target === modal) modal.style.display = 'none';
-        }
-
-        // הפעלת עדכון מיידי
-        document.addEventListener('DOMContentLoaded', () => {
             updateCartCount();
-            updateTotal();
+            renderCart();
         });
     </script>
-    <!-- אייקון עגלה צף -->
-    <button id="cartButton" onclick="toggleCart()" class="fixed top-24 left-4 z-50 bg-primary text-white rounded-full shadow-lg p-4 flex items-center justify-center hover:bg-secondary transition-all">
-        <i class="fas fa-shopping-cart text-2xl"></i>
-        <span id="cartCount" class="bg-white text-primary rounded-full px-2 ml-2 font-bold text-sm" style="display:none;">0</span>
-    </button>
-
-    <!-- פופאפ סל קניות -->
-    <div id="cartModal" class="modal" style="display:none;">
-        <div class="modal-content-admin" style="max-width:400px;">
-            <span class="close" onclick="toggleCart()">&times;</span>
-            <h2 class="text-xl font-bold mb-4">סל קניות</h2>
-            <div id="cartItems" class="mb-4"></div>
-            <div class="font-bold mb-4">סך הכל: <span id="cartTotal">0</span> ₪</div>
-            <button onclick="makeOrder()" class="order-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">הזמן בוואטסאפ</button>
-            <button id="cartBitButton" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2" onclick="payWithBit()">שלם בביט</button>
-        </div>
-    </div>
-
- 
-    <style>
-    .contact-form-section {
-      max-width: 400px;
-      margin: 40px auto 0 auto;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-      padding: 24px 18px;
-      text-align: center;
-    }
-    .contact-form-section h3 {
-      margin-bottom: 18px;
-      color: #1E3A8A;
-    }
-    #contactForm input, #contactForm textarea {
-      width: 100%;
-      margin-bottom: 12px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 1em;
-    }
-    #contactForm textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
-    #contactForm button {
-      background: linear-gradient(45deg, #1E3A8A, #3B82F6);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 0;
-      width: 100%;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #contactForm button:hover {
-      background: linear-gradient(45deg, #3B82F6, #1E3A8A);
-    }
-    #contactFormStatus {
-      margin-top: 10px;
-      color: #28A745;
-      font-weight: bold;
-    }
-    </style>
-    <script>
-    function sendContactForm(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const message = document.getElementById('message').value;
-      const fullMessage = `פנייה מהאתר:\nשם: ${name}\nטלפון: ${phone}\nהודעה: ${message}`;
-      const whatsappUrl = `https://wa.me/972584462009?text=${encodeURIComponent(fullMessage)}`;
-      window.open(whatsappUrl, '_blank');
-      document.getElementById('contactFormStatus').innerText = 'ההודעה נשלחה לוואטסאפ!';
-      document.getElementById('contactForm').reset();
-    }
-    </script>
 </body>
-</html>
+</html> 
