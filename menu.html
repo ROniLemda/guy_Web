@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תפריט קובות - POOKUBEH</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(135deg, #FF6B6B, #FFDAB9);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+        
+        .menu-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B6B, #FFDAB9);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #FF6B6B;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: #4ECDC4;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            background: #f8f9fa;
+            padding-right: 10px;
+            border-radius: 8px;
+        }
+        
+        .item-info {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .item-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+        
+        .item-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #FF6B6B;
+            margin-right: 20px;
+        }
+        
+        .special-offer {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-offer::before {
+            content: '🍲';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .special-offer h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .special-offer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            margin: 10px;
+        }
+        
+        .contact-item strong {
+            color: #4ECDC4;
+        }
+        
+        .hours {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .package-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .menu-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header {
+                background: #FF6B6B !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+        
+        /* עיצוב כפתור חזרה כמו בתמונה */
+        .custom-menu-btn {
+            display: inline-block;
+            padding: 12px 36px;
+            background: linear-gradient(90deg, #ff5f6d 0%, #ff7eb3 100%);
+            border-radius: 30px;
+            color: #8a0037;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            box-shadow: none;
+            transition: filter 0.2s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 32px;
+        }
+        .custom-menu-btn::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 26px;
+            background: #ffe6f0;
+            z-index: 0;
+        }
+        .custom-menu-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        .custom-menu-btn:hover {
+            filter: brightness(0.97);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="header">
+            <h1>🍲 POOKUBEH</h1>
+            <p>קובות בעבודת יד - מרקים ביתיים</p>
+            <a href="index.html" class="custom-menu-btn"><span>חזרה לדף הראשי</span></a>
+        </div>
+        
+        <div class="content">
+            <div class="package-info">
+                <strong>📦 כל המוצרים כוללים 10 יחידות ארוזות בוואקום</strong>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">קובות בעבודת יד</h2>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">קובה עגולה במילוי בשר טחון</div>
+                        <div class="item-description">קובה עגולה מסורתית במילוי בשר טחון טרי - מתאים למרק סלק/דלעת</div>
+                    </div>
+                    <div class="item-price">₪65</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">קובה שטוחה במילוי סיסקה מפורק</div>
+                        <div class="item-description">קובה שטוחה במילוי סיסקה מפורק טרי - מתאים למרק חמוסטה</div>
+                    </div>
+                    <div class="item-price">₪85</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">קובה בורגול</div>
+                        <div class="item-description">קובה בורגול מסורתית</div>
+                    </div>
+                    <div class="item-price">₪100</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">קובה פטטה ללא גלוטן</div>
+                        <div class="item-description">קובה פטטה ללא גלוטן - מתאים לצליאקים</div>
+                    </div>
+                    <div class="item-price">₪110</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">קובה דלעת</div>
+                        <div class="item-description">קובה דלעת טעימה ומזינה</div>
+                    </div>
+                    <div class="item-price">₪100</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">קובה עגולה ללא גלוטן</div>
+                        <div class="item-description">קובה עגולה ללא גלוטן - מתאים לצליאקים - מתאים למרק סלק/דלעת</div>
+                    </div>
+                    <div class="item-price">₪80</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">מרקים ביתיים</h2>
+                <p style="color: #7f8c8d; margin-bottom: 20px; font-style: italic;">הזמנות עד יום רביעי - סוגי מרקים: סלק, חמוסטה, דלעת</p>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">מרק 2 ליטר</div>
+                        <div class="item-description">מרק ביתי טרי - 2 ליטר</div>
+                    </div>
+                    <div class="item-price">₪50</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">מרק 4 ליטר</div>
+                        <div class="item-description">מרק ביתי טרי - 4 ליטר</div>
+                    </div>
+                    <div class="item-price">₪70</div>
+                </div>
+            </div>
+            
+            <div class="special-offer">
+                <h3>מרקים בגדלים שונים!</h3>
+                <p>מרק ביתי טרי: 50₪ (2 ליטר) / 70₪ (4 ליטר)</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">אופציות תשלום</h2>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">הזמנה בוואטסאפ</div>
+                        <div class="item-description">הזמן ישירות בוואטסאפ</div>
+                    </div>
+                    <div class="item-price">✓</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">תשלום בביט</div>
+                        <div class="item-description">תשלום מאובטח דרך ביט</div>
+                    </div>
+                    <div class="item-price">✓</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>הזמנות:</strong> וואטסאפ
+                </div>
+                <div class="contact-item">
+                    <strong>תשלום:</strong> ביט / מזומן
+                </div>
+                <div class="contact-item">
+                    <strong>משלוח:</strong> בתיאום מראש
+                </div>
+            </div>
+            
+            <div class="hours">
+                <strong>הזמנות מרקים:</strong><br>
+                עד יום רביעי בשבוע
+            </div>
+            
+            <p style="margin-top: 20px; opacity: 0.8;">
+                * כל המוצרים טריים ומבושלים ביום ההזמנה<br>
+                * אריזה בוואקום לשמירה על הטריות
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // וידוא שהקישור עובד
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.querySelector('a[href="index.html"]');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    console.log('כפתור חזרה נלחץ');
+                    // הקישור אמור לעבוד אוטומטית
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
