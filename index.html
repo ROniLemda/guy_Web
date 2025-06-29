@@ -434,6 +434,14 @@
             height: 100%;
             object-fit: cover; /* Cover the container without distortion */
         }
+        .product-card:hover .product-image {
+            filter: brightness(1.08) contrast(1.08);
+        }
+        @media (max-width: 600px) {
+            .product-image {
+                height: 120px;
+            }
+        }
 
 
         /* Order button styling with gradient and hover effect */
@@ -801,7 +809,15 @@
         .product-image {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: cover; /* Cover the container without distortion */
+        }
+        .product-card:hover .product-image {
+            filter: brightness(1.08) contrast(1.08);
+        }
+        @media (max-width: 600px) {
+            .product-image {
+                height: 120px;
+            }
         }
         .product-item .flex {
           justify-content: center;
@@ -1366,125 +1382,17 @@
     <!-- Main container for the flyer/store layout -->
     <div class="flyer max-w-4xl w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
 
-        <!-- Hero Section - Modern Minimalist Inspired by Tenne Deli -->
-        <div class="hero-tenne">
-          <div class="hero-content">
-            <h1>POOKUBEH</h1>
-            <p>קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
-            <a href="#kubbeh-section" class="hero-btn">לצפייה בתפריט</a>
+        <!-- Hero Section - Modern Mobile-Friendly -->
+        <div class="modern-hero flex flex-col items-center justify-center text-center py-10 px-4 w-full" style="background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);">
+          <div class="hero-logo mb-4" style="width:90px;height:90px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.10);margin:0 auto;">
+            <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו קובות" style="width:80px;height:80px;border-radius:50%;object-fit:cover;" />
           </div>
-          <div class="hero-image">
-            <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו קובות" />
-          </div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2 drop-shadow">POOKUBEH</h1>
+          <p class="text-white text-lg md:text-xl font-medium mb-5 drop-shadow">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
+          <a href="menu.html" target="_blank" class="inline-block bg-white text-pink-600 font-bold rounded-full px-8 py-3 text-lg shadow-lg transition hover:bg-pink-100 hover:text-pink-800">צפייה בתפריט</a>
         </div>
-        <style>
-        .hero-tenne {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #fff;
-          padding: 60px 20px 40px 20px;
-          border-radius: 24px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.07);
-          gap: 60px;
-          max-width: 900px;
-          margin: 40px auto 0 auto;
-          flex-wrap: wrap;
-        }
-        .hero-content {
-          flex: 1 1 300px;
-          text-align: right;
-        }
-        .hero-content h1 {
-          font-size: 3rem;
-          color: #b94e4e;
-          margin-bottom: 12px;
-          font-weight: 800;
-          letter-spacing: 1px;
-        }
-        .hero-content p {
-          font-size: 1.3rem;
-          color: #444;
-          margin-bottom: 28px;
-        }
-        .hero-btn {
-          background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
-          color: #fff;
-          padding: 14px 38px;
-          border-radius: 30px;
-          font-size: 1.1rem;
-          text-decoration: none;
-          box-shadow: 0 2px 12px rgba(255,126,95,0.12);
-          transition: background 0.2s;
-          font-weight: 600;
-        }
-        .hero-btn:hover {
-          background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
-        }
-        .hero-image img {
-          width: 160px;
-          height: 160px;
-          object-fit: cover; /* במקום contain */
-          border-radius: 50%;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-          background: #fff;
-          padding: 12px;
-        }
-        @media (max-width: 700px) {
-          .hero-tenne {
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 28px 8px 24px 8px;
-            gap: 0;
-            border-radius: 22px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-            background: #fff;
-            margin: 18px 0 0 0;
-            min-height: 340px;
-            max-width: 98vw;
-          }
-          .hero-image img {
-            width: 72px;
-            height: 72px;
-            margin-bottom: 18px;
-            border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            background: #f8f8f8;
-            padding: 6px;
-          }
-          .hero-content {
-            text-align: center;
-            width: 100%;
-          }
-          .hero-content h1 {
-            font-size: 1.45rem;
-            font-weight: 800;
-            color: #b94e4e;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-          }
-          .hero-content p {
-            font-size: 0.92rem;
-            color: #222;
-            margin-bottom: 22px;
-            font-weight: 400;
-            line-height: 1.5;
-          }
-          .hero-btn {
-            font-size: 1.08rem;
-            padding: 13px 0;
-            width: 100%;
-            max-width: 260px;
-            border-radius: 30px;
-            margin: 0 auto;
-            display: block;
-            box-shadow: 0 2px 12px rgba(255,126,95,0.10);
-          }
-        }
-        </style>
-        <!-- END Hero Section -->
-        
+        <!-- END Modern Hero -->
+
         <!-- Watermarks for brand visibility -->
         <div class="watermark-text">POOKUBEH</div>
         <div class="instagram-watermark"><i class="fab fa-instagram"></i></div>
@@ -1494,10 +1402,6 @@
         <div id="kubbeh-section" class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
             <h2 class="text-xl font-bold text-center mb-5">🛒 מחירון - קובות בעבודת יד</h2>
             <div class="flex items-center justify-between mb-5">
-              <div class="text-xs text-lightGray italic ml-4 text-right">
-              • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום<br>
-                <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
-              </div>
             </div>
             <p class="text-center text-sm mb-4 bg-white bg-opacity-20 p-2 rounded-lg">
                 כל המוצרים כוללים 10 יחידות ארוזות בוואקום
@@ -1668,16 +1572,14 @@
         <!-- Image Gallery -->
         <div class="gallery-section px-4 py-6">
           <div class="gallery-grid">
-            <img src="https://i.ibb.co/WWbmzKjJ/Whats-App-2025-06-06-22-28-09-90d2de68.jpg" alt="קובה סלק" class="gallery-img-item">
-            <img src="https://i.ibb.co/ccWtCmzQ/Whats-App-2025-06-06-22-30-51-3b7a1b35.jpg" alt="קובה בורגול" class="gallery-img-item">
-            <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="gallery-img-item">
-            <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="gallery-img-item">
-            <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="gallery-img-item">
-            <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="gallery-img-item">
-            <img src="https://i.ibb.co/4ZT2JhR8/Whats-App-2025-06-28-18-15-10-5fec1143.jpg" alt="קובה מטוגנת" class="gallery-img-item">
-            <img src="https://i.ibb.co/9mdYNxSj/Whats-App-2025-06-28-18-13-39-d2dcd39b.jpg" alt="קובה אדומה" class="gallery-img-item">
-            <img src="https://i.ibb.co/fPjZPRX/Whats-App-2025-06-28-18-19-44-12bed107.jpg" alt="קובה במרק" class="gallery-img-item">
-            <img src="https://i.ibb.co/LzTvTvqh/Whats-App-2025-06-06-22-02-43-db9e6158.jpg" alt="קובה סלק" class="gallery-img-item">
+            <img src="https://i.ibb.co/mCDBCFgM/Whats-App-2025-06-28-18-18-29-94679c48.jpg"" alt="קובה סלק" class="gallery-img-item" />
+            <img src="https://i.ibb.co/JWSykSGf/Whats-App-2025-06-29-01-04-45-112fa016.jpg" alt="קובה בורגול" class="gallery-img-item" />
+            <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה עגולה" class="gallery-img-item" />
+            <img src="https://i.ibb.co/YByY8gzw/Whats-App-2025-06-28-18-15-41-d9fc490e.jpg" alt="קובה בורגול" class="gallery-img-item" />
+            <img src="https://i.ibb.co/xtd9Hfr1/Whats-App-2025-06-28-17-45-08-5ff7c66e.jpg" alt="קובה פטטה" class="gallery-img-item" />
+            <img src="https://i.ibb.co/jvqrWCMV/Whats-App-2025-06-28-18-19-42-cb47b4e7.jpg" alt="קובה דלעת" class="gallery-img-item" />
+            <img src="https://i.ibb.co/VWLbZG1j/Whats-App-2025-06-28-17-42-38-2a503937.jpg" alt="קובה חדשה נוספת" class="gallery-img-item" />
+            <img src="https://i.ibb.co/20HVBmjb/Whats-App-2025-06-28-18-13-38-f35bafbb.jpg" alt="קובה חדשה נוספת" class="gallery-img-item" />
           </div>
         </div>
 
@@ -1687,6 +1589,12 @@
           <a href="https://wa.me/972546225706" target="_blank"
              class="block w-full max-w-md mx-auto bg-gradient-to-l from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white py-4 rounded-2xl text-2xl font-bold shadow-lg transition mb-4">
             הזמן עכשיו בוואטסאפ <i class="fab fa-whatsapp ml-2"></i>
+          </a>
+
+          <!-- Menu PDF Button -->
+          <a href="menu.html" target="_blank"
+             class="block w-full max-w-md mx-auto bg-gradient-to-l from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-3 rounded-2xl text-xl font-bold shadow-lg transition mb-4">
+            📋 צפייה בתפריט <i class="fas fa-file-pdf ml-2"></i>
           </a>
 
           <!-- Phone Number -->
@@ -2431,18 +2339,6 @@
       .hero-mobile { display: none !important; }
     }
     </style>
-    <!-- END HERO חדש למובייל -->
-
-    <!-- HERO עם תמונת קובה ברקע וטקסט לבן - למובייל בלבד -->
-    <div class="hero-img-bg-mobile">
-      <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה" class="hero-bg-img" />
-      <div class="hero-img-content">
-        <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" class="hero-logo-small" />
-        <h1>POOKUBEH</h1>
-        <p>קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
-        <a href="#kubbeh-section" class="hero-btn-img">לצפייה בתפריט</a>
-      </div>
-    </div>
 
     <style>
     @media (max-width: 700px) {
