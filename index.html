@@ -1049,17 +1049,308 @@
         }
         @media (max-width: 700px) {
           .hero-tenne {
-            flex-direction: column-reverse;
-            gap: 30px;
-            padding: 30px 10px 20px 10px;
-          }
-          .hero-content h1 {
-            font-size: 2.1rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 28px 8px 24px 8px;
+            gap: 0;
+            border-radius: 22px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            background: #fff;
+            margin: 18px 0 0 0;
+            min-height: 340px;
+            max-width: 98vw;
           }
           .hero-image img {
-            width: 110px;
-            height: 110px;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 18px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: #f8f8f8;
+            padding: 6px;
+          }
+          .hero-content {
+            text-align: center;
+            width: 100%;
+          }
+          .hero-content h1 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #b94e4e;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+          }
+          .hero-content p {
+            font-size: 0.92rem;
+            color: #222;
+            margin-bottom: 22px;
+            font-weight: 400;
+            line-height: 1.5;
+          }
+          .hero-btn {
+            font-size: 1.08rem;
+            padding: 13px 0;
+            width: 100%;
+            max-width: 260px;
+            border-radius: 30px;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 2px 12px rgba(255,126,95,0.10);
+          }
+        }
+
+        .product-item .text-xs,
+        .product-item .text-center,
+        .product-item .text-gray-600 {
+          color: #111 !important;
+          font-size: 0.82rem !important;
+          font-weight: 500 !important;
+          opacity: 1 !important;
+        }
+
+        /* HERO חדש למובייל בלבד */
+        .hero-mobile {
+          display: none !important;
+        }
+
+        @media (max-width: 700px) {
+          .hero-tenne { display: none !important; }
+          .hero-mobile {
+            background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
+            border-radius: 22px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            padding: 32px 12px 28px 12px;
+            margin: 18px 0 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 340px;
+            max-width: 98vw;
+          }
+          .hero-logo-mobile {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: #fff;
+            padding: 6px;
+          }
+          .hero-title-mobile {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+          }
+          .hero-desc-mobile {
+            font-size: 1.02rem;
+            color: #fff;
+            margin-bottom: 22px;
+            font-weight: 400;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+          }
+          .hero-btn-mobile {
+            font-size: 1.08rem;
+            padding: 13px 0;
+            width: 100%;
+            max-width: 260px;
+            border-radius: 30px;
+            margin: 0 auto;
+            display: block;
+            background: #fff;
+            color: #ff0844;
+            font-weight: 700;
+            box-shadow: 0 2px 12px rgba(255,126,95,0.10);
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+          }
+          .hero-btn-mobile:hover {
+            background: #ff0844;
+            color: #fff;
+          }
+        }
+        @media (min-width: 701px) {
+          .hero-mobile { display: none !important; }
+        }
+        /* END HERO חדש למובייל */
+
+        /* HERO עם תמונת קובה ברקע וטקסט לבן - למובייל בלבד */
+        .hero-img-bg-mobile {
+          position: relative;
+          border-radius: 22px;
+          overflow: hidden;
+          margin: 18px 0 0 0;
+          min-height: 320px;
+          max-width: 98vw;
+        }
+
+        .hero-bg-img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: blur(7px) brightness(0.7);
+          z-index: 1;
+        }
+
+        .hero-img-content {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 320px;
+          padding: 24px 10px 20px 10px;
+          color: #fff;
+          text-align: center;
+        }
+
+        .hero-logo-small {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          margin-bottom: 12px;
+          background: #fff;
+          padding: 4px;
+        }
+
+        .hero-img-content h1 {
+          font-size: 1.5rem;
+          font-weight: 900;
+          margin-bottom: 10px;
+          letter-spacing: 1px;
+          color: #fff;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+
+        .hero-img-content p {
+          font-size: 1.02rem;
+          margin-bottom: 22px;
+          color: #fff;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+
+        .hero-btn-img {
+          font-size: 1.08rem;
+          padding: 13px 0;
+          width: 100%;
+          max-width: 220px;
+          border-radius: 30px;
+          margin: 0 auto;
+          display: block;
+          background: transparent;
+          color: #fff;
+          font-weight: 700;
+          border: 2px solid #fff;
+          text-align: center;
+          text-decoration: none;
+          transition: background 0.2s, color 0.2s;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+        }
+
+        .hero-btn-img:hover {
+          background: #fff;
+          color: #ff0844;
+        }
+
+        @media (max-width: 700px) {
+          .hero-tenne, .hero-mobile { display: none !important; }
+          .hero-img-bg-mobile {
+            position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            margin: 18px 0 0 0;
+            min-height: 320px;
+            max-width: 98vw;
+          }
+          .hero-bg-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            filter: blur(7px) brightness(0.7);
+            z-index: 1;
+          }
+          .hero-img-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            padding: 24px 10px 20px 10px;
+            color: #fff;
+            text-align: center;
+          }
+          .hero-logo-small {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            background: #fff;
+            padding: 4px;
+          }
+          .hero-img-content h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+          }
+          .hero-img-content p {
+            font-size: 1.02rem;
+            margin-bottom: 22px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+          }
+          .hero-btn-img {
+            font-size: 1.08rem;
+            padding: 13px 0;
+            width: 100%;
+            max-width: 220px;
+            border-radius: 30px;
+            margin: 0 auto;
+            display: block;
+            background: transparent;
+            color: #fff;
+            font-weight: 700;
+            border: 2px solid #fff;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+          }
+          .hero-btn-img:hover {
+            background: #fff;
+            color: #ff0844;
+          }
+        }
+        @media (min-width: 701px) {
+          .hero-img-bg-mobile { display: none !important; }
+        }
+        /* END HERO עם תמונת קובה ברקע */
+
+        @media (max-width: 700px) {
+          body {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: flex-end !important;
+            align-items: flex-start !important;
+          }
+          .flyer {
+            margin-right: 0 !important;
+            margin-left: auto !important;
+            right: 0;
+            left: unset;
+            text-align: right !important;
           }
         }
     </style>
@@ -1141,17 +1432,54 @@
         }
         @media (max-width: 700px) {
           .hero-tenne {
-            flex-direction: column-reverse;
-            gap: 30px;
-            padding: 30px 10px 20px 10px;
-          }
-          .hero-content h1 {
-            font-size: 2.1rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 28px 8px 24px 8px;
+            gap: 0;
+            border-radius: 22px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            background: #fff;
+            margin: 18px 0 0 0;
+            min-height: 340px;
+            max-width: 98vw;
           }
           .hero-image img {
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 18px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: #f8f8f8;
+            padding: 6px;
+          }
+          .hero-content {
+            text-align: center;
+            width: 100%;
+          }
+          .hero-content h1 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #b94e4e;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+          }
+          .hero-content p {
+            font-size: 0.92rem;
+            color: #222;
+            margin-bottom: 22px;
+            font-weight: 400;
+            line-height: 1.5;
+          }
+          .hero-btn {
+            font-size: 1.08rem;
+            padding: 13px 0;
+            width: 100%;
+            max-width: 260px;
+            border-radius: 30px;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 2px 12px rgba(255,126,95,0.10);
           }
         }
         </style>
@@ -1165,6 +1493,12 @@
         <!-- Price List with Quantity Counter for Kubbeh -->
         <div id="kubbeh-section" class="bg-gradient-to-br from-primary to-orange-400 p-6 text-white relative z-10">
             <h2 class="text-xl font-bold text-center mb-5">🛒 מחירון - קובות בעבודת יד</h2>
+            <div class="flex items-center justify-between mb-5">
+              <div class="text-xs text-lightGray italic ml-4 text-right">
+              • קובות בעבודת יד • איכות ביתית • ארוזות בוואקום<br>
+                <i class="fas fa-shield-alt"></i> כל המוצרים כשרים ומוכנים בתנאי היגיינה מעולים
+              </div>
+            </div>
             <p class="text-center text-sm mb-4 bg-white bg-opacity-20 p-2 rounded-lg">
                 כל המוצרים כוללים 10 יחידות ארוזות בוואקום
             </p>
@@ -1364,7 +1698,7 @@
           <div class="flex justify-center gap-6 text-3xl mb-4">
             <a href="https://www.instagram.com/pookubeh" target="_blank" class="bg-white text-pink-500 rounded-full p-2 shadow hover:bg-pink-100 transition"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/972546225706" target="_blank" class="bg-white text-green-500 rounded-full p-2 shadow hover:bg-green-100 transition"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.tiktok.com/@pookubeh" target="_blank" class="bg-white text-black rounded-full p-2 shadow hover:bg-gray-200 transition"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@guyrefael00?_t=ZS-8xaqEyGgTze&_r=1" target="_blank" class="bg-white text-black rounded-full p-2 shadow hover:bg-gray-200 transition"><i class="fab fa-tiktok"></i></a>
           </div>
 
           <!-- Payment Methods -->
@@ -1392,7 +1726,7 @@
         <div id="countdownContainer" class="countdown-container text-white p-4 m-4 rounded-2xl text-center font-bold relative z-10">
             <div class="text-lg mb-2">⏰ זמן מוגבל להזמנות!</div>
             <div id="countdown" class="text-2xl">
-                נותרו: <span id="timer" class="text-yellow-300"></span> עד סגירת הזמנות (רביעי)
+                 <span id="timer" class="text-yellow-300"></span>  סגירת הזמנות (רביעי)
             </div>
         </div>
 
@@ -2023,5 +2357,172 @@
       document.getElementById('contactForm').reset();
     }
     </script>
+
+    <!-- HERO חדש למובייל בלבד -->
+    <div class="hero-mobile">
+      <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו" class="hero-logo-mobile" />
+      <h1 class="hero-title-mobile">POOKUBEH</h1>
+      <p class="hero-desc-mobile">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
+      <a href="#kubbeh-section" class="hero-btn-mobile">לצפייה בתפריט</a>
+    </div>
+
+    <style>
+    @media (max-width: 700px) {
+      .hero-tenne { display: none !important; }
+      .hero-mobile {
+        background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
+        border-radius: 22px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        padding: 32px 12px 28px 12px;
+        margin: 18px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 340px;
+        max-width: 98vw;
+      }
+      .hero-logo-mobile {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        background: #fff;
+        padding: 6px;
+      }
+      .hero-title-mobile {
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      }
+      .hero-desc-mobile {
+        font-size: 1.02rem;
+        color: #fff;
+        margin-bottom: 22px;
+        font-weight: 400;
+        text-align: center;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      }
+      .hero-btn-mobile {
+        font-size: 1.08rem;
+        padding: 13px 0;
+        width: 100%;
+        max-width: 260px;
+        border-radius: 30px;
+        margin: 0 auto;
+        display: block;
+        background: #fff;
+        color: #ff0844;
+        font-weight: 700;
+        box-shadow: 0 2px 12px rgba(255,126,95,0.10);
+        text-align: center;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+      }
+      .hero-btn-mobile:hover {
+        background: #ff0844;
+        color: #fff;
+      }
+    }
+    @media (min-width: 701px) {
+      .hero-mobile { display: none !important; }
+    }
+    </style>
+    <!-- END HERO חדש למובייל -->
+
+    <!-- HERO עם תמונת קובה ברקע וטקסט לבן - למובייל בלבד -->
+    <div class="hero-img-bg-mobile">
+      <img src="https://i.ibb.co/8LHGTQ0q/Whats-App-2025-06-28-17-41-23-2fd820f3.jpg" alt="קובה" class="hero-bg-img" />
+      <div class="hero-img-content">
+        <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" class="hero-logo-small" />
+        <h1>POOKUBEH</h1>
+        <p>קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
+        <a href="#kubbeh-section" class="hero-btn-img">לצפייה בתפריט</a>
+      </div>
+    </div>
+
+    <style>
+    @media (max-width: 700px) {
+      .hero-tenne, .hero-mobile { display: none !important; }
+      .hero-img-bg-mobile {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        margin: 18px 0 0 0;
+        min-height: 320px;
+        max-width: 98vw;
+      }
+      .hero-bg-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(7px) brightness(0.7);
+        z-index: 1;
+      }
+      .hero-img-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        padding: 24px 10px 20px 10px;
+        color: #fff;
+        text-align: center;
+      }
+      .hero-logo-small {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-bottom: 12px;
+        background: #fff;
+        padding: 4px;
+      }
+      .hero-img-content h1 {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      }
+      .hero-img-content p {
+        font-size: 1.02rem;
+        margin-bottom: 22px;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      }
+      .hero-btn-img {
+        font-size: 1.08rem;
+        padding: 13px 0;
+        width: 100%;
+        max-width: 220px;
+        border-radius: 30px;
+        margin: 0 auto;
+        display: block;
+        background: transparent;
+        color: #fff;
+        font-weight: 700;
+        border: 2px solid #fff;
+        text-align: center;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      }
+      .hero-btn-img:hover {
+        background: #fff;
+        color: #ff0844;
+      }
+    }
+    @media (min-width: 701px) {
+      .hero-img-bg-mobile { display: none !important; }
+    }
+    </style>
+    <!-- END HERO עם תמונת קובה ברקע -->
 </body>
 </html>
