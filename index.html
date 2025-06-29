@@ -1400,71 +1400,52 @@
         .social-icon-gradient .fa-tiktok { color: #000; }
 
         .cart-fab {
-          background: linear-gradient(135deg, #ff4757, #ff3742);
-          color: #222;
-          border-radius: 50%;
-          box-shadow: 0 8px 25px rgba(255,71,87,0.4), 0 4px 10px rgba(0,0,0,0.1);
-          border: none;
-          width: 60px;
-          height: 60px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 2rem;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          position: fixed;
-          left: 24px;
-          top: 96px;
-          cursor: pointer;
-          overflow: hidden;
-        }
-        .cart-fab::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-          transition: left 0.5s;
-        }
-        .cart-fab:hover::before {
-          left: 100%;
-        }
-        .cart-fab:hover {
-          background: linear-gradient(135deg, #ff3742, #ff4757);
-          color: #111;
-          transform: scale(1.1) rotate(5deg);
-          box-shadow: 0 12px 35px rgba(255,71,87,0.6), 0 6px 15px rgba(0,0,0,0.15);
-        }
-        .cart-fab:active {
-          transform: scale(0.95);
+            background: #FF6B6B;
+            color: #222;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(255,71,87,0.18);
+            border: none;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed;
+            left: 24px;
+            top: 96px;
+            cursor: pointer;
+            overflow: visible;
         }
         .cart-fab i {
-          font-size: 1.5rem;
-          color: #2f3542;
-          font-weight: bold;
-          z-index: 1;
+            font-size: 1.5rem;
+            color: #222;
+            font-weight: bold;
+            z-index: 1;
         }
         .cart-count-badge {
-          position: absolute;
-          top: -8px;
-          right: -8px;
-          background: #2f3542;
-          color: #fff;
-          border-radius: 50%;
-          width: 24px;
-          height: 24px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.75rem;
-          font-weight: bold;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-          border: 2px solid white;
-          animation: pulse 2s infinite;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #fff;
+            color: #FF6B6B;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            border: 2px solid #fff;
+            z-index: 2;
+            transition: all 0.2s;
+            opacity: 1;
+            text-shadow: none;
         }
-        @keyframes pulse {
+        @keyframes pulst {
           0% { transform: scale(1); }
           50% { transform: scale(1.1); }
           100% { transform: scale(1); }
@@ -1615,12 +1596,8 @@
 </head>
 <body class="flex items-center justify-center py-4">
     <!-- תפריט קטגוריות עליון -->
-    <nav id="main-nav" class="w-full bg-gradient-to-l from-primary to-secondary py-3 px-2 flex justify-center gap-4 shadow-md">
-        <a href="kubbeh.html" class="text-white font-bold hover:underline transition">קובות</a>
-        <a href="soups.html" class="text-white font-bold hover:underline transition">מרקים</a>
-        <a href="instructions.html" class="text-white font-bold hover:underline transition">הוראות הכנה</a>
-        <a href="contact.html" class="text-white font-bold hover:underline transition">פנייה למנהל האתר</a>
-    </nav>
+    <!-- נמחק: nav id="main-nav" -->
+
     <!-- Main container for the flyer/store layout -->
     <div class="flyer max-w-4xl w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl relative">
 
@@ -1631,7 +1608,17 @@
           </div>
           <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2 drop-shadow">POOKUBEH</h1>
           <p class="text-white text-lg md:text-xl font-medium mb-5 drop-shadow">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
-          <a href="menu.html" target="_blank" class="inline-block bg-white text-pink-600 font-bold rounded-full px-8 py-3 text-lg shadow-lg transition hover:bg-pink-100 hover:text-pink-800">צפייה בתפריט</a>
+          <!-- Dropdown Menu Button -->
+          <div class="relative flex flex-col items-center">
+            <button id="menuDropdownBtn" type="button" class="bg-white text-pink-600 font-bold rounded-full px-8 py-3 text-lg shadow-lg transition hover:bg-pink-100 hover:text-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 mb-3">
+              צפייה בתפריט
+            </button>
+            <div class="flex flex-row gap-3 mt-1">
+              <a href="kubbeh.html" class="bg-white text-pink-500 font-bold rounded-full px-5 py-2 text-base shadow-md hover:bg-pink-50 hover:text-pink-700 transition border border-pink-200">קובות</a>
+              <a href="soups.html" class="bg-white text-pink-500 font-bold rounded-full px-5 py-2 text-base shadow-md hover:bg-pink-50 hover:text-pink-700 transition border border-pink-200">מרקים</a>
+              <a href="instructions.html" class="bg-white text-pink-500 font-bold rounded-full px-5 py-2 text-base shadow-md hover:bg-pink-50 hover:text-pink-700 transition border border-pink-200">הוראות הכנה</a>
+            </div>
+          </div>
         </div>
         <!-- END Modern Hero -->
 
@@ -1894,11 +1881,7 @@
           </a>
 
           <!-- Phone Number -->
-          <div class="flex flex-col items-center mb-4">
-            <a href="tel:+972546225706" class="text-5xl font-extrabold bg-gradient-to-r from-green-400 via-green-500 to-teal-400 bg-clip-text text-transparent underline underline-offset-8 decoration-4 decoration-green-300 tracking-widest transition-all duration-300 hover:from-pink-400 hover:to-yellow-400 hover:decoration-pink-400" style="letter-spacing:4px;">
-              054-6225706
-            </a>
-          </div>
+          <!-- נמחק: שורת הטלפון המעוצבת -->
 
           <!-- Social Icons -->
           <div class="flex justify-center gap-6 text-4xl mb-4">
@@ -1928,6 +1911,12 @@
           </div>
         </div>
         <!-- END Footer with Order Button -->
+
+        <!-- Branding -->
+        <div style="border-top:1px solid #e0e0e0; margin-top:32px; padding-top:12px; text-align:center; font-size:0.98rem; color:#888;">
+          אתר זה מנוהל ומתוחזק על ידי
+          <a href="contact.html" style="color:#e1306c; font-weight:bold; text-decoration:underline; transition:color 0.2s;">רוני לוי</a>
+        </div>
 
         <!-- Location Information and Map Button -->
         <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 m-4 rounded-2xl text-center relative z-10">
