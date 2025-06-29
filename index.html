@@ -1885,7 +1885,7 @@
 
           <!-- Social Icons -->
           <div class="flex justify-center gap-6 text-4xl mb-4">
-            <a href="https://www.instagram.com/pookubeh" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i></a>
+            <a href="https://www.instagram.com/poohkubeh" target="_blank"><i class="fab fa-instagram" style="color:#e1306c;"></i></a>
             <a href="https://wa.me/972546225706" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366;"></i></a>
             <a href="https://www.tiktok.com/@guyrefael00?_t=ZS-8xaqEyGgTze&_r=1" target="_blank"><i class="fab fa-tiktok" style="color:#000;"></i></a>
           </div>
@@ -1893,7 +1893,6 @@
           <!-- Payment Methods -->
           <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-2">
             <span class="bg-white bg-opacity-20 px-4 py-2 rounded-lg font-bold flex items-center gap-2">
-              <span class="bg-gradient-to-l from-pink-400 to-pink-600 text-white px-3 py-1 rounded-full font-bold text-sm">BIT</span>
               מקבלים תשלום בביט, פייבוקס ומזומן
             </span>
           </div>
@@ -1930,458 +1929,495 @@
             </div>
         </div>
 
-        <!-- Chat Bot Button (WhatsApp) -->
-        <div class="chat-button fixed bottom-20 left-4" onclick="openChat()">
-            💬 יש שאלה?
+        <script>
+        function toggleChatBot() {
+            const win = document.getElementById('chatBotWindow');
+            win.style.display = win.style.display === 'none' ? 'flex' : 'none';
+            if(win.style.display === 'flex') setTimeout(()=>document.getElementById('chatBotInput').focus(), 200);
+        }
+        async function getBotReply(msg) {
+            try {
+                const res = await fetch('http://localhost:3001/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await res.json();
+                return data.reply;
+            } catch {
+                return 'מצטער, הייתה שגיאה. נסה שוב מאוחר יותר.';
+            }
+        }
+        async function sendChatBotMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatBotInput');
+            const msg = input.value.trim();
+            if(!msg) return;
+            addChatBotMessage(msg, 'user');
+            input.value = '';
+            addChatBotMessage('...', 'bot'); // מציג המתנה
+            const reply = await getBotReply(msg);
+            // מחליף את ההודעה האחרונה (המתנה) בתשובה האמיתית
+            const messages = document.getElementById('chatBotMessages');
+            messages.lastChild.remove();
+            addChatBotMessage(reply, 'bot');
+        }
+        function addChatBotMessage(text, sender) {
+            const messages = document.getElementById('chatBotMessages');
+            const div = document.createElement('div');
+            div.className = sender === 'user' ? 'mb-2 text-right' : 'mb-2 text-left';
+            div.innerHTML = sender === 'user' ? `<span class='inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-xl ml-2'>${text}</span>` : `<span class='inline-block bg-pink-50 text-pink-900 px-3 py-1 rounded-xl mr-2'><i class='fas fa-robot ml-1'></i>${text}</span>`;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        </script>
+
+        <!-- Image Modal for gallery images -->
+        <div id="imageModal" class="modal" onclick="closeModal()">
+            <span class="close">×</span>
+            <img class="modal-content" id="modalImage">
         </div>
-    </div>
 
-    <!-- Image Modal for gallery images -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close">×</span>
-        <img class="modal-content" id="modalImage">
-    </div>
-
-    <!-- Floating Total Amount Display -->
-    <div id="floatingTotal" class="floating-total">
-        סכום כולל: <span id="totalAmount">0</span>₪
-    </div>
+        <!-- Floating Total Amount Display -->
+        <div id="floatingTotal" class="floating-total">
+            סכום כולל: <span id="totalAmount">0</span>₪
+        </div>
 
   
 
 
-    <!-- Admin Login Modal -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeAdminLogin()">×</span>
-            <h2 class="text-xl font-bold mb-4">כניסת מנהל</h2>
-            <input type="password" id="adminPassword" placeholder="הכנס סיסמה" class="mb-4">
-            <button onclick="loginAdmin()">התחבר</button>
-            <p id="adminLoginError" class="text-red-500 text-sm mt-2 hidden">סיסמה שגויה!</p>
-        </div>
-    </div>
-
-    <!-- Success Message Modal -->
-    <div id="successMessageModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeMessageModal('successMessageModal')">×</span>
-            <p class="text-green-600 text-lg font-bold">✅ בוצע בהצלחה!</p>
-            <button onclick="closeMessageModal('successMessageModal')" class="mt-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">אישור</button>
-        </div>
-    </div>
-
-    <!-- Error Message Modal -->
-    <div id="errorMessageModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeMessageModal('errorMessageModal')">×</span>
-            <p class="text-red-600 text-lg font-bold">❌ שגיאה!</p>
-            <p id="errorMessageText" class="mt-2 mb-4">אירעה שגיאה. נסה/י שוב.</p>
-            <button onclick="closeMessageModal('errorMessageModal')" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">אישור</button>
-        </div>
-    </div>
-
-    <!-- Bit Payment Modal (New/Re-introduced) -->
-    <div id="bitPaymentModal" class="modal">
-        <div class="modal-content-admin">
-            <span class="close" onclick="closeMessageModal('bitPaymentModal')">×</span>
-            <i class="fas fa-credit-card bit-card-icon"></i>
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">תשלום בביט</h2>
-
-            <div class="bit-summary-box mb-6">
-                <p class="text-lg font-bold text-gray-800">סכום לתשלום: <span id="bitModalTotalAmount" class="text-bitBlue">0₪</span></p>
-                <p class="text-md text-gray-700">מספר טלפון: <span id="bitModalPhoneNumber" class="font-bold">054-6225706</span></p>
-                <button onclick="copyBitPhoneNumber()" class="bit-copy-phone-btn hover:underline">העתק את המספר <i class="far fa-copy mr-1"></i></button>
-            </div>
-
-            <div class="bit-instructions text-right text-gray-700 mb-6">
-                <h3 class="text-lg font-bold mb-3">איך משלמים?</h3>
-                <ul>
-                    <li><i class="fas fa-mobile-alt"></i> **שלב 1:** פתח/י את אפליקציית ביט (או לחץ/י על "פתח את ביט" מטה).</li>
-                    <li><i class="fas fa-arrow-right"></i> **שלב 2:** לחץ/י על "העבר כסף" (או "שלח/י כסף").</li>
-                    <li><i class="fas fa-phone"></i> **שלב 3:** הזן/י מספר: <span class="font-bold">0546225706</span></li>
-                    <li><i class="fas fa-shekel-sign"></i> **שלב 4:** הזן/י סכום: <span id="bitModalInstructionAmount" class="font-bold">0₪</span></li>
-                    <li><i class="fas fa-check-circle"></i> **שלב 5:** שלח/י את התשלום.</li>
-                </ul>
-            </div>
-
-            <div class="bit-action-buttons">
-                <button onclick="openBitApp()" class="open-bit-btn"><i class="fas fa-external-link-alt ml-2"></i> פתח את ביט</button>
-                <button onclick="copyBitPhoneNumber()" class="copy-phone-btn"><i class="far fa-copy ml-2"></i> העתק מספר טלפון</button>
-                <button onclick="sendOrderViaWhatsappFromModal()" class="whatsapp-order-btn"><i class="fab fa-whatsapp ml-2"></i> שלח הזמנה בוואטסאפ</button>
-                <button onclick="closeMessageModal('bitPaymentModal')" class="close-btn"><i class="fas fa-times ml-2"></i> סגור</button>
+        <!-- Admin Login Modal -->
+        <div id="adminLoginModal" class="modal">
+            <div class="modal-content-admin">
+                <span class="close" onclick="closeAdminLogin()">×</span>
+                <h2 class="text-xl font-bold mb-4">כניסת מנהל</h2>
+                <input type="password" id="adminPassword" placeholder="הכנס סיסמה" class="mb-4">
+                <button onclick="loginAdmin()">התחבר</button>
+                <p id="adminLoginError" class="text-red-500 text-sm mt-2 hidden">סיסמה שגויה!</p>
             </div>
         </div>
-    </div>
 
-    <script>
-        // Global variables for admin functionality
-        const ADMIN_PASSWORD = "admin123"; // This should be stored securely in a real application
-        const BUSINESS_PHONE_NUMBER = "0546225706"; // The business phone number for Bit payments and WhatsApp
-        let bitPaymentLocked = localStorage.getItem('bitPaymentLocked') === 'true'; // Load state from localStorage
+        <!-- Success Message Modal -->
+        <div id="successMessageModal" class="modal">
+            <div class="modal-content-admin">
+                <span class="close" onclick="closeMessageModal('successMessageModal')">×</span>
+                <p class="text-green-600 text-lg font-bold">✅ בוצע בהצלחה!</p>
+                <button onclick="closeMessageModal('successMessageModal')" class="mt-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">אישור</button>
+            </div>
+        </div>
 
-        // Function to create confetti particles on the screen
-        function createConfetti() {
-            const colors = ['#FF6B6B', '#4ECDC4', '#FFE4B5', '#FFDAB9', '#FFFF99'];
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 3 + 's';
-                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    document.body.appendChild(confetti);
+        <!-- Error Message Modal -->
+        <div id="errorMessageModal" class="modal">
+            <div class="modal-content-admin">
+                <span class="close" onclick="closeMessageModal('errorMessageModal')">×</span>
+                <p class="text-red-600 text-lg font-bold">❌ שגיאה!</p>
+                <p id="errorMessageText" class="mt-2 mb-4">אירעה שגיאה. נסה/י שוב.</p>
+                <button onclick="closeMessageModal('errorMessageModal')" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">אישור</button>
+            </div>
+        </div>
 
-                    // Remove confetti after animation to prevent DOM clutter
+        <!-- Bit Payment Modal (New/Re-introduced) -->
+        <div id="bitPaymentModal" class="modal">
+            <div class="modal-content-admin">
+                <span class="close" onclick="closeMessageModal('bitPaymentModal')">×</span>
+                <i class="fas fa-credit-card bit-card-icon"></i>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">תשלום בביט</h2>
+
+                <div class="bit-summary-box mb-6">
+                    <p class="text-lg font-bold text-gray-800">סכום לתשלום: <span id="bitModalTotalAmount" class="text-bitBlue">0₪</span></p>
+                    <p class="text-md text-gray-700">מספר טלפון: <span id="bitModalPhoneNumber" class="font-bold">054-6225706</span></p>
+                    <button onclick="copyBitPhoneNumber()" class="bit-copy-phone-btn hover:underline">העתק את המספר <i class="far fa-copy mr-1"></i></button>
+                </div>
+
+                <div class="bit-instructions text-right text-gray-700 mb-6">
+                    <h3 class="text-lg font-bold mb-3">איך משלמים?</h3>
+                    <ul>
+                        <li><i class="fas fa-mobile-alt"></i> **שלב 1:** פתח/י את אפליקציית ביט (או לחץ/י על "פתח את ביט" מטה).</li>
+                        <li><i class="fas fa-arrow-right"></i> **שלב 2:** לחץ/י על "העבר כסף" (או "שלח/י כסף").</li>
+                        <li><i class="fas fa-phone"></i> **שלב 3:** הזן/י מספר: <span class="font-bold">0546225706</span></li>
+                        <li><i class="fas fa-shekel-sign"></i> **שלב 4:** הזן/י סכום: <span id="bitModalInstructionAmount" class="font-bold">0₪</span></li>
+                        <li><i class="fas fa-check-circle"></i> **שלב 5:** שלח/י את התשלום.</li>
+                    </ul>
+                </div>
+
+                <div class="bit-action-buttons">
+                    <button onclick="openBitApp()" class="open-bit-btn"><i class="fas fa-external-link-alt ml-2"></i> פתח את ביט</button>
+                    <button onclick="copyBitPhoneNumber()" class="copy-phone-btn"><i class="far fa-copy ml-2"></i> העתק מספר טלפון</button>
+                    <button onclick="sendOrderViaWhatsappFromModal()" class="whatsapp-order-btn"><i class="fab fa-whatsapp ml-2"></i> שלח הזמנה בוואטסאפ</button>
+                    <button onclick="closeMessageModal('bitPaymentModal')" class="close-btn"><i class="fas fa-times ml-2"></i> סגור</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Global variables for admin functionality
+            const ADMIN_PASSWORD = "admin123"; // This should be stored securely in a real application
+            const BUSINESS_PHONE_NUMBER = "0546225706"; // The business phone number for Bit payments and WhatsApp
+            let bitPaymentLocked = localStorage.getItem('bitPaymentLocked') === 'true'; // Load state from localStorage
+
+            // Function to create confetti particles on the screen
+            function createConfetti() {
+                const colors = ['#FF6B6B', '#4ECDC4', '#FFE4B5', '#FFDAB9', '#FFFF99'];
+                for (let i = 0; i < 50; i++) {
                     setTimeout(() => {
-                        if (confetti.parentNode) {
-                            confetti.parentNode.removeChild(confetti);
-                        }
-                    }, 5000);
-                }, i * 100);
-            }
-        }
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        confetti.style.left = Math.random() * 100 + 'vw';
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.animationDelay = Math.random() * 3 + 's';
+                        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                        document.body.appendChild(confetti);
 
-        // Function to share the website URL using the Web Share API
-        function shareWebsite() {
-            createConfetti(); // Trigger confetti animation
-            if (navigator.share) {
-                navigator.share({
-                    title: 'POOKUBEH - קובות בעבודת יד',
-                    text: 'הזמינו קובות ומרקים ביתיים מ-POOKUBEH!',
-                    url: 'https://pookubeh.netlify.app/', // Replace with your actual website URL
-                })
-                    .then(() => console.log('שיתוף בוצע בהצלחה'))
-                    .catch((error) => console.error('שגיאה בשיתוף:', error));
-            } else {
-                // Fallback for browsers that do not support Web Share API
-                copyToClipboard('https://pookubeh.netlify.app/');
-                showMessageModal('successMessageModal', 'קישור האתר הועתק ללוח העריכה!');
-            }
-        }
-
-        // Helper function to copy text to clipboard
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-        }
-
-        // Function to change product quantity
-        function changeQuantity(button, delta) {
-            const itemDiv = button.closest('.product-item');
-            const name = itemDiv.dataset.name;
-            const price = parseFloat(itemDiv.dataset.price);
-            let input = itemDiv.querySelector('.quantity-input');
-            let value = Math.max(0, parseInt(input.value) + delta);
-            input.value = value;
-            if (value > 0) {
-                cart[name] = { name, price, quantity: value };
-            } else {
-                delete cart[name];
-            }
-            saveCartToStorage(cart);
-            updateCartCount();
-            updateTotal();
-            renderCart(); // הוסף שורה זו!
-        }
-
-        // Function to update the total amount and show/hide payment buttons
-        function updateTotal() {
-            let total = 0;
-            const productItems = document.querySelectorAll('.product-item');
-            productItems.forEach(item => {
-                const price = parseFloat(item.dataset.price);
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-                total += price * quantity;
-            });
-
-            document.getElementById('totalAmount').textContent = total;
-            const floatingTotal = document.getElementById('floatingTotal');
-            const paymentButtons = document.getElementById('paymentButtons');
-            const mainOrderButton = document.getElementById('mainOrderButton');
-
-            if (total > 0) {
-                floatingTotal.style.display = 'block';
-                paymentButtons.classList.add('show');
-                mainOrderButton.style.display = 'none';
-            } else {
-                floatingTotal.style.display = 'none';
-                paymentButtons.classList.remove('show');
-                mainOrderButton.style.display = 'block';
-            }
-        }
-
-        // Function to construct and send WhatsApp order message
-        function makeOrder(fromModal = false) { // Added fromModal parameter
-            let orderMessage = "שלום, ברצוני לבצע הזמנה מ-POOKUBEH:\n\n";
-            let hasItems = false;
-            let total = 0;
-
-            const productItems = document.querySelectorAll('.product-item');
-            productItems.forEach(item => {
-                const productName = item.dataset.name;
-                const price = parseFloat(item.dataset.price);
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-
-                if (quantity > 0) {
-                    orderMessage += `${productName}: ${quantity} יחידות - ${price * quantity}₪\n`;
-                    total += price * quantity;
-                    hasItems = true;
+                        // Remove confetti after animation to prevent DOM clutter
+                        setTimeout(() => {
+                            if (confetti.parentNode) {
+                                confetti.parentNode.removeChild(confetti);
+                            }
+                        }, 5000);
+                    }, i * 100);
                 }
-            });
-
-            if (!hasItems) {
-                showMessageModal('errorMessageModal', 'אנא בחר/י מוצרים לפני ביצוע הזמנה.');
-                return;
             }
 
-            orderMessage += `\nסה"כ לתשלום: ${total}₪\n\n`;
-
-            if (fromModal) { // Add specific message if from Bit modal
-                orderMessage += `זוהי הזמנה בעקבות תשלום/כוונה לתשלום בביט.`;
-            }
-
-            orderMessage += "תודה!";
-
-            const whatsappUrl = `https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${encodeURIComponent(orderMessage)}`;
-            window.open(whatsappUrl, '_blank');
-
-            if (fromModal) {
-                closeMessageModal('bitPaymentModal');
-                showMessageModal('successMessageModal', 'הזמנתך נשלחה בהצלחה לוואטסאפ של החנות!');
-            }
-        }
-
-        // Function to send WhatsApp order message from inside the Bit modal
-        function sendOrderViaWhatsappFromModal() {
-            makeOrder(true); // Call makeOrder with fromModal = true
-        }
-
-        // Function to open the image modal
-        function openModal(backgroundImageUrl) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = backgroundImageUrl.slice(5, -2); // Extract URL from background-image style
-            modal.style.display = 'flex'; // Use flex to center the content
-        }
-
-        // Function to close the image modal
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Function to open admin login modal
-        function showAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'flex';
-            document.getElementById('adminPassword').value = ''; // Clear password field
-            document.getElementById('adminLoginError').classList.add('hidden'); // Hide error message
-        }
-
-        // Function to close admin login modal
-        function closeAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'none';
-        }
-
-        // Function to handle admin login
-        function loginAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            const errorMessage = document.getElementById('adminLoginError');
-            if (password === ADMIN_PASSWORD) {
-                closeAdminLogin();
-                toggleBitPaymentStatus(); // Toggle status on successful login
-            } else {
-                errorMessage.classList.remove('hidden');
-            }
-        }
-
-        // Function to toggle Bit payment status
-        function toggleBitPaymentStatus() {
-            bitPaymentLocked = !bitPaymentLocked; // Toggle the state
-            localStorage.setItem('bitPaymentLocked', bitPaymentLocked); // Save to localStorage
-            updateBitButtonStatus(); // Update UI immediately
-            showMessageModal('successMessageModal', `תשלום בביט כעת ${bitPaymentLocked ? 'נעול' : 'פתוח'}.`);
-        }
-
-        // Function to update the Bit button and notice visibility
-        function updateBitButtonStatus() {
-            const bitButton = document.getElementById('bitButton');
-            const bitLockedNotice = document.getElementById('bitLockedNotice');
-            if (bitPaymentLocked) {
-                bitButton.classList.add('locked');
-                bitButton.onclick = showBitLockedMessage; // Set click handler to show message
-                bitLockedNotice.style.display = 'block';
-            } else {
-                bitButton.classList.remove('locked');
-                bitButton.onclick = payWithBit; // Set click handler to open Bit modal
-                bitLockedNotice.style.display = 'none';
-            }
-        }
-
-        // Function to open the Bit payment modal
-        function payWithBit() {
-            if (bitPaymentLocked) {
-                showBitLockedMessage();
-                return;
-            }
-            let total = parseInt(document.getElementById('totalAmount').textContent);
-            if (total === 0) {
-                showMessageModal('errorMessageModal', 'אין פריטים בסל לתשלום בביט.');
-                return;
-            }
-
-            // Update modal content before showing
-            document.getElementById('bitModalTotalAmount').textContent = `${total}₪`;
-            document.getElementById('bitModalInstructionAmount').textContent = `${total}₪`;
-            document.getElementById('bitModalPhoneNumber').textContent = BUSINESS_PHONE_NUMBER;
-
-            document.getElementById('bitPaymentModal').style.display = 'flex';
-        }
-
-        // Function to open the Bit app via a direct link (from inside the modal)
-        function openBitApp() {
-            // This function now opens the specific BitPay profile link without amount/message
-            window.open('https://www.bitpay.co.il/app/me/B073857A-94E6-8958-E0A5-8F229A048E87ECE5', '_blank');
-        }
-
-        // Function to copy the business Bit phone number to clipboard (from inside the modal)
-        function copyBitPhoneNumber() {
-            copyToClipboard(BUSINESS_PHONE_NUMBER);
-            showMessageModal('successMessageModal', `מספר הטלפון ${BUSINESS_PHONE_NUMBER} הועתק ללוח העריכה!`);
-        }
-
-        // Function to show a message modal (success/error/bit payment)
-        function showMessageModal(modalId, message) {
-            const modal = document.getElementById(modalId);
-            const messageTextElement = modal.querySelector('#errorMessageText') || modal.querySelector('p');
-            if (messageTextElement) {
-                messageTextElement.textContent = message;
-            }
-            modal.style.display = 'flex';
-        }
-
-        // Function to close any message modal
-        function closeMessageModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Function to display the Bit locked message
-        function showBitLockedMessage() {
-            showMessageModal('errorMessageModal', 'תשלום בביט סגור זמנית - בעל החנות בחופשה.');
-        }
-
-        // Function to contact admin via WhatsApp
-        function contactAdmin() {
-            const adminMessage = encodeURIComponent("שלום, ברצוני לפנות אליך בנוגע לאתר POOKUBEH.");
-            window.open(`https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${adminMessage}`, '_blank');
-        }
-
-        // Function to open general chat via WhatsApp
-        function openChat() {
-            const chatMessage = encodeURIComponent("שלום, יש לי שאלה בנוגע ל-POOKUBEH.");
-            window.open(`https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${chatMessage}`, '_blank');
-        }
-
-        // Function to open Google Maps to Ra'anana
-        function openMap() {
-            // Using a general location for Ra'anana as a placeholder.
-            // For a specific address, you would replace 'Ra\'anana' with the full address.
-            window.open('https://maps.google.com/?q=Ra\'anana', '_blank');
-        }
-
-        // Countdown timer logic
-        function startCountdown() {
-            const timerElement = document.getElementById('timer');
-            const countdownContainer = document.getElementById('countdownContainer');
-
-            // Find the next Wednesday at 23:59:59 (11:59:59 PM)
-            function getNextWednesdayDeadline() {
-                const now = new Date();
-                const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-
-                let daysUntilWednesday = 3 - dayOfWeek; // Days until Wednesday
-                if (daysUntilWednesday < 0) { // If it's Thursday-Sunday, go to next week's Wednesday
-                    daysUntilWednesday += 7;
-                }
-                // If it's Wednesday and after the deadline time, go to next week's Wednesday
-                if (dayOfWeek === 3 && (now.getHours() > 23 || (now.getHours() === 23 && now.getMinutes() > 59))) {
-                    daysUntilWednesday += 7;
-                }
-
-
-                const deadline = new Date(now);
-                deadline.setDate(now.getDate() + daysUntilWednesday);
-                deadline.setHours(23, 59, 59, 999); // Set to end of day
-
-                return deadline.getTime();
-            }
-
-            const deadlineTime = getNextWednesdayDeadline();
-
-            const updateTimer = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = deadlineTime - now;
-
-                // Calculate time units
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Display the result
-                if (distance > 0) {
-                    timerElement.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
-                    countdownContainer.style.display = 'block'; // Ensure container is visible
+            // Function to share the website URL using the Web Share API
+            function shareWebsite() {
+                createConfetti(); // Trigger confetti animation
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'POOKUBEH - קובות בעבודת יד',
+                        text: 'הזמינו קובות ומרקים ביתיים מ-POOKUBEH!',
+                        url: 'https://pookubeh.netlify.app/', // Replace with your actual website URL
+                    })
+                        .then(() => console.log('שיתוף בוצע בהצלחה'))
+                        .catch((error) => console.error('שגיאה בשיתוף:', error));
                 } else {
-                    clearInterval(updateTimer);
-                    timerElement.innerHTML = "הזמנות לרביעי נסגרו!";
-                    countdownContainer.classList.add('urgent-border'); // Add urgent border effect
-                    // Optionally hide quantity inputs or disable order button if past deadline
+                    // Fallback for browsers that do not support Web Share API
+                    copyToClipboard('https://pookubeh.netlify.app/');
+                    showMessageModal('successMessageModal', 'קישור האתר הועתק ללוח העריכה!');
                 }
-            }, 1000);
-        }
+            }
 
-        // Initial calls when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            updateTotal(); // Initialize total and button visibility
-            startCountdown(); // Start the countdown timer
-            updateBitButtonStatus(); // Set initial state of Bit button
-        });
-        // סל קניות
-        // --- cart localStorage helpers ---
-        function saveCartToStorage(cart) {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-        function loadCartFromStorage() {
-            const cart = localStorage.getItem('cart');
-            return cart ? JSON.parse(cart) : {};
-        }
-        let cart = loadCartFromStorage();
-        // --- end helpers ---
+            // Helper function to copy text to clipboard
+            function copyToClipboard(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
 
-        function updateCartCount() {
-            const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
-            const cartCount = document.getElementById('cartCount');
-            cartCount.textContent = count;
-            cartCount.style.display = count > 0 ? 'inline-block' : 'none';
-        }
+            // Function to change product quantity
+            function changeQuantity(button, delta) {
+                const itemDiv = button.closest('.product-item');
+                const name = itemDiv.dataset.name;
+                const price = parseFloat(itemDiv.dataset.price);
+                let input = itemDiv.querySelector('.quantity-input');
+                let value = Math.max(0, parseInt(input.value) + delta);
+                input.value = value;
+                if (value > 0) {
+                    cart[name] = { name, price, quantity: value };
+                } else {
+                    delete cart[name];
+                }
+                saveCartToStorage(cart);
+                updateCartCount();
+                updateTotal();
+                renderCart(); // הוסף שורה זו!
+            }
 
-        function toggleCart() {
-            const modal = document.getElementById('cartModal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-            renderCart();
-        }
+            // Function to update the total amount and show/hide payment buttons
+            function updateTotal() {
+                let total = 0;
+                const productItems = document.querySelectorAll('.product-item');
+                productItems.forEach(item => {
+                    const price = parseFloat(item.dataset.price);
+                    const quantity = parseInt(item.querySelector('.quantity-input').value);
+                    total += price * quantity;
+                });
 
-        function renderCart() {
-            const cartItemsDiv = document.getElementById('cartItems');
-            const cartTotalSpan = document.getElementById('cartTotal');
-            let html = '';
-            let total = 0;
-            Object.values(cart).forEach(item => {
-                html += `
+                document.getElementById('totalAmount').textContent = total;
+                const floatingTotal = document.getElementById('floatingTotal');
+                const paymentButtons = document.getElementById('paymentButtons');
+                const mainOrderButton = document.getElementById('mainOrderButton');
+
+                if (total > 0) {
+                    floatingTotal.style.display = 'block';
+                    paymentButtons.classList.add('show');
+                    mainOrderButton.style.display = 'none';
+                } else {
+                    floatingTotal.style.display = 'none';
+                    paymentButtons.classList.remove('show');
+                    mainOrderButton.style.display = 'block';
+                }
+            }
+
+            // Function to construct and send WhatsApp order message
+            function makeOrder(fromModal = false) { // Added fromModal parameter
+                let orderMessage = "שלום, ברצוני לבצע הזמנה מ-POOKUBEH:\n\n";
+                let hasItems = false;
+                let total = 0;
+
+                const productItems = document.querySelectorAll('.product-item');
+                productItems.forEach(item => {
+                    const productName = item.dataset.name;
+                    const price = parseFloat(item.dataset.price);
+                    const quantity = parseInt(item.querySelector('.quantity-input').value);
+
+                    if (quantity > 0) {
+                        orderMessage += `${productName}: ${quantity} יחידות - ${price * quantity}₪\n`;
+                        total += price * quantity;
+                        hasItems = true;
+                    }
+                });
+
+                if (!hasItems) {
+                    showMessageModal('errorMessageModal', 'אנא בחר/י מוצרים לפני ביצוע הזמנה.');
+                    return;
+                }
+
+                orderMessage += `\nסה"כ לתשלום: ${total}₪\n\n`;
+
+                if (fromModal) { // Add specific message if from Bit modal
+                    orderMessage += `זוהי הזמנה בעקבות תשלום/כוונה לתשלום בביט.`;
+                }
+
+                orderMessage += "תודה!";
+
+                const whatsappUrl = `https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, '_blank');
+
+                if (fromModal) {
+                    closeMessageModal('bitPaymentModal');
+                    showMessageModal('successMessageModal', 'הזמנתך נשלחה בהצלחה לוואטסאפ של החנות!');
+                }
+            }
+
+            // Function to send WhatsApp order message from inside the Bit modal
+            function sendOrderViaWhatsappFromModal() {
+                makeOrder(true); // Call makeOrder with fromModal = true
+            }
+
+            // Function to open the image modal
+            function openModal(backgroundImageUrl) {
+                const modal = document.getElementById('imageModal');
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = backgroundImageUrl.slice(5, -2); // Extract URL from background-image style
+                modal.style.display = 'flex'; // Use flex to center the content
+            }
+
+            // Function to close the image modal
+            function closeModal() {
+                document.getElementById('imageModal').style.display = 'none';
+            }
+
+            // Function to open admin login modal
+            function showAdminLogin() {
+                document.getElementById('adminLoginModal').style.display = 'flex';
+                document.getElementById('adminPassword').value = ''; // Clear password field
+                document.getElementById('adminLoginError').classList.add('hidden'); // Hide error message
+            }
+
+            // Function to close admin login modal
+            function closeAdminLogin() {
+                document.getElementById('adminLoginModal').style.display = 'none';
+            }
+
+            // Function to handle admin login
+            function loginAdmin() {
+                const password = document.getElementById('adminPassword').value;
+                const errorMessage = document.getElementById('adminLoginError');
+                if (password === ADMIN_PASSWORD) {
+                    closeAdminLogin();
+                    toggleBitPaymentStatus(); // Toggle status on successful login
+                } else {
+                    errorMessage.classList.remove('hidden');
+                }
+            }
+
+            // Function to toggle Bit payment status
+            function toggleBitPaymentStatus() {
+                bitPaymentLocked = !bitPaymentLocked; // Toggle the state
+                localStorage.setItem('bitPaymentLocked', bitPaymentLocked); // Save to localStorage
+                updateBitButtonStatus(); // Update UI immediately
+                showMessageModal('successMessageModal', `תשלום בביט כעת ${bitPaymentLocked ? 'נעול' : 'פתוח'}.`);
+            }
+
+            // Function to update the Bit button and notice visibility
+            function updateBitButtonStatus() {
+                const bitButton = document.getElementById('bitButton');
+                const bitLockedNotice = document.getElementById('bitLockedNotice');
+                if (bitPaymentLocked) {
+                    bitButton.classList.add('locked');
+                    bitButton.onclick = showBitLockedMessage; // Set click handler to show message
+                    bitLockedNotice.style.display = 'block';
+                } else {
+                    bitButton.classList.remove('locked');
+                    bitButton.onclick = payWithBit; // Set click handler to open Bit modal
+                    bitLockedNotice.style.display = 'none';
+                }
+            }
+
+            // Function to open the Bit payment modal
+            function payWithBit() {
+                if (bitPaymentLocked) {
+                    showBitLockedMessage();
+                    return;
+                }
+                let total = parseInt(document.getElementById('totalAmount').textContent);
+                if (total === 0) {
+                    showMessageModal('errorMessageModal', 'אין פריטים בסל לתשלום בביט.');
+                    return;
+                }
+
+                // Update modal content before showing
+                document.getElementById('bitModalTotalAmount').textContent = `${total}₪`;
+                document.getElementById('bitModalInstructionAmount').textContent = `${total}₪`;
+                document.getElementById('bitModalPhoneNumber').textContent = BUSINESS_PHONE_NUMBER;
+
+                document.getElementById('bitPaymentModal').style.display = 'flex';
+            }
+
+            // Function to open the Bit app via a direct link (from inside the modal)
+            function openBitApp() {
+                // This function now opens the specific BitPay profile link without amount/message
+                window.open('https://www.bitpay.co.il/app/me/B073857A-94E6-8958-E0A5-8F229A048E87ECE5', '_blank');
+            }
+
+            // Function to copy the business Bit phone number to clipboard (from inside the modal)
+            function copyBitPhoneNumber() {
+                copyToClipboard(BUSINESS_PHONE_NUMBER);
+                showMessageModal('successMessageModal', `מספר הטלפון ${BUSINESS_PHONE_NUMBER} הועתק ללוח העריכה!`);
+            }
+
+            // Function to show a message modal (success/error/bit payment)
+            function showMessageModal(modalId, message) {
+                const modal = document.getElementById(modalId);
+                const messageTextElement = modal.querySelector('#errorMessageText') || modal.querySelector('p');
+                if (messageTextElement) {
+                    messageTextElement.textContent = message;
+                }
+                modal.style.display = 'flex';
+            }
+
+            // Function to close any message modal
+            function closeMessageModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+
+            // Function to display the Bit locked message
+            function showBitLockedMessage() {
+                showMessageModal('errorMessageModal', 'תשלום בביט סגור זמנית - בעל החנות בחופשה.');
+            }
+
+            // Function to contact admin via WhatsApp
+            function contactAdmin() {
+                const adminMessage = encodeURIComponent("שלום, ברצוני לפנות אליך בנוגע לאתר POOKUBEH.");
+                window.open(`https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${adminMessage}`, '_blank');
+            }
+
+            // Function to open general chat via WhatsApp
+            function openChat() {
+                const chatMessage = encodeURIComponent("שלום, יש לי שאלה בנוגע ל-POOKUBEH.");
+                window.open(`https://wa.me/${BUSINESS_PHONE_NUMBER}?text=${chatMessage}`, '_blank');
+            }
+
+            // Function to open Google Maps to Ra'anana
+            function openMap() {
+                // Using a general location for Ra'anana as a placeholder.
+                // For a specific address, you would replace 'Ra\'anana' with the full address.
+                window.open('https://maps.google.com/?q=Ra\'anana', '_blank');
+            }
+
+            // Countdown timer logic
+            function startCountdown() {
+                const timerElement = document.getElementById('timer');
+                const countdownContainer = document.getElementById('countdownContainer');
+
+                // Find the next Wednesday at 23:59:59 (11:59:59 PM)
+                function getNextWednesdayDeadline() {
+                    const now = new Date();
+                    const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+                    let daysUntilWednesday = 3 - dayOfWeek; // Days until Wednesday
+                    if (daysUntilWednesday < 0) { // If it's Thursday-Sunday, go to next week's Wednesday
+                        daysUntilWednesday += 7;
+                    }
+                    // If it's Wednesday and after the deadline time, go to next week's Wednesday
+                    if (dayOfWeek === 3 && (now.getHours() > 23 || (now.getHours() === 23 && now.getMinutes() > 59))) {
+                        daysUntilWednesday += 7;
+                    }
+
+
+                    const deadline = new Date(now);
+                    deadline.setDate(now.getDate() + daysUntilWednesday);
+                    deadline.setHours(23, 59, 59, 999); // Set to end of day
+
+                    return deadline.getTime();
+                }
+
+                const deadlineTime = getNextWednesdayDeadline();
+
+                const updateTimer = setInterval(() => {
+                    const now = new Date().getTime();
+                    const distance = deadlineTime - now;
+
+                    // Calculate time units
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result
+                    if (distance > 0) {
+                        timerElement.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
+                        countdownContainer.style.display = 'block'; // Ensure container is visible
+                    } else {
+                        clearInterval(updateTimer);
+                        timerElement.innerHTML = "הזמנות לרביעי נסגרו!";
+                        countdownContainer.classList.add('urgent-border'); // Add urgent border effect
+                        // Optionally hide quantity inputs or disable order button if past deadline
+                    }
+                }, 1000);
+            }
+
+            // Initial calls when the page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                updateTotal(); // Initialize total and button visibility
+                startCountdown(); // Start the countdown timer
+                updateBitButtonStatus(); // Set initial state of Bit button
+            });
+            // סל קניות
+            // --- cart localStorage helpers ---
+            function saveCartToStorage(cart) {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+            function loadCartFromStorage() {
+                const cart = localStorage.getItem('cart');
+                return cart ? JSON.parse(cart) : {};
+            }
+            let cart = loadCartFromStorage();
+            // --- end helpers ---
+
+            function updateCartCount() {
+                const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+                const cartCount = document.getElementById('cartCount');
+                cartCount.textContent = count;
+                cartCount.style.display = count > 0 ? 'inline-block' : 'none';
+            }
+
+            function toggleCart() {
+                const modal = document.getElementById('cartModal');
+                modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+                renderCart();
+            }
+
+            function renderCart() {
+                const cartItemsDiv = document.getElementById('cartItems');
+                const cartTotalSpan = document.getElementById('cartTotal');
+                let html = '';
+                let total = 0;
+                Object.values(cart).forEach(item => {
+                    html += `
       <div class="flex justify-between items-center mb-4 p-2 border-b">
         <span style="min-width:100px; text-align:right;">${item.name}</span>
         <div class="flex items-center gap-2">
@@ -2392,327 +2428,333 @@
         </div>
       </div>
     `;
-                total += item.price * item.quantity;
-            });
-            cartItemsDiv.innerHTML = html || '<div class="text-gray-500 text-center">הסל ריק</div>';
-            cartTotalSpan.textContent = total;
-        }
+                    total += item.price * item.quantity;
+                });
+                cartItemsDiv.innerHTML = html || '<div class="text-gray-500 text-center">הסל ריק</div>';
+                cartTotalSpan.textContent = total;
+            }
 
-        function changeCartItem(name, delta) {
-            if (!cart[name]) return;
-            cart[name].quantity += delta;
-            if (cart[name].quantity <= 0) delete cart[name];
-            saveCartToStorage(cart);
-            updateCartCount();
-            renderCart();
-            syncCartToInputs();
-        }
-
-        // סנכרון בין הכפתורים של המוצרים לסל
-        function syncCartToInputs() {
-            document.querySelectorAll('.product-item').forEach(item => {
-                const name = item.dataset.name;
-                const input = item.querySelector('.quantity-input');
-                input.value = cart[name]?.quantity || 0;
-            });
-            updateTotal();
-        }
-
-        // שינוי ידני בשדה כמות
-        document.querySelectorAll('.quantity-input').forEach(input => {
-            input.addEventListener('change', function () {
-                const itemDiv = input.closest('.product-item');
-                const name = itemDiv.dataset.name;
-                const price = parseFloat(itemDiv.dataset.price);
-                let value = Math.max(0, parseInt(input.value));
-                if (value > 0) {
-                    cart[name] = { name, price, quantity: value };
-                } else {
-                    delete cart[name];
-                }
+            function changeCartItem(name, delta) {
+                if (!cart[name]) return;
+                cart[name].quantity += delta;
+                if (cart[name].quantity <= 0) delete cart[name];
                 saveCartToStorage(cart);
                 updateCartCount();
-                updateTotal();
-                renderCart(); // הוספתי!
-            });
-        });
-
-        // שליחת הזמנה בוואטסאפ (משתמש בסל)
-        function makeOrder() {
-            let orderMessage = "שלום, ברצוני לבצע הזמנה מ-POOKUBEH:\n\n";
-            let hasItems = false;
-            let total = 0;
-            Object.values(cart).forEach(item => {
-                if (item.quantity > 0) {
-                    orderMessage += `${item.name}: ${item.quantity} יחידות - ${item.price * item.quantity}₪\n`;
-                    total += item.price * item.quantity;
-                    hasItems = true;
-                }
-            });
-            if (!hasItems) {
-                alert('הסל ריק!');
-                return;
+                renderCart();
+                syncCartToInputs();
             }
-            orderMessage += `\nסה"כ לתשלום: ${total}₪\n\nתודה!`;
-            const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(orderMessage)}`;
-            window.open(whatsappUrl, '_blank');
-            toggleCart();
-        }
 
-        // סגירת סל בלחיצה מחוץ לחלון
-        window.onclick = function (event) {
-            const modal = document.getElementById('cartModal');
-            if (event.target === modal) modal.style.display = 'none';
-        }
+            // סנכרון בין הכפתורים של המוצרים לסל
+            function syncCartToInputs() {
+                document.querySelectorAll('.product-item').forEach(item => {
+                    const name = item.dataset.name;
+                    const input = item.querySelector('.quantity-input');
+                    input.value = cart[name]?.quantity || 0;
+                });
+                updateTotal();
+            }
 
-        // הפעלת עדכון מיידי
-        document.addEventListener('DOMContentLoaded', () => {
-            // עדכן את הכמויות בשדות
-            Object.entries(cart).forEach(([name, item]) => {
-                const itemDiv = document.querySelector(`[data-name="${name}"]`);
-                if (itemDiv) {
-                    const input = itemDiv.querySelector('.quantity-input');
-                    if (input) {
-                        input.value = item.quantity;
+            // שינוי ידני בשדה כמות
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', function () {
+                    const itemDiv = input.closest('.product-item');
+                    const name = itemDiv.dataset.name;
+                    const price = parseFloat(itemDiv.dataset.price);
+                    let value = Math.max(0, parseInt(input.value));
+                    if (value > 0) {
+                        cart[name] = { name, price, quantity: value };
+                    } else {
+                        delete cart[name];
                     }
-                }
+                    saveCartToStorage(cart);
+                    updateCartCount();
+                    updateTotal();
+                    renderCart(); // הוספתי!
+                });
             });
-            updateCartCount();
-            updateTotal();
-        });
-    </script>
-    <!-- אייקון עגלה צף -->
-    <button id="cartButton" onclick="toggleCart()" class="fixed top-24 left-4 z-50 cart-fab">
-      <i class="fas fa-shopping-cart"></i>
-      <span id="cartCount" class="cart-count-badge">0</span>
-    </button>
 
-    <!-- פופאפ סל קניות -->
-    <div id="cartModal" class="modal" style="display:none;">
-        <div class="modal-content-admin" style="max-width:400px;">
-            <span class="close" onclick="toggleCart()">&times;</span>
-            <h2 class="text-xl font-bold mb-4">סל קניות</h2>
-            <div id="cartItems" class="mb-4"></div>
-            <div class="font-bold mb-4">סך הכל: <span id="cartTotal">0</span> ₪</div>
-            <button onclick="makeOrder()" class="order-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">הזמן בוואטסאפ</button>
-            <button id="cartBitButton" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2" onclick="payWithBit()">שלם בביט</button>
+            // שליחת הזמנה בוואטסאפ (משתמש בסל)
+            function makeOrder() {
+                let orderMessage = "שלום, ברצוני לבצע הזמנה מ-POOKUBEH:\n\n";
+                let hasItems = false;
+                let total = 0;
+                Object.values(cart).forEach(item => {
+                    if (item.quantity > 0) {
+                        orderMessage += `${item.name}: ${item.quantity} יחידות - ${item.price * item.quantity}₪\n`;
+                        total += item.price * item.quantity;
+                        hasItems = true;
+                    }
+                });
+                if (!hasItems) {
+                    alert('הסל ריק!');
+                    return;
+                }
+                orderMessage += `\nסה"כ לתשלום: ${total}₪\n\nתודה!`;
+                const whatsappUrl = `https://wa.me/972546225706?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                toggleCart();
+            }
+
+            // סגירת סל בלחיצה מחוץ לחלון
+            window.onclick = function (event) {
+                const modal = document.getElementById('cartModal');
+                if (event.target === modal) modal.style.display = 'none';
+            }
+
+            // הפעלת עדכון מיידי
+            document.addEventListener('DOMContentLoaded', () => {
+                // עדכן את הכמויות בשדות
+                Object.entries(cart).forEach(([name, item]) => {
+                    const itemDiv = document.querySelector(`[data-name="${name}"]`);
+                    if (itemDiv) {
+                        const input = itemDiv.querySelector('.quantity-input');
+                        if (input) {
+                            input.value = item.quantity;
+                        }
+                    }
+                });
+                updateCartCount();
+                updateTotal();
+            });
+        </script>
+        <!-- אייקון עגלה צף -->
+        <button id="cartButton" onclick="toggleCart()" class="fixed top-24 left-4 z-50 cart-fab">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cartCount" class="cart-count-badge">0</span>
+        </button>
+
+        <!-- פופאפ סל קניות -->
+        <div id="cartModal" class="modal" style="display:none;">
+            <div class="modal-content-admin" style="max-width:400px;">
+                <span class="close" onclick="toggleCart()">&times;</span>
+                <h2 class="text-xl font-bold mb-4">סל קניות</h2>
+                <div id="cartItems" class="mb-4"></div>
+                <div class="font-bold mb-4">סך הכל: <span id="cartTotal">0</span> ₪</div>
+                <button onclick="makeOrder()" class="order-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2">הזמן בוואטסאפ</button>
+                <button id="cartBitButton" class="bit-button w-full py-3 rounded-xl text-lg font-bold text-white mb-2" onclick="payWithBit()">שלם בביט</button>
+            </div>
         </div>
+
+     
+        <style>
+        .contact-form-section {
+          max-width: 400px;
+          margin: 40px auto 0 auto;
+          background: #fff;
+          border-radius: 18px;
+          box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+          padding: 24px 18px;
+          text-align: center;
+        }
+        .contact-form-section h3 {
+          margin-bottom: 18px;
+          color: #1E3A8A;
+        }
+        #contactForm input, #contactForm textarea {
+          width: 100%;
+          margin-bottom: 12px;
+          padding: 10px;
+          border-radius: 8px;
+          border: 1px solid #ddd;
+          font-size: 1em;
+        }
+        #contactForm textarea {
+          min-height: 70px;
+          resize: vertical;
+        }
+        #contactForm button {
+          background: linear-gradient(45deg, #1E3A8A, #3B82F6);
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          padding: 10px 0;
+          width: 100%;
+          font-size: 1.1em;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        #contactForm button:hover {
+          background: linear-gradient(45deg, #3B82F6, #1E3A8A);
+        }
+        #contactFormStatus {
+          margin-top: 10px;
+          color: #28A745;
+          font-weight: bold;
+        }
+        </style>
+        <script>
+        function sendContactForm(event) {
+          event.preventDefault();
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+          const message = document.getElementById('message').value;
+          const fullMessage = `פנייה מהאתר:\nשם: ${name}\nטלפון: ${phone}\nהודעה: ${message}`;
+          const whatsappUrl = `https://wa.me/972584462009?text=${encodeURIComponent(fullMessage)}`;
+          window.open(wלtsappUrl, '_blank');
+          document.getElementById('contactFormStatus').innerText = 'ההודעה נשלחה לוואטסאפ!';
+          document.getElementById('contactForm').reset();
+        }
+        </script>
+
+        <!-- HERO חדש למובייל בלבד -->
+        <div class="hero-mobile">
+          <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו" class="hero-logo-mobile" />
+          <h1 class="hero-title-mobile">POOKUBEH</h1>
+          <p class="hero-desc-mobile">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
+          <a href="#kubbeh-section" class="hero-btn-mobile">לצפייה ב תפריט</a>
+        </div>
+
+        <style>
+        @media (max-width: 700px) {
+          .hero-tenne { display: none !important; }
+          .hero-mobile {
+            background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
+            border-radius: 22px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            padding: 32px 12px 28px 12px;
+            margin: 18px 0 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 340px;
+            max-width: 98vw;
+          }
+          .hero-logo-mobile {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: #fff;
+            padding: 6px;
+          }
+          .hero-title-mobile {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+          }
+          .hero-desc-mobile {
+            font-size: 1.02rem;
+            color: #fff;
+            margin-bottom: 22px;
+            font-weight: 400;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+          }
+          .hero-btn-mobile {
+            font-size: 1.08rem;
+            padding: 13px 0;
+            width: 100%;
+            max-width: 260px;
+            border-radius: 30px;
+            margin: 0 auto;
+            display: block;
+            background: #fff;
+            color: #ff0844;
+            font-weight: 700;
+            box-shadow: 0 2px 12px rgba(255,126,95,0.10);
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+          }
+          .hero-btn-mobile:hover {
+            background: #ff0844;
+            color: #fff;
+          }
+        }
+        @media (min-width: 701px) {
+          .hero-mobile { display: none !important; }
+        }
+        </style>
+
+        <style>
+        @media (max-width: 700px) {
+          .hero-tenne, .hero-mobile { display: none !important; }
+          .hero-img-bg-mobile {
+            position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            margin: 18px 0 0 0;
+            min-height: 320px;
+            max-width: 98vw;
+          }
+          .hero-bg-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(7px) brightness(0.7);
+            z-index: 1;
+          }
+          .hero-img-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            padding: 24px 10px 20px 10px;
+            color: #fff;
+            text-align: center;
+          }
+          .hero-logo-small {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            background: #fff;
+            padding: 4px;
+          }
+          .hero-img-content h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+          }
+          .hero-img-content p {
+            font-size: 1.02rem;
+            margin-bottom: 22px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+          }
+          .hero-btn-img {
+            font-size: 1.08rem;
+            padding: 13px 0;
+            width: 100%;
+            max-width: 220px;
+            border-radius: 30px;
+            margin: 0 auto;
+            display: block;
+            background: transparent;
+            color: #fff;
+            font-weight: 700;
+            border: 2px solid #fff;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+          }
+          .hero-btn-img:hover {
+            background: #fff;
+            color: #ff0844;
+          }
+        }
+        @media (min-width: 701px) {
+          .hero-img-bg-mobile { display: none !important; }
+        }
+        </style>
     </div>
 
- 
-    <style>
-    .contact-form-section {
-      max-width: 400px;
-      margin: 40px auto 0 auto;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-      padding: 24px 18px;
-      text-align: center;
-    }
-    .contact-form-section h3 {
-      margin-bottom: 18px;
-      color: #1E3A8A;
-    }
-    #contactForm input, #contactForm textarea {
-      width: 100%;
-      margin-bottom: 12px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 1em;
-    }
-    #contactForm textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
-    #contactForm button {
-      background: linear-gradient(45deg, #1E3A8A, #3B82F6);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 0;
-      width: 100%;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #contactForm button:hover {
-      background: linear-gradient(45deg, #3B82F6, #1E3A8A);
-    }
-    #contactFormStatus {
-      margin-top: 10px;
-      color: #28A745;
-      font-weight: bold;
-    }
-    </style>
+    <!-- הדבק כאן את קוד הבוט -->
     <script>
-    function sendContactForm(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const message = document.getElementById('message').value;
-      const fullMessage = `פנייה מהאתר:\nשם: ${name}\nטלפון: ${phone}\nהודעה: ${message}`;
-      const whatsappUrl = `https://wa.me/972584462009?text=${encodeURIComponent(fullMessage)}`;
-      window.open(wלtsappUrl, '_blank');
-      document.getElementById('contactFormStatus').innerText = 'ההודעה נשלחה לוואטסאפ!';
-      document.getElementById('contactForm').reset();
-    }
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="Cz7jeoMn5d9BDBb8e6gPy";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
-
-    <!-- HERO חדש למובייל בלבד -->
-    <div class="hero-mobile">
-      <img src="https://i.ibb.co/dJbswrkC/Whats-App-2025-06-06-22-02-43-42d5d0e6.jpg" alt="לוגו" class="hero-logo-mobile" />
-      <h1 class="hero-title-mobile">POOKUBEH</h1>
-      <p class="hero-desc-mobile">קובות ומרקים ביתיים, איכותיים וטעימים במיוחד</p>
-      <a href="#kubbeh-section" class="hero-btn-mobile">לצפייה ב תפריט</a>
-    </div>
-
-    <style>
-    @media (max-width: 700px) {
-      .hero-tenne { display: none !important; }
-      .hero-mobile {
-        background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
-        border-radius: 22px;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-        padding: 32px 12px 28px 12px;
-        margin: 18px 0 0 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 340px;
-        max-width: 98vw;
-      }
-      .hero-logo-mobile {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        margin-bottom: 18px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        background: #fff;
-        padding: 6px;
-      }
-      .hero-title-mobile {
-        font-size: 1.6rem;
-        font-weight: 900;
-        color: #fff;
-        margin-bottom: 10px;
-        letter-spacing: 1px;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      }
-      .hero-desc-mobile {
-        font-size: 1.02rem;
-        color: #fff;
-        margin-bottom: 22px;
-        font-weight: 400;
-        text-align: center;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      }
-      .hero-btn-mobile {
-        font-size: 1.08rem;
-        padding: 13px 0;
-        width: 100%;
-        max-width: 260px;
-        border-radius: 30px;
-        margin: 0 auto;
-        display: block;
-        background: #fff;
-        color: #ff0844;
-        font-weight: 700;
-        box-shadow: 0 2px 12px rgba(255,126,95,0.10);
-        text-align: center;
-        text-decoration: none;
-        transition: background 0.2s, color 0.2s;
-      }
-      .hero-btn-mobile:hover {
-        background: #ff0844;
-        color: #fff;
-      }
-    }
-    @media (min-width: 701px) {
-      .hero-mobile { display: none !important; }
-    }
-    </style>
-
-    <style>
-    @media (max-width: 700px) {
-      .hero-tenne, .hero-mobile { display: none !important; }
-      .hero-img-bg-mobile {
-        position: relative;
-        border-radius: 22px;
-        overflow: hidden;
-        margin: 18px 0 0 0;
-        min-height: 320px;
-        max-width: 98vw;
-      }
-      .hero-bg-img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: blur(7px) brightness(0.7);
-        z-index: 1;
-      }
-      .hero-img-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 320px;
-        padding: 24px 10px 20px 10px;
-        color: #fff;
-        text-align: center;
-      }
-      .hero-logo-small {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        margin-bottom: 12px;
-        background: #fff;
-        padding: 4px;
-      }
-      .hero-img-content h1 {
-        font-size: 1.5rem;
-        font-weight: 900;
-        margin-bottom: 10px;
-        letter-spacing: 1px;
-        color: #fff;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-      }
-      .hero-img-content p {
-        font-size: 1.02rem;
-        margin-bottom: 22px;
-        color: #fff;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-      }
-      .hero-btn-img {
-        font-size: 1.08rem;
-        padding: 13px 0;
-        width: 100%;
-        max-width: 220px;
-        border-radius: 30px;
-        margin: 0 auto;
-        display: block;
-        background: transparent;
-        color: #fff;
-        font-weight: 700;
-        border: 2px solid #fff;
-        text-align: center;
-        text-decoration: none;
-        transition: background 0.2s, color 0.2s;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      }
-      .hero-btn-img:hover {
-        background: #fff;
-        color: #ff0844;
-      }
-    }
-    @media (min-width: 701px) {
-      .hero-img-bg-mobile { display: none !important; }
-    }
-    </style>
 </body>
 </html>
